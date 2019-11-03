@@ -259,26 +259,4 @@ style=wordwrap</panel_attributes>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>910</x>
-      <y>460</y>
-      <w>30</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLState</id>
-    <coordinates>
-      <x>870</x>
-      <y>510</y>
-      <w>150</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Αποστολή Ειδοποίησης</panel_attributes>
-    <additional_attributes/>
-  </element>
 </diagram>
