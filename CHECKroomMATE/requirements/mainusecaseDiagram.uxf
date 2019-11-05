@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.1.1">
+<diagram program="umlet" version="14.3.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>40</x>
+      <x>0</x>
       <y>180</y>
       <w>80</w>
       <h>110</h>
@@ -15,7 +15,7 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>50</x>
+      <x>10</x>
       <y>410</y>
       <w>80</w>
       <h>110</h>
@@ -26,7 +26,7 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>250</x>
+      <x>210</x>
       <y>290</y>
       <w>80</w>
       <h>110</h>
@@ -37,7 +37,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
+      <x>60</x>
       <y>230</y>
       <w>170</w>
       <h>90</h>
@@ -48,7 +48,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
+      <x>60</x>
       <y>350</y>
       <w>150</w>
       <h>120</h>
@@ -59,7 +59,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
+      <x>40</x>
       <y>80</y>
       <w>40</w>
       <h>110</h>
@@ -70,7 +70,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>50</x>
       <y>130</y>
       <w>120</w>
       <h>70</h>
@@ -81,7 +81,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>50</x>
       <y>190</y>
       <w>180</w>
       <h>40</h>
@@ -92,7 +92,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>270</x>
       <y>340</y>
       <w>110</w>
       <h>60</h>
@@ -103,7 +103,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>270</x>
       <y>290</y>
       <w>110</w>
       <h>50</h>
@@ -114,7 +114,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
+      <x>70</x>
       <y>470</y>
       <w>140</w>
       <h>120</h>
@@ -125,7 +125,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
+      <x>70</x>
       <y>460</y>
       <w>150</w>
       <h>60</h>
@@ -136,7 +136,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>50</x>
+      <x>10</x>
       <y>40</y>
       <w>120</w>
       <h>50</h>
@@ -148,7 +148,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>190</x>
+      <x>150</x>
       <y>110</y>
       <w>180</w>
       <h>50</h>
@@ -160,7 +160,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>250</x>
+      <x>210</x>
       <y>190</y>
       <w>200</w>
       <h>50</h>
@@ -172,7 +172,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>400</x>
+      <x>360</x>
       <y>290</y>
       <w>120</w>
       <h>50</h>
@@ -184,7 +184,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>400</x>
+      <x>360</x>
       <y>360</y>
       <w>120</w>
       <h>50</h>
@@ -196,7 +196,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>240</x>
+      <x>200</x>
       <y>480</y>
       <w>170</w>
       <h>40</h>
@@ -208,7 +208,7 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>230</x>
+      <x>190</x>
       <y>550</y>
       <w>160</w>
       <h>60</h>
