@@ -1,0 +1,30 @@
+h1. Ανάλυση συστήματος Roommate
+
+__Παρουσιάζουμε παρακάτω την λεπτομερή ανάλυση του λογισμικού μας με σειρά__:
+# __Use case diagram__ 
+# __Activity diagrams__
+# __Ανάλυση απαιτήσεων__
+# __Domain model__
+
+h2. 1.Use case diagram/Διάγραμμα περιπτώσεων χρήσης
+
+!Main_Use_Case.jpg!
+
+h2. 2.Activity Diagrams/Διαγράμματα Δραστηριοτήτων 
+
+__Οι δραστηριότητες που επιλέξαμε είναι οι εξής:__ 
+
+h3. 2.1.Request Managment/Διαχείριση αιτήματος
+
+!Activity(D5)_RequestManagment.jpg!
+
+h3. 2.2.Advertisment Publication / Δημοσίευση Αγγελίας
+
+!ActivityD1(DhmosieushAggelias).jpg!
+
+h3. 2.3.Request for cohabit / Υποβολή Αιτήματος Συγκατοίκησης
+
+!Activity_Request_Roommate.jpg!
+
+
+h2. 3.Use Case Descritpion /Περιγραφή Περιπτώσεων Χρήσης
