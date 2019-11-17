@@ -21,7 +21,7 @@ public class Initializer  {
         tx.begin();
         Query query = null;
 
-        query = em.createNativeQuery("delete from movies");
+        query = em.createNativeQuery(""); //remove usernames TODO
         query.executeUpdate();
         
         tx.commit();
