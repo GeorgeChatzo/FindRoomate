@@ -3,18 +3,12 @@ package gr.aueb.mscis.sample.model;
 public class Cohabitance {
 
 	private double commision;
-	private Date dateOfRequest;
-	private int residentID;
-	private int flatmateID;
-	private Date connectionDate;
+	private boolean connection;
+	private CohabitRequest request;
 	
-	public Cohabitance(double commision, Date dateOfRequest, int residentID, int flatmateID, Date connectionDate) {
-		super();
+	public Cohabitance(double commision, boolean connection) {
 		this.commision = commision;
-		this.dateOfRequest = dateOfRequest;
-		this.residentID = residentID;
-		this.flatmateID = flatmateID;
-		this.connectionDate = connectionDate;
+		this.connection = connection;
 	}
 
 	public Cohabitance() {
@@ -29,36 +23,20 @@ public class Cohabitance {
 		this.commision = commision;
 	}
 	
-	public Date getDateOfRequest() {
-		return dateOfRequest;
+	public boolean getConnection() {
+		return connection;
 	}
 	
-	public void setDateOfRequest(Date dateOfRequest) {
-		this.dateOfRequest = dateOfRequest;
+	public void setConnection(boolean connection) {
+		this.connection = connection;
 	}
-	
-	public int getResidentID() {
-		return residentID;
+
+	public CohabitRequest getRequest() {
+		return request;
 	}
-	
-	public void setResidentID(int residentID) {
-		this.residentID = residentID;
-	}
-	
-	public int getFlatmateID() {
-		return flatmateID;
-	}
-	
-	public void setFlatmateID(int flatmateID) {
-		this.flatmateID = flatmateID;
-	}
-	
-	public Date getConnectionDate() {
-		return connectionDate;
-	}
-	
-	public void setConnectionDate(Date connectionDate) {
-		this.connectionDate = connectionDate;
+
+	public void setRequest(CohabitRequest request) {
+		this.request = request;
 	}
 	
 

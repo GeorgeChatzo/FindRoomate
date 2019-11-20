@@ -16,6 +16,7 @@ public class House {
 	private int roomsNo;
 	private int constructionYear;
 	private String nearPublicTransport;
+	private Resident resident;
 	
 	public House(String country, String city, String region, int zipCode, String typeOfHouse, int floorNo,
 			boolean garden, double squareMeters, boolean elevator, boolean parking, int balconies, int roomsNo,
@@ -151,6 +152,14 @@ public class House {
 
 	public void setNearPublicTransport(String nearPublicTransport) {
 		this.nearPublicTransport = nearPublicTransport;
+	}
+
+	public Resident getResident() {
+		return resident;
+	}
+
+	public void setResident(Resident resident) {
+		this.resident = resident;
 	}
 
 }

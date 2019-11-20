@@ -4,15 +4,18 @@ public class HouseAd {
 	
 	private String description;
 	private double rentPrice;
-	private Photo photos;
+	private String photos;
 	private String comments;
+	private int numberOfRoommates;
+	private Resident resident;
 	
-	public HouseAd(String description, double rentPrice, Photo photos, String comments) {
+	public HouseAd(String description, double rentPrice, String photos, String comments,int numberOfRoommates) {
 		super();
 		this.description = description;
 		this.rentPrice = rentPrice;
 		this.photos = photos;
 		this.comments = comments;
+		this.setNumberOfRoommates(numberOfRoommates);
 	}
 	
 	public HouseAd() {
@@ -35,11 +38,11 @@ public class HouseAd {
 		this.rentPrice = rentPrice;
 	}
 	
-	public Photo getPhotos() {
+	public String getPhotos() {
 		return photos;
 	}
 	
-	public void setPhotos(Photo photos) {
+	public void setPhotos(String photos) {
 		this.photos = photos;
 	}
 	
@@ -49,6 +52,22 @@ public class HouseAd {
 	
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public int getNumberOfRoommates() {
+		return numberOfRoommates;
+	}
+
+	public void setNumberOfRoommates(int numberOfRoommates) {
+		this.numberOfRoommates = numberOfRoommates;
+	}
+
+	public Resident getResident() {
+		return resident;
+	}
+
+	public void setResident(Resident resident) {
+		this.resident = resident;
 	}
 	
 	
