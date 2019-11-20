@@ -2,8 +2,13 @@ package gr.aueb.mscis.sample.model;
 
 //Superclass Roommate 
 
-public class Roommate {
+import javax.persistence.*;
 
+
+
+@MappedSuperclass
+public class Roommate {
+	
 	private String username;
 	private String password;
 	private EmailAddress email;

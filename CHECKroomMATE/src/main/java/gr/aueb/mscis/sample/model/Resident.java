@@ -2,12 +2,27 @@ package gr.aueb.mscis.sample.model;
 
 import java.util.*;
 
-public class Resident extends Roommate{
+import javax.persistence.*;
 
+
+
+@Entity
+@Table(name="Residents")
+public class Resident extends Roommate{
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@Column(name = "FlatmatesNo")
 	private int numOfFlatmates;
+	@Column(name = "AgeRange")
 	private int ageRange;
+	@Column(name = "Habits")
 	private Set<String> preferedHabits;
+	@Column(name = "Pets")
 	private boolean petRule;
+	@Column(name="Schedule")
 	private String preferedWorkSchedule;
 	private status preferedProfession;
 	private boolean guests;

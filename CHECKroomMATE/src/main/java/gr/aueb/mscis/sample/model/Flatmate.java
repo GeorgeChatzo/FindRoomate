@@ -1,8 +1,17 @@
 package gr.aueb.mscis.sample.model;
 
 import java.util.*;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name="Flatmates")
 public class Flatmate extends Roommate{
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	
 	private String description;
 	private String gender;
