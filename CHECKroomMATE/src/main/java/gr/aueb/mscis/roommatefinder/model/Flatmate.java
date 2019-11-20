@@ -26,8 +26,8 @@ public class Flatmate extends Roommate{
 	
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, String description, String gender, status profession, boolean pets,
-			Set<String> habits, String workSchedule, boolean incomingGuests) {
-		super(username, password, email, phoneNumber, name, surname, age);
+			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
+		super(username, password, email, phoneNumber, name, surname, age, rating);
 		this.description = description;
 		this.gender = gender;
 		this.profession = profession;
@@ -44,10 +44,9 @@ public class Flatmate extends Roommate{
 	}
 
 
-
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
-			String surname, int age) {
-		super(username, password, email, phoneNumber, name, surname, age);
+			String surname, int age, Set<Double> rating) {
+		super(username, password, email, phoneNumber, name, surname, age, rating);
 		// TODO Auto-generated constructor stub
 	}
 

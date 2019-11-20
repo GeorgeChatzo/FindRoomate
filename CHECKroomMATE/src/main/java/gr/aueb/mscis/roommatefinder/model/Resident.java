@@ -30,8 +30,8 @@ public class Resident extends Roommate{
 	
 	public Resident(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, int numOfFlatmates, int ageRange, Set<String> preferedHabits, boolean petRule,
-			String preferedWorkSchedule, status preferedProfession, boolean guests, String genderChoice) {
-		super(username, password, email, phoneNumber, name, surname, age);
+			String preferedWorkSchedule, status preferedProfession, boolean guests, String genderChoice, Set<Double> rating) {
+		super(username, password, email, phoneNumber, name, surname, age, rating);
 		this.numOfFlatmates = numOfFlatmates;
 		this.ageRange = ageRange;
 		this.preferedHabits = preferedHabits;
@@ -43,8 +43,8 @@ public class Resident extends Roommate{
 	}
 	
 	public Resident(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
-			String surname, int age) {
-		super(username, password, email, phoneNumber, name, surname, age);
+			String surname, int age, Set<Double> rating) {
+		super(username, password, email, phoneNumber, name, surname, age,rating);
 		// TODO Auto-generated constructor stub
 	}
 

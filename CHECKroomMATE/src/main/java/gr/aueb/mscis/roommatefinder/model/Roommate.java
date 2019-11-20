@@ -1,5 +1,7 @@
 package gr.aueb.mscis.roommatefinder.model;
 
+import java.util.Set;
+
 //Superclass Roommate 
 
 import javax.persistence.*;
@@ -16,9 +18,11 @@ public class Roommate {
 	private String name;
 	private String surname;
 	private int age;
+	private Set<Double> rating;
+	
 	
 	public Roommate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
-			String surname, int age) {
+			String surname, int age, Set<Double> rating) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -26,6 +30,7 @@ public class Roommate {
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
+		this.rating = rating;
 	}
 	
 	public Roommate() {
@@ -86,6 +91,14 @@ public class Roommate {
 	
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Set<Double> getRating() {
+		return rating;
+	}
+
+	public void setRating(Set<Double> rating) {
+		this.rating = rating;
 	}
 	
 	
