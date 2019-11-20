@@ -1,10 +1,9 @@
-package gr.aueb.mscis.sample.service;
+package gr.aueb.mscis.roommatefinder.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-//import gr.aueb.mscis.sample.model.Movie;
-import gr.aueb.mscis.sample.persistence.JPAUtil;
+import gr.aueb.mscis.roommatefinder.persistence.JPAUtil;
 
 /**
  * CRUD operations and other functionality related to movies
