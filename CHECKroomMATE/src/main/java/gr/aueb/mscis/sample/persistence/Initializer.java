@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import gr.aueb.mscis.sample.model.Movie;
+//import gr.aueb.mscis.sample.model.Movie;
 
 
 public class Initializer  {
@@ -33,15 +33,15 @@ public class Initializer  {
 
         eraseData();                      
 
-        Movie terminator = new Movie("Snowden", 2016, "Oliver Stone");
-        Movie inception = new Movie("Inception", 2010, "Christopher Nolan");
+        //Movie terminator = new Movie("Snowden", 2016, "Oliver Stone");
+       // Movie inception = new Movie("Inception", 2010, "Christopher Nolan");
        
         EntityManager em = JPAUtil.getCurrentEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        em.persist(terminator);
-        em.persist(inception);
+       // em.persist(terminator);
+       // em.persist(inception);
         
         tx.commit();
     
