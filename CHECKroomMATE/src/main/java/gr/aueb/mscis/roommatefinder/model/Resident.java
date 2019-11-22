@@ -3,16 +3,28 @@ package gr.aueb.mscis.roommatefinder.model;
 import java.util.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import org.jpwh.model.associations.onetomany.jointable.Item;
 
 
 
 @Entity
 @Table(name="Residents")
 public class Resident extends Roommate{
+
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@OneToOne(
+	        mappedBy = "resident",
+	        cascade = CascadeType.PERSIST)
+	private House house;
+    @OneToMany(mappedBy = "resident")
+    private Set<HouseAd> houseAds = new HashSet<HouseAd>();
+	    
 	
 	@Column(name = "FlatmatesNo")
 	private int numOfFlatmates;
@@ -24,8 +36,11 @@ public class Resident extends Roommate{
 	private boolean petRule;
 	@Column(name="Schedule")
 	private String preferedWorkSchedule;
+	@NotNull
 	private status preferedProfession;
+	@NotNull
 	private boolean guests;
+	@NotNull
 	private String genderChoice;
 	
 	public Resident(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,

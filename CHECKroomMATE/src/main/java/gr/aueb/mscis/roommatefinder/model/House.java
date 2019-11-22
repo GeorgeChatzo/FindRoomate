@@ -1,6 +1,22 @@
 package gr.aueb.mscis.roommatefinder.model;
+@Entity
+@Table(name = "HOUSE")
 
 public class House {
+	@Id
+	@GeneratedValue(generator = "houseKeyGenerator")
+	@org.hibernate.annotations.GenericGenerator(
+	name = "houseKeyGenerator",
+	strategy = "foreign",
+	parameters =
+	@org.hibernate.annotations.Parameter(
+	name = "property", value = "resident"
+	)
+	)
+	protected Long id;
+	@OneToOne(optional = false)
+	@PrimaryKeyJoinColumn
+	private Resident resident;
 	
 	private String country;
 	private String city;
@@ -17,7 +33,7 @@ public class House {
 	private int constructionYear;
 	private String nearPublicTransport;
 	private Resident resident;
-	
+
 	public House(String country, String city, String region, int zipCode, String typeOfHouse, int floorNo,
 			boolean garden, double squareMeters, boolean elevator, boolean parking, int balconies, int roomsNo,
 			int constructionYear, String nearPublicTransport) {

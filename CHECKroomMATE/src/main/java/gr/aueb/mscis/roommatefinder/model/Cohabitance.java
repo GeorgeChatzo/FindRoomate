@@ -1,10 +1,22 @@
 package gr.aueb.mscis.roommatefinder.model;
 
-public class Cohabitance {
+@Entity
+@Table(name="COHABITANCE")
 
+public class Cohabitance {
+	@Id
+	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	private Long id;
+	
 	private double commision;
 	private boolean connection;
 	private CohabitRequest request;
+	
+    @OneToOne(
+            mappedBy = "cohabitance",
+            cascade = CascadeType.PERSIST
+        )
+    private CohabitRequest cohabitRequest;
 	
 	public Cohabitance(double commision, boolean connection) {
 		this.commision = commision;

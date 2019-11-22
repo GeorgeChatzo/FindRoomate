@@ -1,9 +1,68 @@
 package gr.aueb.mscis.roommatefinder.model;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.jpwh.model.Constants;
+import org.jpwh.model.associations.onetomany.jointable.User;
+import org.jpwh.model.associations.onetoone.foreigngenerator.Address;
+
+@Entity
+@Table(name="COHABITREQUEST")
 
 public class CohabitRequest {
+	@Id
+	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	 private Long id;
 	
+	@Id
+	@GeneratedValue(generator = "houseKeyGenerator")
+	@org.hibernate.annotations.GenericGenerator(
+	name = "houseKeyGenerator",
+	strategy = "foreign",
+	parameters =
+	@org.hibernate.annotations.Parameter(
+	name = "property", value = "resident"
+	)
+	)
+	protected Long idFk;
+	
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "HOUSE_REQUEST",
+        joinColumns =
+            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
+        inverseJoinColumns =
+            @JoinColumn(nullable = false) 
+    )
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "FLATMATE_REQUEST",
+        joinColumns =
+            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
+        inverseJoinColumns =
+            @JoinColumn(nullable = false) // Defaults to BUYER_ID
+    )
+    
+    
+    
+    private Flatmate flatmate;
+    
+    private HouseAd houseAd;
+ 
+    @OneToOne(optional = false) // Create FK constraint on PK column
+    @PrimaryKeyJoinColumn
+     private Cohabitance cohabitance;
+	 
 	private boolean connection;
 	private Date dateOfRequest;
 	private Resident resident;

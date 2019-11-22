@@ -6,10 +6,18 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.jpwh.model.Constants;
 
 
 @MappedSuperclass
+
 public class Roommate {
+	
+	@Id
+	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	private Long id;
+	
+
 	
 	private String username;
 	private String password;

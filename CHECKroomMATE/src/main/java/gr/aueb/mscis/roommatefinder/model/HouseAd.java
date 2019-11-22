@@ -1,6 +1,40 @@
 package gr.aueb.mscis.roommatefinder.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.jpwh.model.Constants;
+import org.jpwh.model.associations.onetomany.jointable.Item;
+import org.jpwh.model.associations.onetomany.jointable.User;
+
+@Entity
+@Table(name="HOUSEADS")
 public class HouseAd {
+    @Id
+    @GeneratedValue(generator = Constants.ID_GENERATOR)
+    protected Long id;
+	
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "resident_ad",
+        joinColumns =
+            @JoinColumn(name = "houseAd_id"), // Defaults to ID
+        inverseJoinColumns =
+            @JoinColumn(nullable = false) // Defaults to BUYER_ID
+    )
+
+    @OneToMany(mappedBy = "house_ad")
+    protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
+    
+    private Resident resident;
 	
 	private String description;
 	private double rentPrice;

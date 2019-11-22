@@ -2,25 +2,36 @@ package gr.aueb.mscis.roommatefinder.model;
 
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+import org.jpwh.model.associations.onetomany.jointable.Item;
 
 @Entity
-@Table(name="Flatmates")
+@Table(name="Flatmate")
 public class Flatmate extends Roommate{
-	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
 	
+    @OneToMany(mappedBy = "flatmate")
+    protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
+
+	
+	@NotNull
 	private String description;
+	@NotNull
 	private String gender;
+	@NotNull
 	private status profession;
+	@NotNull
 	private boolean pets;
+	@NotNull
 	private Set<String> habits;
+	@NotNull
 	private String workSchedule;
+	@NotNull
 	private boolean incomingGuests;
-	
+	@NotNull
 	private Set<Cohabitance> cohabitance;
 	
 	
