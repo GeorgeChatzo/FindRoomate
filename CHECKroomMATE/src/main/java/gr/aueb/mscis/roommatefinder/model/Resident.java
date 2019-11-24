@@ -90,6 +90,15 @@ public class Resident extends Roommate{
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return "Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + cohabitRequests + ", houseAds="
+				+ houseAds + ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
+				+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
+				+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
+				+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
+	}
+
 	public void removeHouseAd(HouseAd houseAd) {
 		if(houseAd != null) {
 			houseAds.remove(houseAd);
@@ -183,6 +192,7 @@ public class Resident extends Roommate{
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
+	
 
 	
 
