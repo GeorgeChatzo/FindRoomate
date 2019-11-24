@@ -1,17 +1,6 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-
 import javax.persistence.*;
 
 @Entity
@@ -19,17 +8,17 @@ import javax.persistence.*;
 
 public class CohabitRequest {
 	@Id
-	//@GeneratedValue(generator = Constants.ID_GENERATOR)
+	@Column(name="COHABITREQUEST_ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	 private Long id;
 	
-	@Id
-	@GeneratedValue(generator = "houseKeyGenerator")
+	@GeneratedValue(generator = "cohabitanceKeyGenerator")
 	@org.hibernate.annotations.GenericGenerator(
-	name = "houseKeyGenerator",
+	name = "cohabitanceKeyGenerator",
 	strategy = "foreign",
 	parameters =
 	@org.hibernate.annotations.Parameter(
-	name = "property", value = "resident"
+	name = "property", value = "cohabitance"
 	)
 	)
 	protected Long idFk;
@@ -53,6 +42,15 @@ public class CohabitRequest {
             @JoinColumn(nullable = false)
     )private Flatmate flatmate;
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "RESIDENT_REQUEST",
+        joinColumns =
+            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
+        inverseJoinColumns =
+            @JoinColumn(nullable = false)
+    )private Resident resident;
+    
    
     @OneToOne(optional = false) // Create FK constraint on PK column
     @PrimaryKeyJoinColumn
@@ -60,7 +58,7 @@ public class CohabitRequest {
 	 
 	private boolean connection;
 	private Date dateOfRequest;
-	private Resident resident;
+	
 	
 	public CohabitRequest(boolean connection, Date dateOfRequest) {
 		this.connection = connection;

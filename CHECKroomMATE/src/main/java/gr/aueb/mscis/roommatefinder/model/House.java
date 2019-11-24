@@ -6,19 +6,26 @@ import javax.persistence.*;
 
 public class House {
 	@Id
-	@GeneratedValue(generator = "houseKeyGenerator")
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@GeneratedValue(generator = "househKeyGenerator")
 	@org.hibernate.annotations.GenericGenerator(
-	name = "houseKeyGenerator",
+	name = "househKeyGenerator",
 	strategy = "foreign",
 	parameters =
 	@org.hibernate.annotations.Parameter(
 	name = "property", value = "resident"
 	)
 	)
-	protected Long id;
-	@OneToOne(optional = false)
-	@PrimaryKeyJoinColumn
-	
+	protected Long idFk;
+
+    @OneToOne(optional = false) // Create FK constraint on PK column
+    @PrimaryKeyJoinColumn
+     private Resident resident;
+    
+    
 	private String country;
 	private String city;
 	private String region;
@@ -33,7 +40,6 @@ public class House {
 	private int roomsNo;
 	private int constructionYear;
 	private String nearPublicTransport;
-	private Resident resident;
 
 	public House(String country, String city, String region, int zipCode, String typeOfHouse, int floorNo,
 			boolean garden, double squareMeters, boolean elevator, boolean parking, int balconies, int roomsNo,

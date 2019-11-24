@@ -9,21 +9,22 @@ import javax.persistence.*;
 @Entity
 @Table(name="houseads")
 public class HouseAd {
-    @Id
-    //@GeneratedValue(generator = Constants.ID_GENERATOR)
-    protected Long id;
+	@Id
+	@Column(name="houseAd_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	 private Long id;
 	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "resident_ad",
+        name = "resident_ID",
         joinColumns =
-            @JoinColumn(name = "houseAd_id"), // Defaults to ID
+            @JoinColumn(name = "resident_ID"), // Defaults to ID
         inverseJoinColumns =
             @JoinColumn(nullable = false) // 
     )private Resident resident;
 
 
-    @OneToMany(mappedBy = "house_ad")
+    @OneToMany(mappedBy = "houseAd")
     private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
     
 	

@@ -9,8 +9,9 @@ import main.java.gr.aueb.mscis.roommatefinder.model.*;;
 
 public class Cohabitance {
 	@Id
-	//@GeneratedValue(generator = Constants.ID_GENERATOR)
-	private Long id;
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	 private Long id;
 	
 	private double commision;
 	private boolean connection;

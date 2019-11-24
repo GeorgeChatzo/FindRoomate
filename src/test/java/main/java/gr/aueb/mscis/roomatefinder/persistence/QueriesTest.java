@@ -1,5 +1,4 @@
 package main.java.gr.aueb.mscis.roomatefinder.persistence;
-import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class QueriesTest {
         dataHelper.prepareData();
     }
     
-
     
     @SuppressWarnings("unchecked")
     @Test

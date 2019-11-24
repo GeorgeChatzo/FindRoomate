@@ -12,32 +12,28 @@ import javax.persistence.*;
 
 public class Roommate {
 	
-	@Id
-	//@GeneratedValue(generator = Constants.ID_GENERATOR)
-	private Long id;
+@Id
+@Column(name="id")
+@GeneratedValue(strategy=GenerationType.AUTO)
+ private Long id;
 	
 
 	
 	private String username;
 	private String password;
-	private EmailAddress email;
-	private CellNumber phoneNumber;
 	private String name;
 	private String surname;
 	private int age;
-	private Set<Double> rating;
 	
 	
-	public Roommate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
-			String surname, int age, Set<Double> rating) {
+	
+	public Roommate(String username, String password, String name,
+			String surname, int age) {
 		this.username = username;
 		this.password = password;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
-		this.rating = rating;
 	}
 	
 	public Roommate() {
@@ -58,22 +54,6 @@ public class Roommate {
 	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public EmailAddress getEmail() {
-		return email;
-	}
-	
-	public void setEmail(EmailAddress email) {
-		this.email = email;
-	}
-	
-	public CellNumber getPhoneNumber() {
-		return phoneNumber;
-	}
-	
-	public void setPhoneNumber(CellNumber phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 	
 	public String getName() {
@@ -100,13 +80,7 @@ public class Roommate {
 		this.age = age;
 	}
 
-	public Set<Double> getRating() {
-		return rating;
-	}
 
-	public void setRating(Set<Double> rating) {
-		this.rating = rating;
-	}
 	
 	
 

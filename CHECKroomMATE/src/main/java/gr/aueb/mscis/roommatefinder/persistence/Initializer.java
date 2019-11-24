@@ -28,7 +28,7 @@ public class Initializer  {
         tx.begin();
         Query query = null;
 
-        query = em.createNativeQuery(""); //remove usernames TODO
+        query = em.createNativeQuery(""); //remove  TODO
         query.executeUpdate();
         
         tx.commit();

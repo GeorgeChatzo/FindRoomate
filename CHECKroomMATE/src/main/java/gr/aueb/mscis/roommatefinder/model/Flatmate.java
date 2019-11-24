@@ -1,13 +1,20 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 
+import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name="flatmate")
-public class Flatmate extends Roommate{
+@Table(name="flatmates")
+public class Flatmate extends Roommate implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,29 +22,32 @@ public class Flatmate extends Roommate{
     @OneToMany(mappedBy = "flatmate")
     protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
 
-	
-	@NotNull
 	private String description;
-	@NotNull
 	private String gender;
-	@NotNull
 	private status profession;
-	@NotNull
 	private boolean pets;
-	@NotNull
+	@Column
+	@ElementCollection(targetClass=String.class)
 	private Set<String> habits;
-	@NotNull
 	private String workSchedule;
-	@NotNull
 	private boolean incomingGuests;
-	@NotNull
-	private Set<Cohabitance> cohabitance;
+	@Column
+	@ElementCollection(targetClass=Double.class)
+	private Set<Double> rating;
 	
+	 @org.hibernate.annotations.Type(
+	            type="main.java.gr.aueb.mscis.roommatefinder.persistence.EmailCustomType")
+	    @Column(name="email", length = 50, nullable=true)
+	private EmailAddress email;
+	 @org.hibernate.annotations.Type(
+	            type="main.java.gr.aueb.mscis.roommatefinder.persistence.TelphoneNumberCustomType")
+	    @Column(name="cellNumber", length = 20, nullable=true)
+	private CellNumber phoneNumber;
 	
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
-		super(username, password, email, phoneNumber, name, surname, age, rating);
+		super(username, password, name, surname, age);
 		this.description = description;
 		this.gender = gender;
 		this.profession = profession;
@@ -56,7 +66,7 @@ public class Flatmate extends Roommate{
 
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
-		super(username, password, email, phoneNumber, name, surname, age, rating);
+		super(username, password, name, surname, age);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -119,13 +129,34 @@ public class Flatmate extends Roommate{
 	}
 
 
-	public Set<Cohabitance> getCohabitance() {
-		return cohabitance;
+
+	public EmailAddress getEmail() {
+		return email;
 	}
 
 
-	public void setCohabitance(Set<Cohabitance> cohabitance) {
-		this.cohabitance = cohabitance;
+	public void setEmail(EmailAddress email) {
+		this.email = email;
+	}
+
+
+	public CellNumber getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public void setPhoneNumber(CellNumber phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+	public Set<Double> getRating() {
+		return rating;
+	}
+
+
+	public void setRating(Set<Double> rating) {
+		this.rating = rating;
 	}
 	
 	
