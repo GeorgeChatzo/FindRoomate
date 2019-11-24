@@ -16,11 +16,11 @@ public class HouseAd {
 	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "resident_ID",
+        name = "houseAd_id",
         joinColumns =
-            @JoinColumn(name = "resident_ID"), // Defaults to ID
+            @JoinColumn(name = "houseAd_id"), // Defaults to ID
         inverseJoinColumns =
-            @JoinColumn(nullable = false) // 
+            @JoinColumn(nullable = true) // 
     )private Resident resident;
 
 
@@ -46,7 +46,7 @@ public class HouseAd {
 	public HouseAd() {
 		
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}

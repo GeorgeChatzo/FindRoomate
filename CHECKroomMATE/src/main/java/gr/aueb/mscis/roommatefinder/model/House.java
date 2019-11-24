@@ -8,7 +8,7 @@ public class House {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	@GeneratedValue(generator = "househKeyGenerator")
 	@org.hibernate.annotations.GenericGenerator(

@@ -15,7 +15,7 @@ public class Resident extends Roommate{
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	@OneToOne(
 	        mappedBy = "resident",
@@ -40,11 +40,8 @@ public class Resident extends Roommate{
 	private boolean petRule;
 	@Column(name="Schedule")
 	private String preferedWorkSchedule;
-	@NotNull
 	private status preferedProfession;
-	@NotNull
 	private boolean guests;
-	@NotNull
 	private String genderChoice;
 	@Column
 	@ElementCollection(targetClass=Double.class)
@@ -82,7 +79,23 @@ public class Resident extends Roommate{
 	public Resident() {
 		super();	
 	}
-
+	
+	public Set<HouseAd> getHouseAds(){
+		return new HashSet<HouseAd>(houseAds);
+	}
+	
+	public void addHouseAd(HouseAd houseAd) {
+		if(houseAd != null) {
+			houseAds.add(houseAd);
+		}
+	}
+	
+	public void removeHouseAd(HouseAd houseAd) {
+		if(houseAd != null) {
+			houseAds.remove(houseAd);
+		}
+	}
+	
 	public int getNumOfFlatmates() {
 		return numOfFlatmates;
 	}

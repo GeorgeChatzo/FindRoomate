@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.JPAUtil;
 
@@ -33,6 +34,19 @@ public class QueriesTest {
         Query query = em.createQuery("select flatmate from Flatmate flatmate");
         List<Flatmate> results = query.getResultList();      
         Assert.assertEquals(Expected_Flatmate_Number, results.size());
+        
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testingHouseAd() {
+        double Expected_Rent_Price = 500.0;
+        EntityManager em = JPAUtil.getCurrentEntityManager();
+        Query query = em.createQuery("select resident from Resident resident");
+        List<HouseAd> results = query.getResultList(); 
+        Assert.assertEquals(2,results.size());
+        
+        //Assert.assertSame(Expected_Rent_Price, results.get(0).getRentPrice());
         
     }
 
