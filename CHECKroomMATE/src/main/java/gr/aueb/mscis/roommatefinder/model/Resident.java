@@ -1,16 +1,15 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import java.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.jpwh.model.associations.onetomany.jointable.Item;
 
 
 
 @Entity
-@Table(name="Residents")
+@Table(name="residents")
 public class Resident extends Roommate{
 
 	@Id
@@ -22,6 +21,7 @@ public class Resident extends Roommate{
 	        mappedBy = "resident",
 	        cascade = CascadeType.PERSIST)
 	private House house;
+	
     @OneToMany(mappedBy = "resident")
     private Set<HouseAd> houseAds = new HashSet<HouseAd>();
 	    

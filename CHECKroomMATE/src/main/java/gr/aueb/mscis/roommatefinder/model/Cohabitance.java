@@ -1,22 +1,25 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
+
+import javax.persistence.*;
+
+import main.java.gr.aueb.mscis.roommatefinder.model.*;;
 
 @Entity
-@Table(name="COHABITANCE")
+@Table(name="cohabitance")
 
 public class Cohabitance {
 	@Id
-	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	//@GeneratedValue(generator = Constants.ID_GENERATOR)
 	private Long id;
 	
 	private double commision;
 	private boolean connection;
-	private CohabitRequest request;
 	
     @OneToOne(
             mappedBy = "cohabitance",
             cascade = CascadeType.PERSIST
         )
-    private CohabitRequest cohabitRequest;
+	private CohabitRequest request;
 	
 	public Cohabitance(double commision, boolean connection) {
 		this.commision = commision;

@@ -1,4 +1,4 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 
 public class CellNumber {
 	

@@ -1,4 +1,4 @@
-package gr.aueb.mscis.roommatefinder.persistence;
+package main.java.gr.aueb.mscis.roommatefinder.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

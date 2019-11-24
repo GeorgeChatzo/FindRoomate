@@ -1,4 +1,4 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import java.util.Set;
 
@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.jpwh.model.Constants;
 
 
 @MappedSuperclass
@@ -14,7 +13,7 @@ import org.jpwh.model.Constants;
 public class Roommate {
 	
 	@Id
-	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	//@GeneratedValue(generator = Constants.ID_GENERATOR)
 	private Long id;
 	
 

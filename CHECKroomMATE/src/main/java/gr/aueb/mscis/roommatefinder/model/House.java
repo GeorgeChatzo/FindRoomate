@@ -1,6 +1,8 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
+import javax.persistence.*;
+
 @Entity
-@Table(name = "HOUSE")
+@Table(name = "house")
 
 public class House {
 	@Id
@@ -16,7 +18,6 @@ public class House {
 	protected Long id;
 	@OneToOne(optional = false)
 	@PrimaryKeyJoinColumn
-	private Resident resident;
 	
 	private String country;
 	private String city;

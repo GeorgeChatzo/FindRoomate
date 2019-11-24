@@ -1,13 +1,12 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.jpwh.model.associations.onetomany.jointable.Item;
 
 @Entity
-@Table(name="Flatmate")
+@Table(name="flatmate")
 public class Flatmate extends Roommate{
 	@Id
 	@Column(name="id")

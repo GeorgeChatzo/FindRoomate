@@ -1,4 +1,4 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -11,16 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-import org.jpwh.model.Constants;
-import org.jpwh.model.associations.onetomany.jointable.User;
-import org.jpwh.model.associations.onetoone.foreigngenerator.Address;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="COHABITREQUEST")
+@Table(name="cohabitrequests")
 
 public class CohabitRequest {
 	@Id
-	@GeneratedValue(generator = Constants.ID_GENERATOR)
+	//@GeneratedValue(generator = Constants.ID_GENERATOR)
 	 private Long id;
 	
 	@Id
@@ -42,7 +41,8 @@ public class CohabitRequest {
             @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
         inverseJoinColumns =
             @JoinColumn(nullable = false) 
-    )
+    ) private HouseAd houseAd;
+    
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(
@@ -50,15 +50,10 @@ public class CohabitRequest {
         joinColumns =
             @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
         inverseJoinColumns =
-            @JoinColumn(nullable = false) // Defaults to BUYER_ID
-    )
+            @JoinColumn(nullable = false)
+    )private Flatmate flatmate;
     
-    
-    
-    private Flatmate flatmate;
-    
-    private HouseAd houseAd;
- 
+   
     @OneToOne(optional = false) // Create FK constraint on PK column
     @PrimaryKeyJoinColumn
      private Cohabitance cohabitance;
@@ -66,8 +61,6 @@ public class CohabitRequest {
 	private boolean connection;
 	private Date dateOfRequest;
 	private Resident resident;
-	private Cohabitance cohabitance;
-	private Flatmate flatmate;
 	
 	public CohabitRequest(boolean connection, Date dateOfRequest) {
 		this.connection = connection;

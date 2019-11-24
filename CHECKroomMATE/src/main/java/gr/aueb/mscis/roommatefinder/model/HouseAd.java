@@ -1,25 +1,16 @@
-package gr.aueb.mscis.roommatefinder.model;
+package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
-import org.jpwh.model.Constants;
-import org.jpwh.model.associations.onetomany.jointable.Item;
-import org.jpwh.model.associations.onetomany.jointable.User;
 
 @Entity
-@Table(name="HOUSEADS")
+@Table(name="houseads")
 public class HouseAd {
     @Id
-    @GeneratedValue(generator = Constants.ID_GENERATOR)
+    //@GeneratedValue(generator = Constants.ID_GENERATOR)
     protected Long id;
 	
     @ManyToOne(fetch = FetchType.LAZY)
@@ -28,20 +19,19 @@ public class HouseAd {
         joinColumns =
             @JoinColumn(name = "houseAd_id"), // Defaults to ID
         inverseJoinColumns =
-            @JoinColumn(nullable = false) // Defaults to BUYER_ID
-    )
+            @JoinColumn(nullable = false) // 
+    )private Resident resident;
+
 
     @OneToMany(mappedBy = "house_ad")
-    protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
+    private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
     
-    private Resident resident;
 	
 	private String description;
 	private double rentPrice;
 	private String photos;
 	private String comments;
 	private int numberOfRoommates;
-	private Resident resident;
 	
 	public HouseAd(String description, double rentPrice, String photos, String comments,int numberOfRoommates) {
 		super();
