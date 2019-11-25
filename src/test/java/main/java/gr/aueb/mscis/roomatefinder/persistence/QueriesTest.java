@@ -25,7 +25,6 @@ public class QueriesTest {
         dataHelper.prepareData();
     }
     
-    
     @SuppressWarnings("unchecked")
     @Test
     public void simpleQuery() {

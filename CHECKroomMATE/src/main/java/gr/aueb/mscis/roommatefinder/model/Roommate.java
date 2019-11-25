@@ -1,6 +1,5 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 
-import java.util.Set;
 
 //Superclass Roommate 
 
@@ -80,12 +79,12 @@ public class Roommate {
 		this.age = age;
 	}
 
+	@Override
+	public String toString() {
+		return "Roommate [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
+				+ ", surname=" + surname + ", age=" + age + "]";
+	}
+
 
 	
-	
-
-
-
-
-
 }

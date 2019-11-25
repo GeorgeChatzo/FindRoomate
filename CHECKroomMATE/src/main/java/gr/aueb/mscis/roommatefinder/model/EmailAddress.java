@@ -3,12 +3,10 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 public class EmailAddress {
 	
 	 private String value;
-
 	   
 	    public EmailAddress(String email) {
 	        this.value = email;
 	    }
-
 	   
 	    public String getAddress() {
 	        return value;

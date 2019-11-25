@@ -3,24 +3,20 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name="flatmates")
 public class Flatmate extends Roommate implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
-	@Column(name="id")
+	@Column(name="flatmateid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
     @OneToMany(mappedBy = "flatmate")
-    protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
+    private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
 
 	private String description;
 	private String gender;
@@ -57,20 +53,14 @@ public class Flatmate extends Roommate implements Serializable{
 		this.incomingGuests = incomingGuests;
 	}
 	
-	
 	public Flatmate() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
 
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public String getDescription() {
 		return description;
@@ -149,7 +139,7 @@ public class Flatmate extends Roommate implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-
+	
 	public Set<Double> getRating() {
 		return rating;
 	}
@@ -157,6 +147,13 @@ public class Flatmate extends Roommate implements Serializable{
 
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
+	}
+	
+	//TODO connection with houseAd
+	public void request(String houseAdName) {
+		Date date = new Date(System.currentTimeMillis());
+		CohabitRequest request = new CohabitRequest(this,false,date,houseAdName);
+		cohabitRequests.add(request);
 	}
 	
 	

@@ -33,7 +33,7 @@ public class DummyMain {
         Resident resident = new Resident("santa","25",email,cell,"Santa","Claus",1000,4,34,preferedHabits,true,"No job",status.UNEMPLOYED,
         		false,"female",rating);
         
-        HouseAd advertisment = new HouseAd("New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
+        HouseAd advertisment = new HouseAd("super","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
         resident.addHouseAd(advertisment);
         EntityManager em = JPAUtil.getCurrentEntityManager();
        

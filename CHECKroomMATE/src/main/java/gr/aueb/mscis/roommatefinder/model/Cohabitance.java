@@ -54,7 +54,12 @@ public class Cohabitance {
 	public void setRequest(CohabitRequest request) {
 		this.request = request;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Cohabitance [id=" + id + ", commision=" + commision + ", connection=" + connection + ", request="
+				+ request + "]";
+	}
+	
 
 }

@@ -1,4 +1,5 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -23,14 +24,9 @@ public class CohabitRequest {
 	)
 	protected Long idFk;
 	
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "HOUSE_REQUEST",
-        joinColumns =
-            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
-        inverseJoinColumns =
-            @JoinColumn(nullable = false) 
-    ) private HouseAd houseAd;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="houseAd_id")
+    private HouseAd houseAd;
     
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,17 +37,7 @@ public class CohabitRequest {
         inverseJoinColumns =
             @JoinColumn(nullable = false)
     )private Flatmate flatmate;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "RESIDENT_REQUEST",
-        joinColumns =
-            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
-        inverseJoinColumns =
-            @JoinColumn(nullable = false)
-    )private Resident resident;
-    
-   
+      
     @OneToOne(optional = false) // Create FK constraint on PK column
     @PrimaryKeyJoinColumn
      private Cohabitance cohabitance;
@@ -60,9 +46,10 @@ public class CohabitRequest {
 	private Date dateOfRequest;
 	
 	
-	public CohabitRequest(boolean connection, Date dateOfRequest) {
+	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter, String houseAdName) {
 		this.connection = connection;
-		this.dateOfRequest = dateOfRequest;
+		this.dateOfRequest = formatter;
+		this.flatmate = flatmate;
 	}
 
 	public CohabitRequest() {
@@ -85,14 +72,6 @@ public class CohabitRequest {
 		this.dateOfRequest = dateOfRequest;
 	}
 
-	public Resident getResident() {
-		return resident;
-	}
-
-	public void setResident(Resident resident) {
-		this.resident = resident;
-	}
-
 	public Cohabitance getCohitance() {
 		return cohabitance;
 	}
@@ -108,5 +87,19 @@ public class CohabitRequest {
 	public void setFlatmate(Flatmate flatmate) {
 		this.flatmate = flatmate;
 	}
+	
+	public HouseAd getHouseAd() {
+		return houseAd;
+	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		return "CohabitRequest [id=" + id + ", idFk=" + idFk + ", houseAd=" + houseAd + ", flatmate=" + flatmate
+				+ ", cohabitance=" + cohabitance + ", connection=" + connection
+				+ ", dateOfRequest=" + formatter.format(dateOfRequest) + "]";
+	}
+	
+	
 	
 }

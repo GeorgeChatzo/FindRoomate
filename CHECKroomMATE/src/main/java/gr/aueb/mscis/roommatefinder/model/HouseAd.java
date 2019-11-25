@@ -1,8 +1,5 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
 
 
@@ -23,19 +20,16 @@ public class HouseAd {
             @JoinColumn(nullable = true) // 
     )private Resident resident;
 
-
-    @OneToMany(mappedBy = "houseAd")
-    private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
-    
-	
+	private String name;
 	private String description;
 	private double rentPrice;
 	private String photos;
 	private String comments;
 	private int numberOfRoommates;
 	
-	public HouseAd(String description, double rentPrice, String photos, String comments,int numberOfRoommates) {
+	public HouseAd(String name,String description, double rentPrice, String photos, String comments,int numberOfRoommates) {
 		super();
+		this.setName(name);
 		this.description = description;
 		this.rentPrice = rentPrice;
 		this.photos = photos;
@@ -86,17 +80,29 @@ public class HouseAd {
 	public void setNumberOfRoommates(int numberOfRoommates) {
 		this.numberOfRoommates = numberOfRoommates;
 	}
-
-	public Resident getResident() {
-		return resident;
-	}
-
-	public void setResident(Resident resident) {
-		this.resident = resident;
+	
+	public long getId() {
+		return id;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
-	
+
+	@Override
+	public String toString() {
+		return "HouseAd [id=" + id + ", resident=" + resident 
+				+ ", description=" + description + ", rentPrice=" + rentPrice + ", photos=" + photos + ", comments="
+				+ comments + ", numberOfRoommates=" + numberOfRoommates + "]";
+	}
+
+
+
 	
 
 }

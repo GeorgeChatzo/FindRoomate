@@ -30,7 +30,8 @@ public class Initializer  {
         tx.begin();
         Query query = null;
 
-        query = em.createNativeQuery(""); //remove  TODO
+        query = em.createNativeQuery("delete from residents"); //remove  TODO full
+        query = em.createNativeQuery("delete from flatmates");
         query.executeUpdate();
         
         tx.commit();
@@ -57,7 +58,7 @@ public class Initializer  {
     			"Claus", 65, "fantastic xooxo","male", status.EMPLOYEE, true,
     			habits, "Christmas",true, rating);
         
-        HouseAd advertisment = new HouseAd("New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
+        HouseAd advertisment = new HouseAd("super","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
         resident.addHouseAd(advertisment);
         
         EntityManager em = JPAUtil.getCurrentEntityManager();

@@ -3,9 +3,6 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 import java.util.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-
 
 
 @Entity
@@ -13,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Resident extends Roommate{
 
 	@Id
-	@Column(name="id")
+	@Column(name="residentid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
@@ -21,14 +18,12 @@ public class Resident extends Roommate{
 	        mappedBy = "resident",
 	        cascade = CascadeType.PERSIST)
 	private House house;
-	
-    @OneToMany(mappedBy = "resident")
-    protected Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
     
-	@OneToMany(mappedBy = "resident")
+	@OneToMany(orphanRemoval=true, 
+            cascade = CascadeType.ALL, 
+            mappedBy="resident", fetch=FetchType.LAZY)
     private Set<HouseAd> houseAds = new HashSet<HouseAd>();
-	    
-	
+
 	@Column(name = "FlatmatesNo")
 	private int numOfFlatmates;
 	@Column(name = "AgeRange")
@@ -73,7 +68,6 @@ public class Resident extends Roommate{
 	public Resident(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Resident() {
@@ -90,15 +84,6 @@ public class Resident extends Roommate{
 		}
 	}
 	
-	@Override
-	public String toString() {
-		return "Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + cohabitRequests + ", houseAds="
-				+ houseAds + ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
-				+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
-				+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
-				+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
-	}
-
 	public void removeHouseAd(HouseAd houseAd) {
 		if(houseAd != null) {
 			houseAds.remove(houseAd);
@@ -191,6 +176,15 @@ public class Resident extends Roommate{
 
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
+	}
+	
+	@Override
+	public String toString() {
+		return "Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + ", houseAds="
+				+ houseAds + ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
+				+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
+				+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
+				+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
 	}
 	
 

@@ -185,4 +185,15 @@ public class House {
 		this.resident = resident;
 	}
 
+	@Override
+	public String toString() {
+		return "House [id=" + id + ", idFk=" + idFk + ", resident=" + resident + ", country=" + country + ", city="
+				+ city + ", region=" + region + ", zipCode=" + zipCode + ", typeOfHouse=" + typeOfHouse + ", floorNo="
+				+ floorNo + ", garden=" + garden + ", squareMeters=" + squareMeters + ", elevator=" + elevator
+				+ ", parking=" + parking + ", balconies=" + balconies + ", roomsNo=" + roomsNo + ", constructionYear="
+				+ constructionYear + ", nearPublicTransport=" + nearPublicTransport + "]";
+	}
+	
+	
+
 }
