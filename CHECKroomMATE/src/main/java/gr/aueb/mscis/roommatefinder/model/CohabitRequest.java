@@ -33,12 +33,12 @@ public class CohabitRequest {
     @JoinTable(
         name = "FLATMATE_REQUEST",
         joinColumns =
-            @JoinColumn(name = "COHABITREQUEST_ID"), // Defaults to ID
+            @JoinColumn(name = "COHABITREQUEST_ID"), 
         inverseJoinColumns =
             @JoinColumn(nullable = false)
     )private Flatmate flatmate;
       
-    @OneToOne(optional = false) // Create FK constraint on PK column
+    @OneToOne(optional = false) 
     @PrimaryKeyJoinColumn
      private Cohabitance cohabitance;
 	 

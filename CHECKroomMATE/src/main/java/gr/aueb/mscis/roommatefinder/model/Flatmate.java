@@ -15,7 +15,7 @@ public class Flatmate extends Roommate implements Serializable{
 	@Column(name="flatmateid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
-    @OneToMany(mappedBy = "flatmate")
+    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "flatmate")
     private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
 
 	private String description;
