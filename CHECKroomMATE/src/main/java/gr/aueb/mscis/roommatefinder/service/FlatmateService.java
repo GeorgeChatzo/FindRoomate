@@ -41,7 +41,7 @@ public class FlatmateService {
 	}
 	
 	
-	public boolean createBorrower(Flatmate flatmate) {
+	public boolean createFlatmate(Flatmate flatmate) {
 
 		if (flatmate != null) {
 			em.persist(flatmate);
@@ -51,7 +51,7 @@ public class FlatmateService {
 		return false;
 	}
 	
-	public boolean deleteBorrower(Flatmate flatmate) {
+	public boolean deleteFlatmate(Flatmate flatmate) {
 
 		if (flatmate != null) {
 			em.remove(flatmate);

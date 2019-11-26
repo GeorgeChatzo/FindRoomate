@@ -17,7 +17,7 @@ public class HouseAd {
         joinColumns =
             @JoinColumn(name = "houseAd_id"), // Defaults to ID
         inverseJoinColumns =
-            @JoinColumn(nullable = true) // 
+            @JoinColumn(nullable = true) 
     )private Resident resident;
 
 	private String name;
