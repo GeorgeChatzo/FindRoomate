@@ -14,7 +14,7 @@ public class FlatmateService {
 	}	
 	
 	@SuppressWarnings("unchecked")
-	public List<Flatmate> findBorrowersByLastName(String lastName) {
+	public List<Flatmate> findFlatmatesByLastName(String lastName) {
 
 		List<Flatmate> results = null;
 		results = em
