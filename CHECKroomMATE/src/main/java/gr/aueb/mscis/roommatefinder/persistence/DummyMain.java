@@ -14,6 +14,7 @@ import org.junit.Assert;
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
@@ -35,6 +36,8 @@ public class DummyMain {
         
         HouseAd advertisment = new HouseAd("super","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
         resident.addHouseAd(advertisment);
+        
+        House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
         EntityManager em = JPAUtil.getCurrentEntityManager();
        
         EntityTransaction tx = em.getTransaction();
@@ -42,12 +45,16 @@ public class DummyMain {
         double Expected_Rent_Price = 500.0;
        
         em.persist(resident);
+        em.persist(advertisment);
+        //em.persist(house);
         tx.commit();
-
+        
+        List<HouseAd> results = null;
 	       
-        Query query = em.createQuery("select resident from Resident resident");
+        //Query query = em.createQuery("select resident from Resident resident");
+		 results = em.createQuery("select houseAd from HouseAd houseAd join fetch houseAd.resident b\"\r\n" , HouseAd.class).getResultList();
         //query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
-        List<HouseAd> results = query.getResultList(); 
+ 
         System.out.println(results.get(0));
 	}
 	

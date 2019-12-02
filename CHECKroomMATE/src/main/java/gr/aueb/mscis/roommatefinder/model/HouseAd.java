@@ -93,6 +93,67 @@ public class HouseAd {
 		this.name = name;
 	}
 	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + numberOfRoommates;
+		result = prime * result + ((photos == null) ? 0 : photos.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(rentPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((resident == null) ? 0 : resident.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof HouseAd))
+			return false;
+		HouseAd other = (HouseAd) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (numberOfRoommates != other.numberOfRoommates)
+			return false;
+		if (photos == null) {
+			if (other.photos != null)
+				return false;
+		} else if (!photos.equals(other.photos))
+			return false;
+		if (Double.doubleToLongBits(rentPrice) != Double.doubleToLongBits(other.rentPrice))
+			return false;
+		if (resident == null) {
+			if (other.resident != null)
+				return false;
+		} else if (!resident.equals(other.resident))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {

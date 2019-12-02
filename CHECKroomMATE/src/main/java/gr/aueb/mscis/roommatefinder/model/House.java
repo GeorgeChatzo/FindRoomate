@@ -184,6 +184,8 @@ public class House {
 	public void setResident(Resident resident) {
 		this.resident = resident;
 	}
+	
+	
 
 	@Override
 	public String toString() {

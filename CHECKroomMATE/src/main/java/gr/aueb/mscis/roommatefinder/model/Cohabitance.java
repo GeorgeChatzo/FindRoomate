@@ -2,7 +2,7 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import javax.persistence.*;
 
-import main.java.gr.aueb.mscis.roommatefinder.model.*;;
+import main.java.gr.aueb.mscis.roommatefinder.model.*;
 
 @Entity
 @Table(name="cohabitance")
