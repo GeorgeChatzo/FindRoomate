@@ -46,10 +46,11 @@ public class CohabitRequest {
 	private Date dateOfRequest;
 	
 	
-	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter, String houseAdName) {
+	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter, HouseAd houseAd) {
 		this.connection = connection;
 		this.dateOfRequest = formatter;
 		this.flatmate = flatmate;
+		this.houseAd = houseAd;
 	}
 
 	public CohabitRequest() {
@@ -91,19 +92,12 @@ public class CohabitRequest {
 	public HouseAd getHouseAd() {
 		return houseAd;
 	}
+	
+	public Date dateOfRequest() {
+		Date date = new Date(System.currentTimeMillis());
+		
+		return date;
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cohabitance == null) ? 0 : cohabitance.hashCode());
-		result = prime * result + (connection ? 1231 : 1237);
-		result = prime * result + ((dateOfRequest == null) ? 0 : dateOfRequest.hashCode());
-		result = prime * result + ((flatmate == null) ? 0 : flatmate.hashCode());
-		result = prime * result + ((houseAd == null) ? 0 : houseAd.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((idFk == null) ? 0 : idFk.hashCode());
-		return result;
 	}
 
 	@Override

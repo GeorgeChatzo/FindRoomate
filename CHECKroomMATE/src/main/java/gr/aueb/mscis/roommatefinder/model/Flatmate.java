@@ -119,7 +119,6 @@ public class Flatmate extends Roommate implements Serializable{
 	}
 
 
-
 	public EmailAddress getEmail() {
 		return email;
 	}
@@ -207,12 +206,6 @@ public class Flatmate extends Roommate implements Serializable{
 		return true;
 	}
 
-	//TODO connection with houseAd
-	public void request(String houseAdName) {
-		Date date = new Date(System.currentTimeMillis());
-		CohabitRequest request = new CohabitRequest(this,false,date,houseAdName);
-		cohabitRequests.add(request);
-	}
-	
+
 	
 }

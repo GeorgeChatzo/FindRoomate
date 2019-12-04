@@ -31,7 +31,6 @@ public class PublishAdService {
 		return false;
 	}
 	
-	
 	public boolean deleteHouseAd(HouseAd houseAd) {
 		
 		if (houseAd != null) {
