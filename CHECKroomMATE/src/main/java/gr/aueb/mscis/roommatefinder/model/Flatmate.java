@@ -5,6 +5,8 @@ import java.util.*;
 import javax.persistence.*;
 
 
+
+
 @Entity
 @Table(name="flatmates")
 public class Flatmate extends Roommate implements Serializable{
@@ -61,7 +63,49 @@ public class Flatmate extends Roommate implements Serializable{
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);
 	}
+	
+	
+	public Set<CohabitRequest> getCohabitRequest(){
+		return new HashSet<CohabitRequest>(cohabitRequests);
+	}
+	
+	public void addCohabitRequest(CohabitRequest cohabitRequest) {
+		if(cohabitRequest != null) {
+			cohabitRequests.add(cohabitRequest);
+			cohabitRequest.setFlatmate(this);
+		}
+	}
+	
+	public void removeCohabitRequest(CohabitRequest cohabitRequest) {
+		if(cohabitRequest != null) {
+			cohabitRequests.remove(cohabitRequest);
+		}
+	}
+	
+	//Creation of request inside flatmate!
+	public CohabitRequest request(HouseAd houseAd) {
+        if (houseAd == null) {
+            return null;
+        }
 
+        CohabitRequest cohabitRequest = new CohabitRequest();
+        cohabitRequest.setFlatmate(this);
+        cohabitRequest.setHouseAd(houseAd);
+        cohabitRequest.dateOfRequest();
+        return cohabitRequest;
+    }
+	
+	public void cancelRequest(CohabitRequest cohabitRequest) {
+		
+		if(cohabitRequests.contains(cohabitRequest)) {
+			cohabitRequests.remove(cohabitRequest);
+		}
+		
+	}
+	
+	
+	
+	
 	public String getDescription() {
 		return description;
 	}
@@ -147,6 +191,9 @@ public class Flatmate extends Roommate implements Serializable{
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
+	
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

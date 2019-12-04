@@ -21,8 +21,12 @@ public enum RequestState {
 	/**
 	 * State if request has been rejected
 	 */
-	REJECTED
+	REJECTED,
 	
+	/**
+	 * State if request has been canceled from Flatmate
+	 */
+	CANCELED
 	
 
 }

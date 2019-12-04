@@ -12,12 +12,15 @@ import javax.persistence.Query;
 import org.junit.Assert;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
+import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
+import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
+import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 
 
 public class DummyMain {
@@ -31,6 +34,12 @@ public class DummyMain {
         Set<Double> rating = null;
         Set<String> preferedHabits = null;
         
+        
+        
+        Flatmate flatmate = new Flatmate("me", "1234", email, cell, "Santa",
+    			"Claus", 65, "fantastic xooxo","male", status.EMPLOYEE, true,
+    			habits, "Christmas",true, rating);
+        
         Resident resident = new Resident("santa","25",email,cell,"Santa","Claus",1000,4,34,preferedHabits,true,"No job",status.UNEMPLOYED,
         		false,"female",rating);
            
@@ -38,6 +47,7 @@ public class DummyMain {
         resident.addHouseAd(advertisment);
         //advertisment.setResident(resident);
        // resident.addHouseAd(advertisment);
+        Cohabitance coh = new Cohabitance(50.0,false);
         
         House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
         EntityManager em = JPAUtil.getCurrentEntityManager();
@@ -45,20 +55,32 @@ public class DummyMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         double Expected_Rent_Price = 500.0;
-       
+        em.persist(flatmate);
         em.persist(resident);
+        em.persist(coh);
         //em.persist(advertisment);
         //em.persist(house);
-        tx.commit();
+        //tx.commit();
         
-        List<HouseAd> results = null;
+       // List<HouseAd> results = null;
+        
+       // EntityTransaction tx = em.getTransaction();
+		//tx.begin();
+		HouseAd houseAd = em.find(HouseAd.class, 3L);
+		CohabitRequest cohabitRequest = flatmate.request(houseAd);
+		coh.setRequest(cohabitRequest);
+		cohabitRequest.setCohitance(coh);
+		em.persist(cohabitRequest);
+		tx.commit();
 	       
         //Query query = em.createQuery("select resident from Resident resident");
         //Resident residentPrint = em.find(Resident.class, 1L);
        // Boolean ad = residentPrint.getHouseAds().contains(advertisment);
-		 results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class).getResultList();
- 
-        System.out.println(results);
+		// results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class).getResultList();
+        //RequestService rs = new RequestService(em);
+        //boolean create = rs.createRequest(1,flatmate);
+        
+        System.out.println(cohabitRequest.toString());
 	}
 	
 

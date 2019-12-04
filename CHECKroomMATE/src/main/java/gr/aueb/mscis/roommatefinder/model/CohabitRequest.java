@@ -93,6 +93,10 @@ public class CohabitRequest {
 		return houseAd;
 	}
 	
+	public void setHouseAd(HouseAd houseAd) {
+		this.houseAd = houseAd;
+	}
+	
 	public Date dateOfRequest() {
 		Date date = new Date(System.currentTimeMillis());
 		
