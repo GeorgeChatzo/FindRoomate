@@ -148,26 +148,6 @@ public class Flatmate extends Roommate implements Serializable{
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cohabitRequests == null) ? 0 : cohabitRequests.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-		result = prime * result + ((habits == null) ? 0 : habits.hashCode());
-		result = prime * result + (incomingGuests ? 1231 : 1237);
-		result = prime * result + (pets ? 1231 : 1237);
-		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((profession == null) ? 0 : profession.hashCode());
-		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
-		result = prime * result + ((workSchedule == null) ? 0 : workSchedule.hashCode());
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {

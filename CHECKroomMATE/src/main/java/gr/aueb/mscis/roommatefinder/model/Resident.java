@@ -81,6 +81,7 @@ public class Resident extends Roommate{
 	public void addHouseAd(HouseAd houseAd) {
 		if(houseAd != null) {
 			houseAds.add(houseAd);
+			houseAd.setResident(this);
 		}
 	}
 	
@@ -266,13 +267,23 @@ public class Resident extends Roommate{
 		this.rating = rating;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		return "Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + ", houseAds="
-				+ houseAds + ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
-				+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
-				+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
-				+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
+		
+		final StringBuilder builder = new StringBuilder();
+		builder.append("Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + 
+				 ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
+					+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
+					+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
+					+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]");
+		for (HouseAd houseAd  : houseAds) {
+		    builder.append("Id :[Id=" + houseAd.getId() +
+		                              ", Name=" + houseAd.getName() + "]\n");
+		}
+		
+		return  builder.toString();
 	}
 	
 

@@ -33,9 +33,11 @@ public class DummyMain {
         
         Resident resident = new Resident("santa","25",email,cell,"Santa","Claus",1000,4,34,preferedHabits,true,"No job",status.UNEMPLOYED,
         		false,"female",rating);
-        
+           
         HouseAd advertisment = new HouseAd("super","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
         resident.addHouseAd(advertisment);
+        //advertisment.setResident(resident);
+       // resident.addHouseAd(advertisment);
         
         House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
         EntityManager em = JPAUtil.getCurrentEntityManager();
@@ -45,17 +47,18 @@ public class DummyMain {
         double Expected_Rent_Price = 500.0;
        
         em.persist(resident);
-        em.persist(advertisment);
+        //em.persist(advertisment);
         //em.persist(house);
         tx.commit();
         
         List<HouseAd> results = null;
 	       
         //Query query = em.createQuery("select resident from Resident resident");
-		 results = em.createQuery("select houseAd from HouseAd houseAd join fetch houseAd.resident b\"\r\n" , HouseAd.class).getResultList();
-        //query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
+        //Resident residentPrint = em.find(Resident.class, 1L);
+       // Boolean ad = residentPrint.getHouseAds().contains(advertisment);
+		 results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class).getResultList();
  
-        System.out.println(results.get(0));
+        System.out.println(results);
 	}
 	
 

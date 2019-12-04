@@ -21,7 +21,7 @@ public class House {
 	)
 	protected Long idFk;
 
-    @OneToOne(optional = false) // Create FK constraint on PK column
+    @OneToOne(optional = false) 
     @PrimaryKeyJoinColumn
      private Resident resident;
     
@@ -185,7 +185,102 @@ public class House {
 		this.resident = resident;
 	}
 	
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + balconies;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + constructionYear;
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + (elevator ? 1231 : 1237);
+		result = prime * result + floorNo;
+		result = prime * result + (garden ? 1231 : 1237);
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idFk == null) ? 0 : idFk.hashCode());
+		result = prime * result + ((nearPublicTransport == null) ? 0 : nearPublicTransport.hashCode());
+		result = prime * result + (parking ? 1231 : 1237);
+		result = prime * result + ((region == null) ? 0 : region.hashCode());
+		result = prime * result + ((resident == null) ? 0 : resident.hashCode());
+		result = prime * result + roomsNo;
+		long temp;
+		temp = Double.doubleToLongBits(squareMeters);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((typeOfHouse == null) ? 0 : typeOfHouse.hashCode());
+		result = prime * result + zipCode;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		House other = (House) obj;
+		if (balconies != other.balconies)
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (constructionYear != other.constructionYear)
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (elevator != other.elevator)
+			return false;
+		if (floorNo != other.floorNo)
+			return false;
+		if (garden != other.garden)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (idFk == null) {
+			if (other.idFk != null)
+				return false;
+		} else if (!idFk.equals(other.idFk))
+			return false;
+		if (nearPublicTransport == null) {
+			if (other.nearPublicTransport != null)
+				return false;
+		} else if (!nearPublicTransport.equals(other.nearPublicTransport))
+			return false;
+		if (parking != other.parking)
+			return false;
+		if (region == null) {
+			if (other.region != null)
+				return false;
+		} else if (!region.equals(other.region))
+			return false;
+		if (resident == null) {
+			if (other.resident != null)
+				return false;
+		} else if (!resident.equals(other.resident))
+			return false;
+		if (roomsNo != other.roomsNo)
+			return false;
+		if (Double.doubleToLongBits(squareMeters) != Double.doubleToLongBits(other.squareMeters))
+			return false;
+		if (typeOfHouse == null) {
+			if (other.typeOfHouse != null)
+				return false;
+		} else if (!typeOfHouse.equals(other.typeOfHouse))
+			return false;
+		if (zipCode != other.zipCode)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {

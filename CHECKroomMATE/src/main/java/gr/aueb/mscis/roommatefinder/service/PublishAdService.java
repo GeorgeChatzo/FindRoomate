@@ -42,11 +42,18 @@ public class PublishAdService {
 		return false;
 	}
 	
-	public List<HouseAd> findAllHouseAd() {
+	public List<HouseAd> findAdResident(){
+		List<HouseAd> results = null;
+		
+		
+		return results;
+		
+	}
+	
+	public List<HouseAd> findAllHouseAds() {
 		List<HouseAd> results = null;
 
-		results = em.createQuery("select houseAd from HouseAd houseAd join fetch houseAd.resident b\"\r\n" + 
-				"						+ \" join fetch resident.house i ", HouseAd.class)
+		results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class)
 				.getResultList();
 
 		return results;

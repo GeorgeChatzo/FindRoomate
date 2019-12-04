@@ -57,6 +57,14 @@ public class HouseAd {
 		this.rentPrice = rentPrice;
 	}
 	
+	public Resident getResident() {
+		return resident;
+	}
+
+	public void setResident(Resident resident) {
+		this.resident = resident;
+	}
+
 	public String getPhotos() {
 		return photos;
 	}
@@ -92,30 +100,15 @@ public class HouseAd {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + numberOfRoommates;
-		result = prime * result + ((photos == null) ? 0 : photos.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(rentPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((resident == null) ? 0 : resident.hashCode());
-		return result;
-	}
+
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof HouseAd))
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		HouseAd other = (HouseAd) obj;
 		if (comments == null) {
