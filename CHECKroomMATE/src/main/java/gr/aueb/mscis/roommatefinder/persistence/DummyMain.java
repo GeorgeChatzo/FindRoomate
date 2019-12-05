@@ -57,7 +57,7 @@ public class DummyMain {
         double Expected_Rent_Price = 500.0;
         em.persist(flatmate);
         em.persist(resident);
-        em.persist(coh);
+        
         //em.persist(advertisment);
         //em.persist(house);
         //tx.commit();
@@ -69,8 +69,9 @@ public class DummyMain {
 		HouseAd houseAd = em.find(HouseAd.class, 3L);
 		CohabitRequest cohabitRequest = flatmate.request(houseAd);
 		coh.setRequest(cohabitRequest);
-		cohabitRequest.setCohitance(coh);
+		//cohabitRequest.setCohitance(coh);
 		em.persist(cohabitRequest);
+		em.persist(coh);
 		tx.commit();
 	       
         //Query query = em.createQuery("select resident from Resident resident");

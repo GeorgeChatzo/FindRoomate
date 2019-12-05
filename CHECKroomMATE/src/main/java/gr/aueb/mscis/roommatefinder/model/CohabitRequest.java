@@ -38,10 +38,10 @@ public class CohabitRequest {
             @JoinColumn(nullable = false)
     )private Flatmate flatmate;
       
-    @OneToOne(optional = false) 
-    @PrimaryKeyJoinColumn
-     private Cohabitance cohabitance;
-	 
+//    @OneToOne(optional = false) 
+//    @PrimaryKeyJoinColumn
+//     private Cohabitance cohabitance;
+//	 
 	private boolean connection;
 	private Date dateOfRequest;
 	
@@ -73,13 +73,13 @@ public class CohabitRequest {
 		this.dateOfRequest = dateOfRequest;
 	}
 
-	public Cohabitance getCohitance() {
-		return cohabitance;
-	}
-
-	public void setCohitance(Cohabitance cohitance) {
-		this.cohabitance = cohitance;
-	}
+//	public Cohabitance getCohitance() {
+//		return cohabitance;
+//	}
+//
+//	public void setCohitance(Cohabitance cohitance) {
+//		this.cohabitance = cohitance;
+//	}
 
 	public Flatmate getFlatmate() {
 		return flatmate;
@@ -113,11 +113,11 @@ public class CohabitRequest {
 		if (getClass() != obj.getClass())
 			return false;
 		CohabitRequest other = (CohabitRequest) obj;
-		if (cohabitance == null) {
-			if (other.cohabitance != null)
-				return false;
-		} else if (!cohabitance.equals(other.cohabitance))
-			return false;
+//		if (cohabitance == null) {
+//			if (other.cohabitance != null)
+//				return false;
+//		} else if (!cohabitance.equals(other.cohabitance))
+//			return false;
 		if (connection != other.connection)
 			return false;
 		if (dateOfRequest == null) {
@@ -152,8 +152,7 @@ public class CohabitRequest {
 	public String toString() {
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		return "CohabitRequest [id=" + id + ", idFk=" + idFk + ", houseAd=" + houseAd + ", flatmate=" + flatmate
-				+ ", cohabitance=" + cohabitance + ", connection=" + connection
-				+ ", dateOfRequest=" + formatter.format(dateOfRequest) + "]";
+				 + ", connection=" + connection + "]";
 	}
 	
 	

@@ -17,9 +17,11 @@ public class Cohabitance {
 	private boolean connection;
 	
     @OneToOne(
-            mappedBy = "cohabitance",
+            fetch = FetchType.LAZY,
+            optional = false, // NOT NULL
             cascade = CascadeType.PERSIST
         )
+        @JoinColumn(unique = true)
 	private CohabitRequest request;
 	
 	public Cohabitance(double commision, boolean connection) {
