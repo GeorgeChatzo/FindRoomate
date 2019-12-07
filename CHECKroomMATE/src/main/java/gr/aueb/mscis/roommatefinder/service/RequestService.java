@@ -1,5 +1,7 @@
 package main.java.gr.aueb.mscis.roommatefinder.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
@@ -37,7 +39,14 @@ public class RequestService {
 		return false;
 	}
 	
-	
+	public List<HouseAd> findAllHouseAds() {
+		List<HouseAd> results = null;
+
+		results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class)
+				.getResultList();
+
+		return results;
+	}
 	
 
 }

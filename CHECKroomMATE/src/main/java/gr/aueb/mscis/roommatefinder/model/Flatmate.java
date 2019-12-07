@@ -103,9 +103,6 @@ public class Flatmate extends Roommate implements Serializable{
 		
 	}
 	
-	
-	
-	
 	public String getDescription() {
 		return description;
 	}

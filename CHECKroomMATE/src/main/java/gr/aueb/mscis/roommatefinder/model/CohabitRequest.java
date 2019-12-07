@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name="cohabitrequests")
 
@@ -37,11 +38,12 @@ public class CohabitRequest {
         inverseJoinColumns =
             @JoinColumn(nullable = false)
     )private Flatmate flatmate;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name="itemstate")
+    private RequestState state = RequestState.PENDING;
+
       
-//    @OneToOne(optional = false) 
-//    @PrimaryKeyJoinColumn
-//     private Cohabitance cohabitance;
-//	 
 	private boolean connection;
 	private Date dateOfRequest;
 	
@@ -73,14 +75,6 @@ public class CohabitRequest {
 		this.dateOfRequest = dateOfRequest;
 	}
 
-//	public Cohabitance getCohitance() {
-//		return cohabitance;
-//	}
-//
-//	public void setCohitance(Cohabitance cohitance) {
-//		this.cohabitance = cohitance;
-//	}
-
 	public Flatmate getFlatmate() {
 		return flatmate;
 	}
@@ -97,6 +91,14 @@ public class CohabitRequest {
 		this.houseAd = houseAd;
 	}
 	
+	public RequestState getState() {
+		return state;
+	}
+
+	public void setState(RequestState state) {
+		this.state = state;
+	}
+
 	public Date dateOfRequest() {
 		Date date = new Date(System.currentTimeMillis());
 		
@@ -113,11 +115,6 @@ public class CohabitRequest {
 		if (getClass() != obj.getClass())
 			return false;
 		CohabitRequest other = (CohabitRequest) obj;
-//		if (cohabitance == null) {
-//			if (other.cohabitance != null)
-//				return false;
-//		} else if (!cohabitance.equals(other.cohabitance))
-//			return false;
 		if (connection != other.connection)
 			return false;
 		if (dateOfRequest == null) {

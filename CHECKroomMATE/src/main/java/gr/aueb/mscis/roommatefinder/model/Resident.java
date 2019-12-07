@@ -267,6 +267,18 @@ public class Resident extends Roommate{
 		this.rating = rating;
 	}
 	
+	public void acceptRequest(Cohabitance cohabitance,CohabitRequest request, Date startDate,Date endDate) {
+		request.setState(RequestState.ACCEPTED);
+		cohabitance.setConnection(true);
+		cohabitance.setStartDate(startDate);
+		cohabitance.setEndDate(endDate);
+		
+	}
+	
+	public void rejectRequest(CohabitRequest request) {
+		request.setState(RequestState.REJECTED);
+		
+	}
 	
 	
 	@Override

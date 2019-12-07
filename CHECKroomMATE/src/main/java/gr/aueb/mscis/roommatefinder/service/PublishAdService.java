@@ -49,14 +49,7 @@ public class PublishAdService {
 		
 	}
 	
-	public List<HouseAd> findAllHouseAds() {
-		List<HouseAd> results = null;
 
-		results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class)
-				.getResultList();
-
-		return results;
-	}
 
 	
 	

@@ -2,6 +2,9 @@ package main.java.gr.aueb.mscis.roommatefinder.persistence;
 
 import javax.persistence.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +28,7 @@ import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 
 public class DummyMain {
 	
-	public static void main(String[]args) {
+	public static void main(String[]args) throws ParseException {
 		
         
         CellNumber cell = new CellNumber("69445458");
@@ -47,7 +50,11 @@ public class DummyMain {
         resident.addHouseAd(advertisment);
         //advertisment.setResident(resident);
        // resident.addHouseAd(advertisment);
-        Cohabitance coh = new Cohabitance(50.0,false);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        String dateString = format.format( new Date()   );
+        Date   date       = format.parse ( "2009-12-31" );  
+        Cohabitance coh = new Cohabitance(50.0,false,date, date);
         
         House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
         EntityManager em = JPAUtil.getCurrentEntityManager();
@@ -82,6 +89,17 @@ public class DummyMain {
         //boolean create = rs.createRequest(1,flatmate);
         
         System.out.println(cohabitRequest.toString());
+        
+		List<CohabitRequest> results = null;
+		results = em
+				.createQuery(
+						"select c from CohabitRequest c where c.houseAd.resident.id = :residentId ")
+				.setParameter("residentId", 2L).getResultList();
+		
+		
+		System.out.println(results);
+        
+        
 	}
 	
 
