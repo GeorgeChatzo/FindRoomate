@@ -11,14 +11,10 @@ public class HouseAd {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	 private Long id;
 	
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "houseAd_id",
-        joinColumns =
-            @JoinColumn(name = "houseAd_id"), // Defaults to ID
-        inverseJoinColumns =
-            @JoinColumn(nullable = true) 
-    )private Resident resident;
+    @ManyToOne(fetch=FetchType.LAZY, 
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(name="residentid")
+    private Resident resident;
 
 	private String name;
 	private String description;

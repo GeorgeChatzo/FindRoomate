@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roomatefinder.persistence;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class QueriesTest {
 	private Initializer dataHelper;
 
     @Before
-    public void setUpJpa() {
+    public void setUpJpa() throws ParseException {
         dataHelper = new Initializer();
         dataHelper.prepareData();
     }
@@ -39,13 +40,12 @@ public class QueriesTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testingHouseAd() {
-        double Expected_Rent_Price = 500.0;
+    	int Expected_HouseAd_Number = 1;
         EntityManager em = JPAUtil.getCurrentEntityManager();
-        Query query = em.createQuery("select resident from Resident resident");
+        Query query = em.createQuery("select houseAd from HouseAd houseAd");
         List<HouseAd> results = query.getResultList(); 
-        Assert.assertEquals(2,results.size());
+        Assert.assertEquals(Expected_HouseAd_Number,results.size());
         
-        //Assert.assertSame(Expected_Rent_Price, results.get(0).getRentPrice());
         
     }
 

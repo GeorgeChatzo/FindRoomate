@@ -15,7 +15,6 @@ public class ManageRequestService {
 		this.em = em;
 	}
 	
-	
 	public boolean acceptRequest() {
 		
 		return true;
@@ -26,7 +25,6 @@ public class ManageRequestService {
 		return true;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public List<CohabitRequest> viewPendingRequests(long residentId ){
 		List<CohabitRequest> results = null;

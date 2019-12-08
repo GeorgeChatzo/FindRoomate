@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 
 
 
@@ -17,7 +20,7 @@ public class Flatmate extends Roommate implements Serializable{
 	@Column(name="flatmateid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
-    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "flatmate")
+    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "flatmate" ,orphanRemoval=true)
     private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
 
 	private String description;

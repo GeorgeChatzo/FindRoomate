@@ -37,31 +37,31 @@ public class DummyMain {
         Set<Double> rating = null;
         Set<String> preferedHabits = null;
         
-        
-        
         Flatmate flatmate = new Flatmate("me", "1234", email, cell, "Santa",
     			"Claus", 65, "fantastic xooxo","male", status.EMPLOYEE, true,
     			habits, "Christmas",true, rating);
         
         Resident resident = new Resident("santa","25",email,cell,"Santa","Claus",1000,4,34,preferedHabits,true,"No job",status.UNEMPLOYED,
         		false,"female",rating);
+        House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
+
+        resident.setHouse(house);
            
         HouseAd advertisment = new HouseAd("super","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
         resident.addHouseAd(advertisment);
         //advertisment.setResident(resident);
        // resident.addHouseAd(advertisment);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        double Expected_Rent_Price = 500.0;
 
         String dateString = format.format( new Date()   );
         Date   date       = format.parse ( "2009-12-31" );  
         Cohabitance coh = new Cohabitance(50.0,false,date, date);
         
-        House house = new House("Greece","Athens","Galatsi",1111,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
         EntityManager em = JPAUtil.getCurrentEntityManager();
        
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        double Expected_Rent_Price = 500.0;
         em.persist(flatmate);
         em.persist(resident);
         
@@ -73,11 +73,11 @@ public class DummyMain {
         
        // EntityTransaction tx = em.getTransaction();
 		//tx.begin();
-		HouseAd houseAd = em.find(HouseAd.class, 3L);
-		CohabitRequest cohabitRequest = flatmate.request(houseAd);
+		//HouseAd houseAd = em.find(HouseAd.class, 5L);
+		CohabitRequest cohabitRequest = flatmate.request(advertisment);
 		coh.setRequest(cohabitRequest);
 		//cohabitRequest.setCohitance(coh);
-		em.persist(cohabitRequest);
+		//em.persist(cohabitRequest);
 		em.persist(coh);
 		tx.commit();
 	       
@@ -98,6 +98,23 @@ public class DummyMain {
 		
 		
 		System.out.println(results);
+		List<HouseAd> results1 = null;
+		
+		System.out.println("end");
+
+		Query query = em.createQuery("select houseAd from HouseAd houseAd");
+        results1 = query.getResultList(); 
+        System.out.println(results1);
+        
+        System.out.println("end2");
+		List<House> results3 = null;
+
+		Query query2 = em.createQuery("select house from House house");
+        results3 = query2.getResultList(); 
+        System.out.println(results3);
+        
+        
+		
         
         
 	}

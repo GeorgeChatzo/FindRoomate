@@ -17,7 +17,6 @@ public class JPAUtil {
         return emf;
     }
     
-    
     public static EntityManager getCurrentEntityManager() {      
         EntityManager em = currentEntityManager.get();         
         if (em  == null || !em.isOpen()) {

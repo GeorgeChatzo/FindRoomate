@@ -14,41 +14,25 @@ public class CohabitRequest {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	 private Long id;
 	
-	@GeneratedValue(generator = "cohabitanceKeyGenerator")
-	@org.hibernate.annotations.GenericGenerator(
-	name = "cohabitanceKeyGenerator",
-	strategy = "foreign",
-	parameters =
-	@org.hibernate.annotations.Parameter(
-	name = "property", value = "cohabitance"
-	)
-	)
-	protected Long idFk;
-	
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY, 
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name="houseAd_id")
     private HouseAd houseAd;
     
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "FLATMATE_REQUEST",
-        joinColumns =
-            @JoinColumn(name = "COHABITREQUEST_ID"), 
-        inverseJoinColumns =
-            @JoinColumn(nullable = false)
-    )private Flatmate flatmate;
+    @ManyToOne(fetch=FetchType.LAZY, 
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(name="flatmateid")
+    private Flatmate flatmate;
     
     @Enumerated(EnumType.STRING)
-    @Column(name="itemstate")
+    @Column(name="requestate")
     private RequestState state = RequestState.PENDING;
 
-      
 	private boolean connection;
 	private Date dateOfRequest;
 	
 	
-	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter, HouseAd houseAd) {
+	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter,HouseAd houseAd) {
 		this.connection = connection;
 		this.dateOfRequest = formatter;
 		this.flatmate = flatmate;
@@ -137,18 +121,13 @@ public class CohabitRequest {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (idFk == null) {
-			if (other.idFk != null)
-				return false;
-		} else if (!idFk.equals(other.idFk))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-		return "CohabitRequest [id=" + id + ", idFk=" + idFk + ", houseAd=" + houseAd + ", flatmate=" + flatmate
+		return "CohabitRequest [id=" + id +  ", houseAd=" + houseAd + ", flatmate=" + flatmate
 				 + ", connection=" + connection + "]";
 	}
 	
