@@ -21,12 +21,12 @@ import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 
 public class Initializer  {
-	 public static final long resident1_id =1;
-	 public static final long flatmate_id=2;
-	 public static final long house_id=3;
-	 public static final long house_Adid=4;
-	 public static final long cohabitance_id=5;
-	 public static final long cohabitrequest_id=6;
+	 public static  long resident1_id =1;
+	 public static  long flatmate_id=2;
+	 public static  long house_id=3;
+	 public static  long house_Adid=4;
+	 public static  long cohabitance_id=5;
+	 public static  long cohabitrequest_id=6;
 	 
 	
     /**
@@ -97,7 +97,13 @@ public class Initializer  {
         
         tx.commit();
         em.close();
-
+        
+        resident1_id = resident.getId();
+        flatmate_id= flatmate.getId();
+        house_id= house.getId();
+        house_Adid= advertisment.getId();
+        cohabitance_id= cohabitance.getId();
+        cohabitrequest_id= cohabitRequest.getId();
     
     }
 }
