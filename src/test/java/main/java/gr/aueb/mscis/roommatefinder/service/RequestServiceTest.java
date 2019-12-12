@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
@@ -35,6 +36,25 @@ public class RequestServiceTest extends RoommateServiceTest {
 		Flatmate flatmate = service.findFlatmateById(Initializer.flatmate_id);
 		
 		assertNotNull(flatmate);
+		
+	}
+	
+	@Test
+	public void testfindRequest() {
+		RequestService service = new RequestService(em);
+		CohabitRequest request = service.findCohabitRequestById(Initializer.cohabitrequest_id);
+		
+		assertNotNull(request);
+		
+	}
+	
+	
+	@Test
+	public void tesDeleteRequest() {
+		RequestService service = new RequestService(em);
+		Boolean deleted = service.cancelRequest(Initializer.cohabitrequest_id);
+		
+		assertTrue(deleted);;
 		
 		
 	}

@@ -67,7 +67,7 @@ public class ManageRequestService {
 		RequestState state = RequestState.PENDING;
 		results = em
 				.createQuery(
-						"select c from CohabitRequest c where c.houseAd.resident.id = :residentId and c.state = state ")
+						"select c from CohabitRequest c where c.houseAd.resident.id = :residentId and c.state = :state ")
 				.setParameter("residentId", residentId)
 				.setParameter("state", state)
 				.getResultList();

@@ -3,20 +3,14 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
-import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 
 public class PublishAdService {
 	
 	private EntityManager em;
 	
-	private Resident resident;
-	//private HouseAd houseAd;
-	//private House house;
 	
 	public PublishAdService(EntityManager em) {
 		this.em = em;
@@ -32,8 +26,8 @@ public class PublishAdService {
 		return false;
 	}
 	
-	public boolean deleteHouseAd(HouseAd houseAd) {
-		
+	public boolean deleteHouseAd(long houseAdId) {
+		HouseAd houseAd = findHouseAdById(houseAdId);
 		if (houseAd != null) {
 			em.remove(houseAd);
 			return true;
@@ -53,7 +47,8 @@ public class PublishAdService {
 		return false;
 	}
 	
-	public boolean deleteHous(House house) {
+	public boolean deleteHouse(long houseId) {
+		House house = findHouseById(houseId);
 		
 		if (house != null) {
 			em.remove(house);
@@ -61,6 +56,15 @@ public class PublishAdService {
 		}
 
 		return false;
+	}
+	
+	
+	public House findHouseById(long id) {
+		return em.find(House.class, id);
+	}
+	
+	public HouseAd findHouseAdById(long id) {
+		return em.find(HouseAd.class, id);
 	}
 	
 	@SuppressWarnings("unchecked")

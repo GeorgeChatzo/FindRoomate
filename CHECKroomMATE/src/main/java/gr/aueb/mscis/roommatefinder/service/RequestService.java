@@ -3,8 +3,6 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
@@ -32,7 +30,8 @@ public class RequestService {
 		return true;
 	}
 	
-	public boolean cancelRequest(CohabitRequest request) {
+	public boolean cancelRequest(long requestId) {
+		CohabitRequest request = findCohabitRequestById(requestId);
 		if(request!=null) {
 			em.remove(request);
 			return true;
@@ -44,6 +43,10 @@ public class RequestService {
 		return em.find(Flatmate.class, id);
 	}
 	
+	
+	public CohabitRequest findCohabitRequestById(long id) {
+		return em.find(CohabitRequest.class, id);
+	}
 	
 	public List<HouseAd> findAllHouseAds() {
 		List<HouseAd> results = null;

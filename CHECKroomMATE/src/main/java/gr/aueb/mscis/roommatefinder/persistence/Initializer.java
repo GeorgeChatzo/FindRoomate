@@ -55,7 +55,6 @@ public class Initializer  {
         tx.commit();
         em.close();
 
-        
     }
    
     public void prepareData() throws ParseException {
