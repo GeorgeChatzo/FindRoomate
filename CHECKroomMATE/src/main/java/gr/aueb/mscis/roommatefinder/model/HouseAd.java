@@ -8,8 +8,8 @@ import javax.persistence.*;
 public class HouseAd {
 	@Id
 	@Column(name="houseAd_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	 private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
     @ManyToOne(fetch=FetchType.LAZY, 
             cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -89,6 +89,10 @@ public class HouseAd {
 		return id;
 	}
 	
+	public void setId(long id) {
+		this.id=id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -117,10 +121,7 @@ public class HouseAd {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)

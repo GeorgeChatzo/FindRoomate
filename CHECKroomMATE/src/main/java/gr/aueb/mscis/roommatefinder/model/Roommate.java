@@ -14,9 +14,7 @@ public class Roommate {
 @Id
 @Column(name="id")
 @GeneratedValue(strategy=GenerationType.AUTO)
- private Long id;
-	
-
+ private long id;
 	
 	private String username;
 	private String password;
@@ -24,8 +22,7 @@ public class Roommate {
 	private String surname;
 	private int age;
 	
-	
-	
+
 	public Roommate(String username, String password, String name,
 			String surname, int age) {
 		this.username = username;
@@ -85,7 +82,7 @@ public class Roommate {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + age;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
@@ -104,10 +101,7 @@ public class Roommate {
 		Roommate other = (Roommate) obj;
 		if (age != other.age)
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)

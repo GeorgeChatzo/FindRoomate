@@ -8,7 +8,7 @@ public class House {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	
 	private String country;
 	private String city;
@@ -47,6 +47,14 @@ public class House {
 
 	public House() {
 		
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getCountry() {
@@ -161,6 +169,7 @@ public class House {
 		this.nearPublicTransport = nearPublicTransport;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -190,12 +199,8 @@ public class House {
 			return false;
 		if (garden != other.garden)
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
-
 		if (nearPublicTransport == null) {
 			if (other.nearPublicTransport != null)
 				return false;

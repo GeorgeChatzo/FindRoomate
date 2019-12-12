@@ -61,15 +61,7 @@ public class FlatmateService {
 		return false;
 	}
 
-	public List<Flatmate> findAllFlatmates() {
-		List<Flatmate> results = null;
 
-		results = em.createQuery("select flatmate from Flatmate flatmate", Flatmate.class)
-				.getResultList();
-
-		return results;
-	}
 	
-	//TODO extra methods
 	
 }

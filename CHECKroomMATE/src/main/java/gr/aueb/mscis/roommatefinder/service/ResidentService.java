@@ -63,7 +63,7 @@ public class ResidentService {
 		return false;
 	}
 
-	public List<Resident> findAllBorrowers() {
+	public List<Resident> findAllResidents() {
 		List<Resident> results = null;
 
 		results = em.createQuery("select resident from Resident resident", Resident.class)

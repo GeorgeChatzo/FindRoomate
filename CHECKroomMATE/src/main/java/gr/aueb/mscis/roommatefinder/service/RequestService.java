@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -19,15 +21,14 @@ public class RequestService {
 		this.em = em;
 	}
 	
-	public boolean createRequest(long houseAd_id,Flatmate flatmate) {
-		
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+	public boolean createRequest(long houseAd_id,long flatmateId) {
+		Flatmate flatmate = findFlatmateById(flatmateId);
+
 		HouseAd houseAd = em.find(HouseAd.class, houseAd_id);
 		CohabitRequest cohabitRequest = flatmate.request(houseAd);
 		
 		em.persist(cohabitRequest);
-		tx.commit();
+
 		return true;
 	}
 	
@@ -38,6 +39,11 @@ public class RequestService {
 		}
 		return false;
 	}
+	
+	public Flatmate findFlatmateById(long id) {
+		return em.find(Flatmate.class, id);
+	}
+	
 	
 	public List<HouseAd> findAllHouseAds() {
 		List<HouseAd> results = null;

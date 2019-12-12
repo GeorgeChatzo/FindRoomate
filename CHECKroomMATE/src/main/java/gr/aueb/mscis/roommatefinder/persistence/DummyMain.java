@@ -1,7 +1,5 @@
 package main.java.gr.aueb.mscis.roommatefinder.persistence;
 
-import javax.persistence.*;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,8 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import org.junit.Assert;
-
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
@@ -23,7 +19,6 @@ import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
-import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 
 
 public class DummyMain {
@@ -87,7 +82,12 @@ public class DummyMain {
 		// results = em.createQuery("select houseAd from HouseAd houseAd" , HouseAd.class).getResultList();
         //RequestService rs = new RequestService(em);
         //boolean create = rs.createRequest(1,flatmate);
-        
+
+        System.out.println("id resident "+resident.getId()+" id flatmate "+flatmate.getId()+"id cohabitance" +coh.getId()+
+        		" id request "+cohabitRequest.getId()+" id houseAd "+advertisment.getId()+ " id house"+house.getId());
+        		
+		
+		
         System.out.println(cohabitRequest.toString());
         
 		List<CohabitRequest> results = null;
@@ -114,6 +114,14 @@ public class DummyMain {
         System.out.println(results3);
         
         
+		List<HouseAd> results33 = null;
+
+        Query query33 = em
+				.createQuery(
+						"select resident.houseAds from Resident resident ");
+		results33=query33.getResultList();
+		System.out.println("boum");
+		System.out.println(results33);
 		
         
         

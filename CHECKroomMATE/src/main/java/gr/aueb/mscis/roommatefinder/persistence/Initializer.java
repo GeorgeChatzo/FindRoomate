@@ -19,10 +19,15 @@ import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
-//import gr.aueb.mscis.sample.model.Movie;
-
 
 public class Initializer  {
+	 public static final long resident1_id =1;
+	 public static final long flatmate_id=2;
+	 public static final long house_id=3;
+	 public static final long house_Adid=4;
+	 public static final long cohabitance_id=5;
+	 public static final long cohabitrequest_id=6;
+	 
 	
     /**
      * Remove all data from database.

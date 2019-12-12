@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class CohabitRequest {
 	@Id
 	@Column(name="COHABITREQUEST_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	 private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	 private long id;
 	
     @ManyToOne(fetch=FetchType.LAZY, 
             cascade = { CascadeType.PERSIST, CascadeType.MERGE })
@@ -26,7 +26,7 @@ public class CohabitRequest {
     
     @Enumerated(EnumType.STRING)
     @Column(name="requestate")
-    private RequestState state = RequestState.PENDING;
+    private RequestState state = RequestState.NEW;
 
 	private boolean connection;
 	private Date dateOfRequest;
@@ -41,6 +41,14 @@ public class CohabitRequest {
 
 	public CohabitRequest() {
 		
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public boolean isConnection() {
@@ -116,10 +124,7 @@ public class CohabitRequest {
 				return false;
 		} else if (!houseAd.equals(other.houseAd))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}

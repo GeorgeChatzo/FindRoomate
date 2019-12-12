@@ -4,8 +4,6 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
  * States that can be used to describe current request status 
  */
 
-
-
 public enum RequestState {
 	
 	/**
@@ -21,7 +19,7 @@ public enum RequestState {
 	/**
 	 * State if request has been rejected
 	 */
-	REJECTED,
+	NEW,
 	
 	/**
 	 * State if request has been canceled from Flatmate

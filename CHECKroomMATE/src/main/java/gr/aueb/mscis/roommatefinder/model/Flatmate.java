@@ -8,8 +8,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 
-
-
 @Entity
 @Table(name="flatmates")
 public class Flatmate extends Roommate implements Serializable{
@@ -18,7 +16,8 @@ public class Flatmate extends Roommate implements Serializable{
 
 	@Id
 	@Column(name="flatmateid")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
     @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "flatmate" ,orphanRemoval=true)
     private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
@@ -68,6 +67,14 @@ public class Flatmate extends Roommate implements Serializable{
 	}
 	
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long i) {
+		this.id = i;
+	}
+
 	public Set<CohabitRequest> getCohabitRequest(){
 		return new HashSet<CohabitRequest>(cohabitRequests);
 	}
@@ -95,6 +102,7 @@ public class Flatmate extends Roommate implements Serializable{
         cohabitRequest.setFlatmate(this);
         cohabitRequest.setHouseAd(houseAd);
         cohabitRequest.dateOfRequest();
+        cohabitRequest.setState(RequestState.PENDING);
         return cohabitRequest;
     }
 	
@@ -192,8 +200,7 @@ public class Flatmate extends Roommate implements Serializable{
 		this.rating = rating;
 	}
 	
-	
-	
+
 
 	@Override
 	public boolean equals(Object obj) {

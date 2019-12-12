@@ -4,16 +4,14 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import main.java.gr.aueb.mscis.roommatefinder.model.*;
-
 @Entity
 @Table(name="cohabitance")
 
 public class Cohabitance {
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	 private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	 private long id;
 	
 	private double commision;
 	private boolean connection;
@@ -37,6 +35,14 @@ public class Cohabitance {
 
 	public Cohabitance() {
 		
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public double getCommision() {
@@ -92,10 +98,7 @@ public class Cohabitance {
 			return false;
 		if (connection != other.connection)
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (request == null) {
 			if (other.request != null)

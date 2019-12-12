@@ -12,7 +12,7 @@ public class Resident extends Roommate{
 	@Id
 	@Column(name="residentid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 	
 	@OneToOne(
             fetch = FetchType.LAZY,
@@ -77,6 +77,14 @@ public class Resident extends Roommate{
 		super();	
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public Set<HouseAd> getHouseAds(){
 		return new HashSet<HouseAd>(houseAds);
 	}
@@ -190,31 +198,51 @@ public class Resident extends Roommate{
 		this.house = house;
 	}
 
-	public void acceptRequest(Cohabitance cohabitance,CohabitRequest request, Date startDate,Date endDate) {
+	public void acceptRequest(Cohabitance cohabitance,CohabitRequest request,Date endDate) {
+		Date startDate = new Date();
 		request.setState(RequestState.ACCEPTED);
 		cohabitance.setConnection(true);
 		cohabitance.setStartDate(startDate);
 		cohabitance.setEndDate(endDate);
 		
 	}
+//	
+//	public void rejectRequest(CohabitRequest request) {
+//		request.setState(RequestState.REJECTED);
+//		
+//	}
 	
-	public void rejectRequest(CohabitRequest request) {
-		request.setState(RequestState.REJECTED);
-		
-	}
+
 	
 	
 	@Override
+	public String toString() {
+		
+		final StringBuilder builder = new StringBuilder();
+		builder.append("Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + 
+				 ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
+					+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
+					+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
+					+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]");
+		for (HouseAd houseAd  : houseAds) {
+		    builder.append("Id :[Id=" + houseAd.getId() +
+		                              ", Name=" + houseAd.getName() + "]\n");
+		}
+		
+		return  builder.toString();
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ageRange;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((genderChoice == null) ? 0 : genderChoice.hashCode());
 		result = prime * result + (guests ? 1231 : 1237);
 		result = prime * result + ((house == null) ? 0 : house.hashCode());
 		result = prime * result + ((houseAds == null) ? 0 : houseAds.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + numOfFlatmates;
 		result = prime * result + (petRule ? 1231 : 1237);
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
@@ -229,7 +257,7 @@ public class Resident extends Roommate{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -258,10 +286,7 @@ public class Resident extends Roommate{
 				return false;
 		} else if (!houseAds.equals(other.houseAds))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (numOfFlatmates != other.numOfFlatmates)
 			return false;
@@ -290,23 +315,6 @@ public class Resident extends Roommate{
 		} else if (!rating.equals(other.rating))
 			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		
-		final StringBuilder builder = new StringBuilder();
-		builder.append("Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + 
-				 ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
-					+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
-					+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
-					+ ", rating=" + rating + ", email=" + email + ", phoneNumber=" + phoneNumber + "]");
-		for (HouseAd houseAd  : houseAds) {
-		    builder.append("Id :[Id=" + houseAd.getId() +
-		                              ", Name=" + houseAd.getName() + "]\n");
-		}
-		
-		return  builder.toString();
 	}
 	
 

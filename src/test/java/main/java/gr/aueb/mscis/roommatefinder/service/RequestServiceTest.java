@@ -6,7 +6,9 @@ import java.util.List;
 
 import org.junit.Test;
 
+import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
+import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
 public class RequestServiceTest extends RoommateServiceTest {
 
@@ -18,6 +20,23 @@ public class RequestServiceTest extends RoommateServiceTest {
 		assertNotNull(houseAds);
 		assertEquals(1, houseAds.size());
 	
+	}
+	
+	@Test
+	public void testcreateRequest() {
+		RequestService service = new RequestService(em);
+		Boolean created= service.createRequest(Initializer.house_Adid, Initializer.flatmate_id);
+		assertTrue(created);
+	}
+	
+	@Test
+	public void testfindFlatmate() {
+		RequestService service = new RequestService(em);
+		Flatmate flatmate = service.findFlatmateById(Initializer.flatmate_id);
+		
+		assertNotNull(flatmate);
+		
+		
 	}
 
 }
