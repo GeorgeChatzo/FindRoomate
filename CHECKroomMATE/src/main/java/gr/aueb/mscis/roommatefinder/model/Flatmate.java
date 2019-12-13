@@ -1,19 +1,12 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 
-import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-
 @Entity
 @Table(name="flatmates")
-public class Flatmate extends Roommate implements Serializable{
+public class Flatmate extends Roommate {
 	
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@Column(name="flatmateid")
 	@GeneratedValue(strategy = GenerationType.AUTO)

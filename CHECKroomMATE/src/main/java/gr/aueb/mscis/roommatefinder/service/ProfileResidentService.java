@@ -8,7 +8,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
-public class ProfileResidentService {
+public class ProfileResidentService  {
 	
 	
 	private EntityManager em;
@@ -83,8 +83,7 @@ public class ProfileResidentService {
 	
 	public boolean updateCellPhoneNumber(CellNumber cell, long residentId ) {
 		Resident resident = findResidentById(residentId);
-		CellNumber phone = new CellNumber("210123456");
-		resident.setPhoneNumber(phone);
+		resident.setPhoneNumber(cell);
 		em.merge(resident);
 		
 		return true;

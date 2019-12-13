@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
-import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 
 public class UpdateHouseAdService {
 	
@@ -39,6 +38,15 @@ public class UpdateHouseAdService {
 		updateCity(city,houseId, residentId );
 		updateRegion(region,houseId, residentId );
 		updateZipcode(zipCode,houseId, residentId );
+		updateTypeOfHouse(typeOfHouse,houseId,residentId );
+		updateFloorNo(floorNo,houseId, residentId );
+		updateGarden(garden,houseId,residentId );
+		updateSquareMeters(squareMeters,houseId, residentId );
+		updateElevator(elevator,houseId, residentId );
+		updateParking(parking,houseId, residentId );
+		updateBalconies(balconies,houseId, residentId );
+		updateConstructionYear(constructionYear,houseId,residentId );
+		updatePublicTransport(nearPublicTransport,houseId,residentId );
 		
 		return true;
 	}

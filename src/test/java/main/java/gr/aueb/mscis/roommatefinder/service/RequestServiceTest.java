@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
@@ -22,6 +23,17 @@ public class RequestServiceTest extends RoommateServiceTest {
 		assertEquals(1, houseAds.size());
 	
 	}
+	
+	@Test
+	public void testfindAllHouseAdsWithHouse() {
+		RequestService service = new RequestService(em);
+		List<House> houseAds = service.findAllHouseAdsWithHouse(Initializer.resident1_id);
+		
+		assertNotNull(houseAds);
+		assertEquals(1, houseAds.size());
+	
+	}
+	
 	
 	@Test
 	public void testcreateRequest() {

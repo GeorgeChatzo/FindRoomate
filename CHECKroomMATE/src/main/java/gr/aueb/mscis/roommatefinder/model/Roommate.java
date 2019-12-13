@@ -6,7 +6,6 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 import javax.persistence.*;
 
 
-
 @MappedSuperclass
 
 public class Roommate {
