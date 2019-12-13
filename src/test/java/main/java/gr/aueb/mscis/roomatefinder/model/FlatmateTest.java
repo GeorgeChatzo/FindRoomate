@@ -17,14 +17,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 public class FlatmateTest {
 
-	@Test
-	public void test() {
-		
-		
-		
-		
-	}
-	
+
 	@Test
 	public void testName() {
 		

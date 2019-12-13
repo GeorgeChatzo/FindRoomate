@@ -35,7 +35,7 @@ public class ManageRequestServiceTest extends RoommateServiceTest{
 		ManageRequestService service = new ManageRequestService(em);
 		Boolean rejected = service.rejectRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
 		
-		assertTrue(rejected);;
+		assertTrue(rejected);
 		
 		
 	}

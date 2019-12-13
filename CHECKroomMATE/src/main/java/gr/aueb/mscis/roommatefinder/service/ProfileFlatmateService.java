@@ -5,11 +5,11 @@ import javax.persistence.EntityManager;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 
 
-public class FlatmateService {
+public class ProfileFlatmateService {
 
 	private EntityManager em;
 
-	public FlatmateService(EntityManager em) {
+	public ProfileFlatmateService(EntityManager em) {
 		this.em = em;
 	}	
 	
