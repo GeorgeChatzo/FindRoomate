@@ -3,6 +3,8 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
@@ -41,6 +43,7 @@ public class RequestService {
 	}
 	
 	public Flatmate findFlatmateById(long id) {
+
 		return em.find(Flatmate.class, id);
 	}
 	

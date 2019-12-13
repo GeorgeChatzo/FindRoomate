@@ -163,37 +163,43 @@ public class Flatmate extends Roommate {
 		this.incomingGuests = incomingGuests;
 	}
 
-
 	public EmailAddress getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(EmailAddress email) {
 		this.email = email;
 	}
 
-
 	public CellNumber getPhoneNumber() {
 		return phoneNumber;
 	}
 
-
 	public void setPhoneNumber(CellNumber phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 	
 	public Set<Double> getRating() {
 		return rating;
 	}
 
-
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
 	
-
+	public boolean  validateFields() {
+		super.validateFields();
+		
+        if (this.email == null) {
+            return false;
+        }
+        
+        if (this.phoneNumber == null) {
+            return false;
+        }
+        return true;
+		
+	}
 
 	@Override
 	public boolean equals(Object obj) {

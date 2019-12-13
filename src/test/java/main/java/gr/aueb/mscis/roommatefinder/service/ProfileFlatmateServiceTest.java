@@ -31,6 +31,23 @@ public class ProfileFlatmateServiceTest extends RoommateServiceTest {
         assertTrue(updateDetails);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void updateNullPersonalDetails() {
+
+        CellNumber cell = new CellNumber("69445458");
+        EmailAddress email = new EmailAddress("bestemail@example.com");
+        Set<String> habits = null ;
+        Set<Double> rating = null;
+        
+        ProfileFlatmateService service = new ProfileFlatmateService(em);
+		
+        boolean updateDetails = service.updatePersonalDetails("bling", "1234", email, cell, "Eric",
+    			"Adams", 27, "fantastic xooxo","male", status.EMPLOYEE, true,
+    			habits, "Christmas",true, rating, Initializer.flatmate_id);
+        
+        assertTrue(updateDetails);
+	}
+	
 	@Test
 	public void testfindFlatmate() {
 		ProfileFlatmateService service = new ProfileFlatmateService(em);

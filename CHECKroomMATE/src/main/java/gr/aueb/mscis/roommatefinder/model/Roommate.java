@@ -75,6 +75,29 @@ public class Roommate {
 		this.age = age;
 	}
 	
+	public boolean  validateFields() {
+	      if (this.username == null) {
+	            return false;
+	        }
+	        if (this.password == null) {
+	            return false;
+	        }
+	        
+	        if (this.name == null) {
+	            return false;
+	        }
+	        
+	        if (this.surname == null) {
+	            return false;
+	        }
+	        
+	        if (this.age <= 0) {
+	            return false;
+	        }
+	        return true;
+		
+	}
+	
 
 	@Override
 	public int hashCode() {

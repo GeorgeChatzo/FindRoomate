@@ -23,22 +23,26 @@ public class ProfileFlatmateService {
 			String surName, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating,long flatmateId) {
 		
-		updateUsername( username,flatmateId );
-		updatePassword(password,flatmateId );
-		updateEmailAddress(emailAddress,flatmateId );
-		updateCellPhoneNumber( phoneNumber, flatmateId );
-		updateName(name, flatmateId );
-		updateSurname(surName,flatmateId );
-		updateAge(age, flatmateId );
-		updateDescription(description, flatmateId );
-		updateGender(gender,flatmateId );
-		updateProfession(profession,flatmateId );
-		updatePets(pets,flatmateId );
-		updateHabits(habits,flatmateId );
-		updateWorkingSchedule(workSchedule,flatmateId );
-		updateIncomingGuest(incomingGuests,flatmateId );
-		updateRating(rating, flatmateId );
-		
+		try {
+			updateUsername( username,flatmateId );
+			updatePassword(password,flatmateId );
+			updateEmailAddress(emailAddress,flatmateId );
+			updateCellPhoneNumber( phoneNumber, flatmateId );
+			updateName(name, flatmateId );
+			updateSurname(surName,flatmateId );
+			updateAge(age, flatmateId );
+			updateDescription(description, flatmateId );
+			updateGender(gender,flatmateId );
+			updateProfession(profession,flatmateId );
+			updatePets(pets,flatmateId );
+			updateHabits(habits,flatmateId );
+			updateWorkingSchedule(workSchedule,flatmateId );
+			updateIncomingGuest(incomingGuests,flatmateId );
+			updateRating(rating, flatmateId );
+			
+		} catch( IllegalArgumentException ex) {
+			return false;
+		}
 		return true;
 	}
 	
@@ -94,7 +98,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	
+		
 	public boolean updateSurname(String surName, long flatmateId ) {
 		Flatmate flatmate = findFlatmateById(flatmateId);
 		flatmate.setSurname(surName);

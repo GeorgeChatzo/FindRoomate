@@ -18,7 +18,11 @@ public enum RequestState {
 	
 	/**
 	 * State if request has been rejected
+	 * 
 	 */
+	REJECTED,
+	
+	
 	NEW,
 	
 	/**

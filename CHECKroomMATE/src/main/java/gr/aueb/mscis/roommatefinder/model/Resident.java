@@ -206,13 +206,13 @@ public class Resident extends Roommate{
 		cohabitance.setEndDate(endDate);
 		
 	}
-//	
-//	public void rejectRequest(CohabitRequest request) {
-//		request.setState(RequestState.REJECTED);
-//		
-//	}
 	
-
+	public void rejectRequest(CohabitRequest request) {
+		request.setState(RequestState.REJECTED);
+		
+	}
+	
+	
 	
 	
 	@Override
@@ -230,6 +230,25 @@ public class Resident extends Roommate{
 		}
 		
 		return  builder.toString();
+	}
+	
+	
+	public boolean  validateFields() {
+		super.validateFields();
+		
+        if (this.email == null) {
+            return false;
+        }
+        
+        if (this.phoneNumber == null) {
+            return false;
+        }
+        
+        if (this.numOfFlatmates <= 0) {
+            return false;
+        }
+        return true;
+		
 	}
 
 	@Override

@@ -123,6 +123,8 @@ public class DummyMain {
 		System.out.println("boum");
 		System.out.println(results33);
 		
+		System.out.println(em.find(Flatmate.class, 33L)); //Exception test xoxooxox
+		
         
         
 	}
