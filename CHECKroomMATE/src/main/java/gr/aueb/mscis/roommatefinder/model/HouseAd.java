@@ -100,6 +100,24 @@ public class HouseAd {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public boolean validate() {
+        if (this.name == null) {
+            return false;
+        }
+        
+        if (this.description == null) {
+            return false;
+        }
+        
+        if (this.rentPrice <= 0) {
+            return false;
+        }
+        
+		
+		return true;
+		
+	}
 
 
 	@Override

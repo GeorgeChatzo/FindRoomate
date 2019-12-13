@@ -169,6 +169,31 @@ public class House {
 		this.nearPublicTransport = nearPublicTransport;
 	}
 
+	public boolean validate() {
+        if (this.country == null) {
+            return false;
+        }
+        
+        if (this.city == null) {
+            return false;
+        }
+        
+        if (this.region == null) {
+            return false;
+        }
+        
+        if (this.typeOfHouse == null) {
+            return false;
+        }
+        
+        if (this.squareMeters >= 0) {
+            return false;
+        }
+        
+		
+		return true;
+		
+	}
 
 	@Override
 	public boolean equals(Object obj) {
