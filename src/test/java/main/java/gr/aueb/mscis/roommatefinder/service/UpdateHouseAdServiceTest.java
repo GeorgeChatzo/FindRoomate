@@ -8,7 +8,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
-public class UpdateHouseAdTest extends RoommateServiceTest {
+public class UpdateHouseAdServiceTest extends RoommateServiceTest {
 
 	@Test
 	public void testUpdateHouseAd() {
@@ -18,6 +18,16 @@ public class UpdateHouseAdTest extends RoommateServiceTest {
 				2, Initializer.house_Adid, Initializer.resident1_id);
 		
 		assertTrue(updatedAd);
+	}
+	
+	@Test
+	public void testUpdateWrongFieldsHouseAd() {
+		UpdateHouseAdService service = new UpdateHouseAdService(em);
+		
+		boolean updatedAd = service.updateHouseAd(null,null,0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",
+				2, Initializer.house_Adid, Initializer.resident1_id);
+		
+		assertFalse(updatedAd);
 	}
 	
 	@Test
@@ -31,6 +41,19 @@ public class UpdateHouseAdTest extends RoommateServiceTest {
 		assertTrue(updateHouse);
 		
 	}
+	
+	@Test
+	public void testUpdateWrongFieldsHouse() {
+		UpdateHouseAdService service = new UpdateHouseAdService(em);
+		
+		boolean updateHouse = service.updateHouse(null,null,null,1111,"Diamerisma",3,false,115,true,true,
+				1,5,1995,"Hlketrikos",Initializer.house_id, Initializer.resident1_id);
+		
+		
+		assertFalse(updateHouse);
+		
+	}
+	
 	
 	@Test
 	public void testSelectHouseAd() {

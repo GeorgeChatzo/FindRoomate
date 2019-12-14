@@ -31,6 +31,21 @@ public class ProfileResidentServiceTest extends RoommateServiceTest {
 	}
 	
 	@Test
+	public void testUpdateWrongFieldsPersonalDetails() {
+		ProfileResidentService service = new ProfileResidentService(em);
+        CellNumber cell = new CellNumber("694454586");
+        Set<Double> rating = null;
+        Set<String> preferedHabits = null;
+        
+		boolean updateDetails = service.updatePersonalDetails(null, null, null,
+				cell, "Mary", "Pap",30 , 5, 25, preferedHabits, false, 
+				"night", rating, "female",true, status.EMPLOYEE, Initializer.resident1_id);
+		
+		assertFalse(updateDetails);
+	}
+	
+	
+	@Test
 	public void testfindResident() {
 		ProfileResidentService service = new ProfileResidentService(em);
 		Resident resident = service.findResidentById(Initializer.resident1_id);

@@ -31,8 +31,8 @@ public class ProfileFlatmateServiceTest extends RoommateServiceTest {
         assertTrue(updateDetails);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void updateNullPersonalDetails() {
+	@Test
+	public void updatePersonalWrongFieldsDetails() {
 
         CellNumber cell = new CellNumber("69445458");
         EmailAddress email = new EmailAddress("bestemail@example.com");
@@ -41,13 +41,14 @@ public class ProfileFlatmateServiceTest extends RoommateServiceTest {
         
         ProfileFlatmateService service = new ProfileFlatmateService(em);
 		
-        boolean updateDetails = service.updatePersonalDetails("bling", "1234", email, cell, "Eric",
+        boolean updateDetails = service.updatePersonalDetails(null, null, null, cell, "Eric",
     			"Adams", 27, "fantastic xooxo","male", status.EMPLOYEE, true,
     			habits, "Christmas",true, rating, Initializer.flatmate_id);
         
-        assertTrue(updateDetails);
+        assertFalse(updateDetails);
 	}
 	
+
 	@Test
 	public void testfindFlatmate() {
 		ProfileFlatmateService service = new ProfileFlatmateService(em);

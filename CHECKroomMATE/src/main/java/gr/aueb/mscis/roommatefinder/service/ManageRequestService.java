@@ -23,9 +23,9 @@ public class ManageRequestService {
 		Resident currentResident = findResidentById(residentId);
 	
 		Cohabitance cohabit = selectRequest( cohabId, residentId);
-		CohabitRequest request = cohabit.getRequest();
-		if(cohabit != null && request != null) {
-		
+		if(cohabit != null) {
+			CohabitRequest request = cohabit.getRequest();
+
 			Date endDate= cohabit.getEndDate();
 			currentResident.acceptRequest(cohabit, request, endDate);
 		
