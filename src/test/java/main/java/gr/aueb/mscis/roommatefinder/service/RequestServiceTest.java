@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
-
 import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
@@ -45,6 +43,13 @@ public class RequestServiceTest extends RoommateServiceTest {
 	}
 	
 	@Test
+	public void testcreateRequestinNotExistedHouseAd() {
+		RequestService service = new RequestService(em);
+		Boolean created= service.createRequest(8L, Initializer.flatmate_id);
+		assertFalse(created);
+	}
+	
+	@Test
 	public void testfindFlatmate() {
 		RequestService service = new RequestService(em);
 		Flatmate flatmate = service.findFlatmateById(Initializer.flatmate_id);
@@ -74,23 +79,25 @@ public class RequestServiceTest extends RoommateServiceTest {
 	
 	
 	@Test
-	public void testDeleteRequest() {
+	public void testCancelRequest() {
 		RequestService service = new RequestService(em);
-		Boolean deleted = service.cancelRequest(Initializer.cohabitrequest_id);
+		Boolean canceled = service.cancelRequest(Initializer.cohabitrequest_id);
 		
-		assertTrue(deleted);
+		assertTrue(canceled);
 		
 		
 	}
 	
 	@Test
-	public void testNullDeleteRequest() {
+	public void testCancelNotExistentRequest() {
 		RequestService service = new RequestService(em);
-		Boolean deleted = service.cancelRequest(8);
+		Boolean canceled = service.cancelRequest(8L);
 		
-		assertFalse(deleted);
+		assertFalse(canceled);
 		
 		
 	}
+	
+
 
 }

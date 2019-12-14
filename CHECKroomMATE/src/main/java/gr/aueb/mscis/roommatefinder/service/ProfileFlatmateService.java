@@ -23,7 +23,7 @@ public class ProfileFlatmateService {
 			String surName, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating,long flatmateId) {
 		
-		try {
+		
 			updateUsername( username,flatmateId );
 			updatePassword(password,flatmateId );
 			updateEmailAddress(emailAddress,flatmateId );
@@ -40,9 +40,7 @@ public class ProfileFlatmateService {
 			updateIncomingGuest(incomingGuests,flatmateId );
 			updateRating(rating, flatmateId );
 			
-		} catch( IllegalArgumentException ex) {
-			return false;
-		}
+	
 		return true;
 	}
 	

@@ -17,7 +17,6 @@ public class ManageRequestServiceTest extends RoommateServiceTest{
 	public void testfindResident() {
 		ManageRequestService service = new ManageRequestService(em);
 		Resident resident = service.findResidentById(Initializer.resident1_id);
-		
 		assertNotNull(resident);
 		
 	}
@@ -26,19 +25,36 @@ public class ManageRequestServiceTest extends RoommateServiceTest{
 	@Test
 	public void testAcceptCreateRequest() {
 		ManageRequestService service = new ManageRequestService(em);
-		Boolean accepted= service.acceptRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
-		assertTrue(accepted);
+		Boolean accept= service.acceptRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
+		assertTrue(accept);
 	}
 	
 	@Test
-	public void tesRejectRequest() {
+	public void testAcceptNotExistentRequest() {
 		ManageRequestService service = new ManageRequestService(em);
-		Boolean rejected = service.rejectRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
+		Boolean accept= service.acceptRequest(8L, Initializer.resident1_id);
 		
-		assertTrue(rejected);
-		
-		
+		assertFalse(accept);
 	}
+	
+	@Test
+	public void testRejectRequest() {
+		ManageRequestService service = new ManageRequestService(em);
+		Boolean reject = service.rejectRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
+		
+		assertTrue(reject);
+			
+	}
+	
+	@Test
+	public void testRejectNotExistentRequest() {
+		ManageRequestService service = new ManageRequestService(em);
+		Boolean reject = service.rejectRequest(8L, Initializer.resident1_id);
+		
+		assertFalse(reject);
+			
+	}
+	
 	
 	@Test
 	public void testViewPendingRequets() {
@@ -57,6 +73,15 @@ public class ManageRequestServiceTest extends RoommateServiceTest{
 		
 		Cohabitance cohabitance = service.selectRequest(Initializer.cohabitrequest_id, Initializer.resident1_id);
 		assertNotNull(cohabitance);
+		
+	}
+	
+	@Test
+	public void testSelectNullRequest() {
+		ManageRequestService service = new ManageRequestService(em);
+		
+		Cohabitance cohabitance = service.selectRequest(8L, Initializer.resident1_id);
+		assertNull(cohabitance);
 		
 	}
 	

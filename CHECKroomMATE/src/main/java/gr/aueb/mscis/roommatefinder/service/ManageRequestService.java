@@ -23,21 +23,29 @@ public class ManageRequestService {
 		Resident currentResident = findResidentById(residentId);
 	
 		Cohabitance cohabit = selectRequest( cohabId, residentId);
-		CohabitRequest request = cohabit.getRequest();
-		Date endDate= cohabit.getEndDate();
-		currentResident.acceptRequest(cohabit, request, endDate);
 		
-		em.merge(currentResident);
+		if(cohabit != null && cohabit != null) {
+			
+			CohabitRequest request = cohabit.getRequest();
+			Date endDate= cohabit.getEndDate();
+			currentResident.acceptRequest(cohabit, request, endDate);
 		
-		return true;
+			em.merge(currentResident);
+		
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean rejectRequest(long cohabId,long residentId) {
 		Cohabitance cohabit = selectRequest( cohabId, residentId);
+		if(cohabit != null) {
+			em.remove(cohabit);
 		
-		em.remove(cohabit);
-		
-		return true;
+			return true;
+			
+		}
+		return false;
 	}
 	
 	
@@ -56,9 +64,12 @@ public class ManageRequestService {
 				.setParameter("residentId", residentId)
 				.setParameter("cohabId", cohabId)
 				.getResultList();
-
-		return result.get(0);
-		
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		else {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

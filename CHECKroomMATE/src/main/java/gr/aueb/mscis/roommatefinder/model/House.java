@@ -190,7 +190,6 @@ public class House {
             return false;
         }
         
-		
 		return true;
 		
 	}

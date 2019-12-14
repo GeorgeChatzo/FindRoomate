@@ -26,11 +26,11 @@ public class RequestService {
 		Flatmate flatmate = findFlatmateById(flatmateId);
 
 		HouseAd houseAd = em.find(HouseAd.class, houseAd_id);
-		CohabitRequest cohabitRequest = flatmate.request(houseAd);
-		
-		em.persist(cohabitRequest);
-
-		return true;
+		if(houseAd != null) {
+			CohabitRequest cohabitRequest = flatmate.request(houseAd);
+			em.persist(cohabitRequest);	
+			return true;
+		}else return false;
 	}
 	
 	public boolean cancelRequest(long requestId) {

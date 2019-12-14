@@ -50,6 +50,57 @@ public class PublishAdServiceTest extends RoommateServiceTest {
 		assertFalse(created);
 	}
 	
+	@Test
+	public void testDeleteHouse() {
+		PublishAdService service = new PublishAdService(em);
+		boolean deleted = service.deleteHouse(Initializer.house_id);
+		
+		assertTrue(deleted);
+	}
+	
+	@Test
+	public void testDeleteNotExistentHouse() {
+		PublishAdService service = new PublishAdService(em);
+		boolean deleted = service.deleteHouse(8L);
+		
+		assertFalse(deleted);
+	}
+	
+	//HouseAd
+	@Test
+	public void testcreateHouseAd() {
+		PublishAdService service = new PublishAdService(em);
+		HouseAd houseAd = new HouseAd("Fovero","New house at Galatsi",500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
+		boolean created = service.createHouseAd(houseAd);
+		
+		assertTrue(created);
+	}
+	
+	@Test
+	public void testNullcreateHouseAd() {
+		PublishAdService service = new PublishAdService(em);
+		HouseAd houseAd = new HouseAd(null,null,500.0,"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2); 
+		boolean created = service.createHouseAd(houseAd);
+		
+		assertFalse(created);
+	}
+	
+	@Test
+	public void testDeleteHouseAd() {
+		PublishAdService service = new PublishAdService(em);
+		boolean deleted = service.deleteHouseAd(Initializer.house_Adid);
+		
+		assertTrue(deleted);
+	}
+	
+	@Test
+	public void testDeleteNotExistentHouseAd() {
+		PublishAdService service = new PublishAdService(em);
+		boolean deleted = service.deleteHouseAd(8L);
+		
+		assertFalse(deleted);
+	}
+	
 	
 	
 	@Test
