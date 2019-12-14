@@ -3,6 +3,7 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
@@ -22,25 +23,42 @@ public class ProfileFlatmateService {
 	public boolean updatePersonalDetails(String username, String password, EmailAddress emailAddress, CellNumber phoneNumber, String name,
 			String surName, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating,long flatmateId) {
+			
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			Flatmate flatmate = findFlatmateById(flatmateId);
 		
-		
-			updateUsername( username,flatmateId );
-			updatePassword(password,flatmateId );
-			updateEmailAddress(emailAddress,flatmateId );
-			updateCellPhoneNumber( phoneNumber, flatmateId );
-			updateName(name, flatmateId );
-			updateSurname(surName,flatmateId );
-			updateAge(age, flatmateId );
-			updateDescription(description, flatmateId );
-			updateGender(gender,flatmateId );
-			updateProfession(profession,flatmateId );
-			updatePets(pets,flatmateId );
-			updateHabits(habits,flatmateId );
-			updateWorkingSchedule(workSchedule,flatmateId );
-			updateIncomingGuest(incomingGuests,flatmateId );
-			updateRating(rating, flatmateId );
+			updateUsername( username,flatmate );
+			updatePassword(password,flatmate );
+			updateEmailAddress(emailAddress,flatmate );
+			updateCellPhoneNumber( phoneNumber, flatmate );
+			updateName(name, flatmate );
+			updateSurname(surName,flatmate );
+			updateAge(age, flatmate );
+			updateDescription(description, flatmate );
+			updateGender(gender,flatmate );
+			updateProfession(profession,flatmate );
+			updatePets(pets,flatmate );
+			updateHabits(habits,flatmate );
+			updateWorkingSchedule(workSchedule,flatmate );
+			updateIncomingGuest(incomingGuests,flatmate );
+			updateRating(rating, flatmate );
 			
 	
+			if(flatmate.validateFields()) {
+				tx.commit();
+				return true;
+			}else {
+				tx.rollback();
+				
+				return false;
+			}
+	}
+	
+	public boolean cancelUpdate() {
+		EntityTransaction tx = em.getTransaction();
+		tx.rollback();
+		
 		return true;
 	}
 	
@@ -48,8 +66,7 @@ public class ProfileFlatmateService {
 		return em.find(Flatmate.class, id);
 	}
 	
-	public boolean updateUsername(String username, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateUsername(String username, Flatmate flatmate ) {
 		flatmate.setUsername(username);
 		em.merge(flatmate);
 		
@@ -58,8 +75,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updatePassword(String password, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updatePassword(String password, Flatmate flatmate ) {
 		flatmate.setPassword(password);
 		em.merge(flatmate);
 		
@@ -67,8 +83,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateEmailAddress(EmailAddress emailAddress, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateEmailAddress(EmailAddress emailAddress, Flatmate flatmate ) {
 		flatmate.setEmail(emailAddress);
 		em.merge(flatmate);
 		
@@ -77,8 +92,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updateCellPhoneNumber(CellNumber cell, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateCellPhoneNumber(CellNumber cell, Flatmate flatmate ) {
 		flatmate.setPhoneNumber(cell);
 		em.merge(flatmate);
 		
@@ -87,8 +101,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updateName(String name, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateName(String name, Flatmate flatmate ) {
 		flatmate.setName(name);
 		em.merge(flatmate);
 		
@@ -97,8 +110,7 @@ public class ProfileFlatmateService {
 	}
 	
 		
-	public boolean updateSurname(String surName, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateSurname(String surName, Flatmate flatmate ) {
 		flatmate.setSurname(surName);
 		em.merge(flatmate);
 		
@@ -107,8 +119,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updateAge(int age, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateAge(int age, Flatmate flatmate ) {
 		flatmate.setAge(age);
 		em.merge(flatmate);
 		
@@ -117,8 +128,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updateDescription(String description, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateDescription(String description, Flatmate flatmate ) {
 		flatmate.setDescription(description);
 		em.merge(flatmate);
 		
@@ -127,8 +137,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updateGender(String gender, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateGender(String gender, Flatmate flatmate ) {
 		flatmate.setGender(gender);
 		em.merge(flatmate);
 		
@@ -136,8 +145,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateProfession(status profession, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateProfession(status profession, Flatmate flatmate ) {
 		flatmate.setProfession(profession);
 		em.merge(flatmate);
 		
@@ -146,8 +154,7 @@ public class ProfileFlatmateService {
 	}
 	
 	
-	public boolean updatePets(boolean pets, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updatePets(boolean pets, Flatmate flatmate ) {
 		flatmate.setPets(pets);
 		em.merge(flatmate);
 		
@@ -155,8 +162,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateHabits(Set<String> habits, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateHabits(Set<String> habits, Flatmate flatmate ) {
 		flatmate.setHabits(habits);
 		em.merge(flatmate);
 		
@@ -164,8 +170,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateWorkingSchedule(String workSchedule, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateWorkingSchedule(String workSchedule, Flatmate flatmate ) {
 		flatmate.setWorkSchedule(workSchedule);
 		em.merge(flatmate);
 		
@@ -173,8 +178,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateIncomingGuest(boolean incomingGuests, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateIncomingGuest(boolean incomingGuests, Flatmate flatmate ) {
 		flatmate.setIncomingGuests(incomingGuests);
 		em.merge(flatmate);
 		
@@ -182,8 +186,7 @@ public class ProfileFlatmateService {
 		
 	}
 	
-	public boolean updateRating(Set<Double> rating, long flatmateId ) {
-		Flatmate flatmate = findFlatmateById(flatmateId);
+	public boolean updateRating(Set<Double> rating,Flatmate flatmate ) {
 		flatmate.setRating(rating);
 		em.merge(flatmate);
 		

@@ -32,6 +32,7 @@ public class UpdateHouseAdTest extends RoommateServiceTest {
 		
 	}
 	
+	@Test
 	public void testSelectHouseAd() {
 		UpdateHouseAdService service = new UpdateHouseAdService(em);
 		
@@ -41,6 +42,7 @@ public class UpdateHouseAdTest extends RoommateServiceTest {
 		
 	}
 	
+	@Test
 	public void testSelectHouse() {
 		UpdateHouseAdService service = new UpdateHouseAdService(em);
 		

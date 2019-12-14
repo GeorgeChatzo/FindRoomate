@@ -59,7 +59,7 @@ public class PublishAdServiceTest extends RoommateServiceTest {
 	}
 	
 	@Test
-	public void testDeleteNotExistentHouse() {
+	public void testDeleteNonExistantHouse() {
 		PublishAdService service = new PublishAdService(em);
 		boolean deleted = service.deleteHouse(8L);
 		
@@ -94,7 +94,7 @@ public class PublishAdServiceTest extends RoommateServiceTest {
 	}
 	
 	@Test
-	public void testDeleteNotExistentHouseAd() {
+	public void testDeleteNonExistantHouseAd() {
 		PublishAdService service = new PublishAdService(em);
 		boolean deleted = service.deleteHouseAd(8L);
 		

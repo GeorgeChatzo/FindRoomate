@@ -3,6 +3,8 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
@@ -29,31 +31,49 @@ public class ProfileResidentService  {
 			Set<String> preferedHabits,boolean petRule,String preferedWorkSchedule,Set<Double> rating,
 			String genderChoice,boolean guests,status preferedProfession,long residentId) {
 		
-		updateUsername( username,residentId );
-		updatePassword(password,residentId );
-		updateEmailAddress(emailAddress,residentId );
-		updateCellPhoneNumber( cell, residentId );
-		updateName(name, residentId );
-		updateSurname(surName,residentId );
-		updateAge(age, residentId );
-		updateNumOfFlatmates(numOfFlatmates,residentId );
-		updateAgeRange(ageRange, residentId );
-		updatePreferedHabits(preferedHabits, residentId );
-		updatePetRule(petRule,residentId );
-		updatepreferedWorkSchedule(preferedWorkSchedule, residentId );
-		updateStatus(preferedProfession,residentId );
-		updateGuests(guests, residentId );
-		updateGenderChoice(genderChoice,  residentId);
-		updateRating(rating,  residentId );
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		Resident resident = findResidentById(residentId);
+
 		
-		return true;
+		updateUsername( username,resident );
+		updatePassword(password,resident );
+		updateEmailAddress(emailAddress,resident );
+		updateCellPhoneNumber( cell, resident );
+		updateName(name, resident );
+		updateSurname(surName,resident );
+		updateAge(age, resident );
+		updateNumOfFlatmates(numOfFlatmates,resident );
+		updateAgeRange(ageRange, resident );
+		updatePreferedHabits(preferedHabits, resident );
+		updatePetRule(petRule,resident );
+		updatepreferedWorkSchedule(preferedWorkSchedule, resident );
+		updateStatus(preferedProfession,resident );
+		updateGuests(guests, resident );
+		updateGenderChoice(genderChoice,  resident);
+		updateRating(rating,  resident );
+		
+		if(resident.validateFields()) {
+			tx.commit();
+			return true;
+		}else {
+			tx.rollback();
+			
+			return false;
+		}
 		
 
 	
 	}
 	
-	public boolean updateUsername(String username, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean cancelUpdate() {
+		EntityTransaction tx = em.getTransaction();
+		tx.rollback();
+		
+		return true;
+	}
+	
+	public boolean updateUsername(String username, Resident resident ) {
 		resident.setUsername(username);
 		em.merge(resident);
 		
@@ -62,8 +82,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updatePassword(String password, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updatePassword(String password, Resident resident ) {
 		resident.setPassword(password);
 		em.merge(resident);
 		
@@ -71,8 +90,7 @@ public class ProfileResidentService  {
 		
 	}
 	
-	public boolean updateEmailAddress(EmailAddress emailAddress, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateEmailAddress(EmailAddress emailAddress, Resident resident ) {
 		resident.setEmail(emailAddress);;
 		em.merge(resident);
 		
@@ -81,8 +99,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateCellPhoneNumber(CellNumber cell, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateCellPhoneNumber(CellNumber cell, Resident resident ) {
 		resident.setPhoneNumber(cell);
 		em.merge(resident);
 		
@@ -91,8 +108,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateName(String name, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateName(String name, Resident resident ) {
 		resident.setName(name);;
 		em.merge(resident);
 		
@@ -101,8 +117,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateSurname(String surName, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateSurname(String surName, Resident resident ) {
 		resident.setSurname(surName);
 		em.merge(resident);
 		
@@ -111,8 +126,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateAge(int age, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateAge(int age, Resident resident ) {
 		resident.setAge(age);
 		em.merge(resident);
 		
@@ -121,9 +135,8 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateNumOfFlatmates(int numOfFlatmates, long residentId ) {
-		Resident resident = findResidentById(residentId);
-		resident.setNumOfFlatmates(numOfFlatmates);;
+	public boolean updateNumOfFlatmates(int numOfFlatmates, Resident resident ) {
+		resident.setNumOfFlatmates(numOfFlatmates);
 		em.merge(resident);
 		
 		return true;
@@ -131,9 +144,8 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateAgeRange(int ageRange, long residentId ) {
-		Resident resident = findResidentById(residentId);
-		resident.setNumOfFlatmates(ageRange);;
+	public boolean updateAgeRange(int ageRange, Resident resident ) {
+		resident.setNumOfFlatmates(ageRange);
 		em.merge(resident);
 		
 		return true;
@@ -141,8 +153,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updatePreferedHabits(Set<String> preferedHabits, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updatePreferedHabits(Set<String> preferedHabits, Resident resident) {
 		resident.setPreferedHabits(preferedHabits);
 		em.merge(resident);
 		
@@ -151,8 +162,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updatePetRule(boolean petRule, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updatePetRule(boolean petRule, Resident resident ) {
 		resident.setPetRule(petRule);
 		em.merge(resident);
 		
@@ -161,8 +171,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updatepreferedWorkSchedule(String preferedWorkSchedule, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updatepreferedWorkSchedule(String preferedWorkSchedule, Resident resident) {
 		resident.setPreferedWorkSchedule(preferedWorkSchedule);
 		em.merge(resident);
 		
@@ -170,9 +179,8 @@ public class ProfileResidentService  {
 		
 	}
 	
-	public boolean updateStatus(status preferedProfession, long residentId ) {
-		Resident resident = findResidentById(residentId);
-		resident.setPreferedProfession(preferedProfession);;
+	public boolean updateStatus(status preferedProfession, Resident resident) {
+		resident.setPreferedProfession(preferedProfession);
 		em.merge(resident);
 		
 		return true;
@@ -180,8 +188,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateGuests(boolean guests, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateGuests(boolean guests, Resident resident ) {
 		resident.setGuests(guests);;
 		em.merge(resident);
 		
@@ -190,8 +197,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateGenderChoice(String genderChoice, long residentId) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateGenderChoice(String genderChoice, Resident resident) {
 		resident.setGenderChoice(genderChoice);
 		em.merge(resident);
 		
@@ -201,8 +207,7 @@ public class ProfileResidentService  {
 	}
 	
 	
-	public boolean updateRating(Set<Double> rating, long residentId ) {
-		Resident resident = findResidentById(residentId);
+	public boolean updateRating(Set<Double> rating, Resident resident ) {
 		resident.setRating(rating);
 		em.merge(resident);
 		

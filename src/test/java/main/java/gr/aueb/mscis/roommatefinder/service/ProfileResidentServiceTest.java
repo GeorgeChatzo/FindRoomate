@@ -50,6 +50,14 @@ public class ProfileResidentServiceTest extends RoommateServiceTest {
 		
 	}
 	
+	@Test
+	public void testCancel() {
+		ProfileResidentService service = new ProfileResidentService(em);
+		boolean checkCancel = service.cancelUpdate();
+		
+		assertTrue(checkCancel);
+	}
+	
 	
 
 }

@@ -114,16 +114,29 @@ public class DummyMain {
         System.out.println(results3);
         
         
-		List<HouseAd> results33 = null;
+		List<Resident> results33 = null;
 
         Query query33 = em
 				.createQuery(
-						"select resident.houseAds from Resident resident ");
+						"select resident from Resident resident ");
 		results33=query33.getResultList();
 		System.out.println("boum");
 		System.out.println(results33);
+		System.out.println("boum2");
+		List<Resident> results38 = null;
+
+		resident.setName("pony");
+		em.merge(resident);
+		tx.commit();
+		Query query38 = em
+				.createQuery(
+						"select resident from Resident resident ");
+		results38=query38.getResultList();
+		System.out.println(results38);
 		
-		System.out.println(em.find(Flatmate.class, 33L)); //Exception test xoxooxox
+		em.getTransaction().rollback();
+		
+		//System.out.println(em.find(Flatmate.class, 33L)); //Exception test xoxooxox
 		
         
         

@@ -56,5 +56,14 @@ public class ProfileFlatmateServiceTest extends RoommateServiceTest {
 		assertNotNull(flatmate);
 		
 	}
+	
+	@Test
+	public void testCancel() {
+		ProfileFlatmateService service = new ProfileFlatmateService(em);
+		boolean checkCancel = service.cancelUpdate();
+		
+		assertTrue(checkCancel);
+	}
+	
 
 }
