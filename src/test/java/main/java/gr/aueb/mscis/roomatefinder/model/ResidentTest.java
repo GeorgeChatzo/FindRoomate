@@ -198,12 +198,10 @@ public class ResidentTest {
 		
 		Cohabitance coh = new Cohabitance();
 		CohabitRequest req = new CohabitRequest();
-		Date startDate = new Date(201823);
-		Date endDate = new Date(201892);
+		Date endDate = new Date();
 		res.acceptRequest(coh, req, endDate);
 		assertTrue(req.getState().equals(RequestState.ACCEPTED));
 		assertTrue(coh.getConnection()==true);
-		assertTrue(coh.getStartDate().equals(startDate));
 		assertTrue(coh.getEndDate().equals(endDate));
 
 	}
