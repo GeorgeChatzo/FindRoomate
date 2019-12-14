@@ -188,7 +188,10 @@ public class Flatmate extends Roommate {
 	}
 	
 	public boolean  validateFields() {
-		super.validateFields();
+		if(!super.validateFields()) {
+			return false;
+		}
+		
 		
         if (this.email == null) {
             return false;

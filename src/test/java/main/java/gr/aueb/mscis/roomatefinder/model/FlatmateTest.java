@@ -241,7 +241,7 @@ public class FlatmateTest {
 		CellNumber number = new CellNumber("2");
 		flatmate.setPhoneNumber(number);
 		flatmate.setEmail(email);
-		assertTrue(flatmate.validateFields()==true);
+		assertTrue(flatmate.validateFields());
 		
 	}
 	
@@ -252,7 +252,7 @@ public class FlatmateTest {
 		CellNumber number = new CellNumber("2");
 		flatmate.setPhoneNumber(number);
 		flatmate.setEmail(email);
-		assertTrue(flatmate.validateFields()==false);
+		assertFalse(flatmate.validateFields());
 		
 	}
 	
@@ -263,7 +263,14 @@ public class FlatmateTest {
 		CellNumber number = null;
 		flatmate.setPhoneNumber(number);
 		flatmate.setEmail(email);
-		assertTrue(flatmate.validateFields()==false);
+		assertFalse(flatmate.validateFields());
+		
+	}
+	
+	@Test
+	public void testValidateSuperFields() {
+		flatmate.setName(null);
+		assertFalse(flatmate.validateFields());
 		
 	}
 	

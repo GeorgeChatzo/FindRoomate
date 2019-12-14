@@ -7,6 +7,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
+import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 
 //In this service, we follow our Use case schema, in which flatmate sends the request. So, the service will involve flatmate only!
 
@@ -33,6 +34,7 @@ public class RequestService {
 	public boolean cancelRequest(long requestId) {
 		CohabitRequest request = findCohabitRequestById(requestId);
 		if(request!=null) {
+			request.setState(RequestState.CANCELED);
 			em.remove(request);
 			return true;
 		}

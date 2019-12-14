@@ -38,7 +38,9 @@ public class ManageRequestService {
 	
 	public boolean rejectRequest(long cohabId,long residentId) {
 		Cohabitance cohabit = selectRequest( cohabId, residentId);
+		Resident resident = findResidentById(residentId);
 		if(cohabit != null) {
+			resident.rejectRequest(cohabit.getRequest());
 			em.remove(cohabit);
 		
 			return true;

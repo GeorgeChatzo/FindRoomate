@@ -213,8 +213,6 @@ public class Resident extends Roommate{
 	}
 	
 	
-	
-	
 	@Override
 	public String toString() {
 		
@@ -234,7 +232,9 @@ public class Resident extends Roommate{
 	
 	
 	public boolean  validateFields() {
-		super.validateFields();
+		if(!super.validateFields()) {
+			return false;
+		}
 		
         if (this.email == null) {
             return false;

@@ -234,7 +234,7 @@ public class ResidentTest {
 		CellNumber number = new CellNumber("2");
 		res.setPhoneNumber(number);
 		res.setEmail(email);
-		assertTrue(res.validateFields()==false);
+		assertFalse(res.validateFields());
 		
 	}
 	
@@ -245,7 +245,7 @@ public class ResidentTest {
 		CellNumber number = null;
 		res.setPhoneNumber(number);
 		res.setEmail(email);
-		assertTrue(res.validateFields()==false);
+		assertFalse(res.validateFields());
 		
 	}
 	
@@ -257,7 +257,21 @@ public class ResidentTest {
 		res.setNumOfFlatmates(-1);
 		res.setPhoneNumber(number);
 		res.setEmail(email);
-		assertTrue(res.validateFields()==false);
+		assertFalse(res.validateFields());
+		
+	}
+	
+	
+	@Test
+	public void testValidateSuperFields() {
+		
+		EmailAddress email = new EmailAddress("g");
+		CellNumber number = new CellNumber("2");
+		res.setName(null);
+		res.setNumOfFlatmates(5);
+		res.setPhoneNumber(number);
+		res.setEmail(email);
+		assertFalse(res.validateFields());
 		
 	}
 	
@@ -272,7 +286,6 @@ public class ResidentTest {
 	
 	@Test
 	public void TestToString() {
-		HouseAd ad = new HouseAd();
 		String expected = "Resident [id=null, house=null, cohabitRequests=, numOfFlatmates=2, ageRange=34, preferedHabits=[], petRule=true, preferedWorkSchedule=Everyday, preferedProfession=STUDENT, guests=false, genderChoice=Female, rating=null, email=null, phoneNumber=null]";
 		assertTrue(res.toString().equals(expected));
 
@@ -427,7 +440,6 @@ public class ResidentTest {
 		Resident res1 = new Resident();
 		Resident res2 = new Resident();
 		Set<String> habits1 = new HashSet<String>();
-		Set<String> habits2 = new HashSet<String>();
 		res1.setPreferedHabits(habits1);
 		res2.setPreferedHabits(habits1);
 		assertTrue(res1.equals(res2));
@@ -718,8 +730,7 @@ public class ResidentTest {
 	
 	@Test
 	public void TestHouseAds2() {
-		
-		HouseAd ad1 = new HouseAd();
+	
 		HouseAd ad2 = new HouseAd();
 		ad2.setName("spiti");
 		Resident res1 = new Resident();

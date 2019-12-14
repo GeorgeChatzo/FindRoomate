@@ -194,18 +194,6 @@ public class ProfileFlatmateService {
 		
 	}
 
-
-//	public boolean deleteFlatmate(Flatmate flatmate) {
-//
-//		if (flatmate != null) {
-//			em.remove(flatmate);
-//			return true;
-//		}
-//
-//		return false;
-//	}
-
-
 	
 	
 }
