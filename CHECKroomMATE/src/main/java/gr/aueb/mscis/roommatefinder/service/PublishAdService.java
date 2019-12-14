@@ -18,7 +18,7 @@ public class PublishAdService {
 	
 	public boolean createHouseAd(HouseAd houseAd) {
 		
-		if (houseAd != null) {
+		if (houseAd != null && houseAd.validate()) {
 			em.persist(houseAd);
 			return true;
 		}
@@ -39,7 +39,7 @@ public class PublishAdService {
 	
 	public boolean createHouse(House house) {
 		
-		if (house != null) {
+		if (house != null && house.validate()) {
 			em.persist(house);
 			return true;
 		}

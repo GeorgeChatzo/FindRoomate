@@ -186,7 +186,7 @@ public class House {
             return false;
         }
         
-        if (this.squareMeters >= 0) {
+        if (this.squareMeters <= 0) {
             return false;
         }
         

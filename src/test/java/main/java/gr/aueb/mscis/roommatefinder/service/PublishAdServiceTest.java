@@ -33,6 +33,26 @@ public class PublishAdServiceTest extends RoommateServiceTest {
 	}
 	
 	@Test
+	public void testcreateHouse() {
+		PublishAdService service = new PublishAdService(em);
+		House house = new House("Greece","Athens","Kipesli",2222,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
+		boolean created = service.createHouse(house);
+		
+		assertTrue(created);
+	}
+	
+	@Test
+	public void testNullcreateHouse() {
+		PublishAdService service = new PublishAdService(em);
+		House house = new House(null,null,null,2222,"Diamerisma",3,false,115,true,true,1,5,1995,"Hlketrikos");
+		boolean created = service.createHouse(house);
+		
+		assertFalse(created);
+	}
+	
+	
+	
+	@Test
 	public void testfindHouse() {
 		PublishAdService service = new PublishAdService(em);
 		House house = service.findHouseById(Initializer.house_id);
