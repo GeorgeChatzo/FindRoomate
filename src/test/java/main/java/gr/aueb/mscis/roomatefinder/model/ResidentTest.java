@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
-import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
@@ -201,7 +200,7 @@ public class ResidentTest {
 		CohabitRequest req = new CohabitRequest();
 		Date startDate = new Date(201823);
 		Date endDate = new Date(201892);
-		res.acceptRequest(coh, req, startDate, endDate);
+		res.acceptRequest(coh, req, endDate);
 		assertTrue(req.getState().equals(RequestState.ACCEPTED));
 		assertTrue(coh.getConnection()==true);
 		assertTrue(coh.getStartDate().equals(startDate));
