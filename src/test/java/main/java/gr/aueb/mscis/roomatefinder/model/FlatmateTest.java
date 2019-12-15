@@ -665,5 +665,54 @@ public class FlatmateTest {
 		
 	}
 	
+	@Test
+	public void TestId1() {
+		
+		Flatmate fl1 = new Flatmate();
+		Flatmate fl2 = new Flatmate();
+		fl1.setId(1L);
+		assertTrue(fl1.equals(fl2));
+		
+	}
+	
+	@Test
+	public void TestId2() {
+		
+
+		Flatmate fl1 = new Flatmate();
+		Flatmate fl2 = new Flatmate();
+		fl2.setId(1L);
+		assertTrue(fl1.equals(fl2));
+		
+	}
+	
+	@Test
+	public void TestId3() {
+		
+		Flatmate fl1 = new Flatmate();
+		Flatmate fl2 = new Flatmate();
+		fl1.setId(2L);
+		fl2.setId(1L);
+		assertTrue(fl1.equals(fl2));
+		
+	}
+	
+	@Test
+	public void TestId4() {
+		
+		Flatmate fl1 = new Flatmate();
+		Flatmate fl2 = new Flatmate();
+		assertTrue(fl1.equals(fl2));
+		
+	}
+	
+	@Test
+	public void TestGetId() {
+		
+		Flatmate fl1 = new Flatmate();
+		fl1.setId(2L);
+		assertTrue(fl1.getId()==2L);
+	}
+	
 
 }

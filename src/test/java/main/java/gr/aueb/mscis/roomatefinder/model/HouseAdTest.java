@@ -356,7 +356,45 @@ public class HouseAdTest {
 		Assert.assertEquals(ad.toString(),expected);
 	}
 	
+	@Test
+	public void testValidate1() {
+		
+		ad1.setDescription(null);
+		assertTrue(ad1.validate()==false);
+		
+	}
 	
+	@Test
+	public void testValidate2() {
+		
+		ad1.setRentPrice(-1.0);
+		assertTrue(ad1.validate()==false);
+		
+	}
+	
+	@Test
+	public void testValidate3() {
+		
+		ad1.setRentPrice(1.0);
+		assertTrue(ad1.validate()==true);
+		
+	}
+	
+	@Test
+	public void testValidate4() {
+		
+		ad1.setName(null);
+		assertTrue(ad1.validate()==false);
+		
+	}
+	
+	@Test
+	public void testValidate5() {
+		
+		ad1.setName("hey");
+		assertTrue(ad1.validate()==true);
+		
+	}
 
 	
 	
