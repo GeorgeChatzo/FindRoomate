@@ -19,6 +19,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 public class FlatmateTest {
 
+	//test flatmate
 	Flatmate flatmate;
 	
 	@Before
