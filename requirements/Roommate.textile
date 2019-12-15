@@ -112,11 +112,7 @@ h3. 3.2 __Διαχείριση Αιτήματος Συγκατοίκησης__
 			3α.Το αίτημα έχει ακυρωθεί από τον υποψήφιο συγκάτοικο την στιγμή της επεξεργασίας.
 			  <blockquote style="color:black;">
 			  1.Το Σύστημα εμφανίζει μήνυμα ότι το αίτημα ακυρώθηκε και δεν μπορεί πλέον να επεξεργαστεί και επιστρέφει στην προβολή των αιτημάτων.
-			  </blockquote>
-			4α. Ο Resident επιλέγει απόρριψη του αιτήματος.
-			  <blockquote style="color:black;">
-				1.Το Σύστημα διαγράφει το αίτημα και στέλνει στον Flatmate ότι το αίτημα του απορρίφθηκε.				  
-			</blockquote>   	
+			  </blockquote>  	
 		</blockquote>	
 		
 		
@@ -374,6 +370,8 @@ h3. 3.7 __Υποβολή Αιτήματος Συγκατοίκησης__
     <blockquote style="color:black;">  
     	<blockquote style="color:black;">  
 			* *Tο Σύστημα οποιαδήποτε στιγμή καταρρέει.* 
+			* *Ο flatmate μπορεί να ακυρώσει το αίτημα του ανα πάσα στιγμή.* 
+			
 			
 			1.	Ο flatmate εκκινεί το σύστημα.
 			
@@ -395,6 +393,23 @@ h3. 3.7 __Υποβολή Αιτήματος Συγκατοίκησης__
 				2.	Η διαδικασία τερματίζει.
 			</blockquote>
 		</blockquote>
+		
+		<blockquote style="color:black;">  
+			5α. O flatmate μπορεί να δει τα αιτήματα τα οποία έχει στείλει.
+			<blockquote style="color:black;">  
+				1.	Το σύστημα εμφανίζει τα απεσταλθέντα αιτήματα.
+				2.	Ο flatmate ακυρώνει κάποιο απο τα αιτήματα που έστειλε.
+			</blockquote>
+		</blockquote>
+		
+		<blockquote style="color:black;">  
+			5β. O flatmate μπορεί να δει τα αιτήματα τα οποία έχει στείλει.
+			<blockquote style="color:black;">  
+				1.	Το σύστημα εμφανίζει τα απεσταλθέντα αιτήματα.
+				2.	Ο flatmate βλέπει τα αιτήματα τα οποία έχουν γίνει αποδεκτά.
+			</blockquote>
+		</blockquote>
+		
 		<blockquote style="color:black;">  
 			7α. Το σύστημα αδυνατεί να στείλει αίτημα συγκατοίκησης στον Resident.
 				<blockquote style="color:black;">  
@@ -453,9 +468,24 @@ h2. 6. __PACKAGE DIAGRAM__
 
 !PackageUML.jpg!
 
+h2. 7. __CLASS DIAGRAM__
 
+!ClassDiagram.jpg!
 
+h2. 8. __SEQUENCE DIAGRAMS__
 
+h3. 1. __Sequence Diagram Profile Flatmate Service__
 
+!ProfileFlatmateService.jpg!
 
-		
+h3. 2. __Sequence Diagram Request Service__
+
+!RequestService.jpg!
+
+h3. 3. __Manage Request__
+
+!ManageRequest.jpg!
+
+h2. 9. __STATE DIAGRAM__
+
+!RequestStateTransitions.jpg!
