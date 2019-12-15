@@ -447,9 +447,11 @@ h2. 4. __Μη λειτουργικές Απαιτήσεις__
 
 h2. 5. __DOMAIN MODEL/ΜΟΝΤΕΛΟ ΠΕΔΙΟΥ__
 
-!domainModel.jpg!
+!roommate_DM.jpg!
 
+h2. 6. __PACKAGE DIAGRAM__
 
+!PackageUML.jpg!
 
 
 
