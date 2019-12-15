@@ -61,7 +61,7 @@ public class FlatmateTest {
 		assertTrue(fl.getPassword().equals("qwerty123"));
 		assertTrue(fl.getEmail().equals(email));
 		assertTrue(fl.getPhoneNumber().equals(number));
-		assertTrue(fl.getAge()==22);
+		assertEquals(fl.getAge(),22);
 		assertTrue(fl.getRating().equals(rating));
 
 
@@ -86,7 +86,7 @@ public class FlatmateTest {
 		assertTrue(flatmate.getDescription().equals("flat"));
 		assertTrue(flatmate.getGender().equals("Male"));
 		assertTrue(flatmate.getProfession().equals(status.STUDENT));
-		assertTrue(flatmate.getAge()==22);
+		assertEquals(flatmate.getAge(),22);
 		assertTrue(flatmate.isPets()==true);
 		assertTrue(flatmate.getEmail().equals(email));
 		assertTrue(flatmate.getWorkSchedule().equals("Monday-Friday"));
@@ -131,11 +131,11 @@ public class FlatmateTest {
 		assertTrue(flatmate.getDescription().equals("empty"));
 		assertTrue(flatmate.getGender().equals("Female"));
 		assertTrue(flatmate.getProfession().equals(status.EMPLOYEE));
-		assertTrue(flatmate.getAge()==21);
-		assertTrue(flatmate.isPets()==false);
+		assertEquals(flatmate.getAge(),21);
+		assertFalse(flatmate.isPets());
 		assertTrue(flatmate.getEmail().equals(email));
 		assertTrue(flatmate.getWorkSchedule().equals("Monday-Saturday"));
-		assertTrue(flatmate.isIncomingGuests()==false);
+		assertFalse(flatmate.isIncomingGuests());
 		assertTrue(flatmate.getRating().equals(rating));
 		assertTrue(flatmate.getPhoneNumber().equals(number));
 		assertTrue(flatmate.getHabits().equals(habits));
@@ -152,7 +152,7 @@ public class FlatmateTest {
 		Flatmate flatmate = new Flatmate();
 		CohabitRequest req1 = new CohabitRequest();
 	    flatmate.addCohabitRequest(req1);
-	    assertTrue(flatmate.getCohabitRequest().size()==1);
+	    assertEquals(flatmate.getCohabitRequest().size(),1);
 		
 	}
 	
@@ -163,7 +163,7 @@ public class FlatmateTest {
 		CohabitRequest req1 = new CohabitRequest();
 	    flatmate.addCohabitRequest(req1);
 	    flatmate.removeCohabitRequest(req1);
-	    assertTrue(flatmate.getCohabitRequest().size()==0);
+	    assertEquals(flatmate.getCohabitRequest().size(),0);
 		
 	}
 	
@@ -199,7 +199,7 @@ public class FlatmateTest {
 		corequest = flatmate.request(ad);
 		flatmate.addCohabitRequest(corequest);
 		flatmate.cancelRequest(corequest);
-		assertTrue(flatmate.getCohabitRequest().size()==0);
+		assertEquals(flatmate.getCohabitRequest().size(),0);
 		
 	}
 	
@@ -211,7 +211,7 @@ public class FlatmateTest {
 		CohabitRequest corequest = new CohabitRequest();
 		corequest = flatmate.request(ad);
 		flatmate.cancelRequest(corequest);
-		assertTrue(flatmate.getCohabitRequest().size()==0);
+		assertEquals(flatmate.getCohabitRequest().size(),0);
 
 		
 	}
@@ -221,7 +221,7 @@ public class FlatmateTest {
 		
 		CohabitRequest corequest = null;
 		flatmate.addCohabitRequest(corequest);
-		assertTrue(flatmate.getCohabitRequest().size()==0);
+		assertEquals(flatmate.getCohabitRequest().size(),0);
 		
 	}
 	
@@ -231,7 +231,7 @@ public class FlatmateTest {
 		CohabitRequest corequest = null;
 		flatmate.addCohabitRequest(corequest);
 		flatmate.removeCohabitRequest(corequest);
-		assertTrue(flatmate.getCohabitRequest().size()==0);
+		assertEquals(flatmate.getCohabitRequest().size(),0);
 		
 	}
 	
@@ -356,7 +356,6 @@ public class FlatmateTest {
 		Date date = new Date(System.currentTimeMillis());
 		CohabitRequest req2 = new CohabitRequest(flatmate,true,date,ad);
 		CohabitRequest req1 = null;
-		fl1.addCohabitRequest(null);
 		fl2.addCohabitRequest(req2);
 		assertFalse(fl1.getCohabitRequest().equals(fl2.getCohabitRequest()));
 		
@@ -711,7 +710,7 @@ public class FlatmateTest {
 		
 		Flatmate fl1 = new Flatmate();
 		fl1.setId(2L);
-		assertTrue(fl1.getId()==2L);
+		assertEquals(fl1.getId(),2L);
 	}
 	
 

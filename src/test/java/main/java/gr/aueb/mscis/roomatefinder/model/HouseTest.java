@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roomatefinder.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -66,17 +67,17 @@ public class HouseTest {
 		assertTrue(house1.getCountry().equals(country));
 		assertTrue(house1.getCity().equals(city));
 		assertTrue(house1.getRegion().equals(region));
-		assertTrue(house1.getZipCode()==zipCode);
+		assertEquals(house1.getZipCode(),zipCode);
 		assertTrue(house1.getTypeOfHouse().equals(typeOfHouse));
-		assertTrue(house1.getFloorNo()==floorNo);
-		assertTrue(house1.isGarden()==garden);
-		assertTrue(house1.getSquareMeters()==squareMeters);
-		assertTrue(house1.isElevator()==elevator);
-		assertTrue(house1.isParking()==parking);
-		assertTrue(house1.getBalconies()==balconies);
-		assertTrue(house1.getRoomsNo()==roomsNo);
-		assertTrue(house1.getConstructionYear()==constructionYear);
-		assertTrue(house1.getNearPublicTransport().contentEquals(nearPublicTransport));
+		assertEquals(house1.getFloorNo(),floorNo);
+		assertEquals(house1.isGarden(),garden);
+		assertEquals((Object) house1.getSquareMeters(), (Object) squareMeters);
+		assertEquals(house1.isElevator(),elevator);
+		assertEquals(house1.isParking(),parking);
+		assertEquals(house1.getBalconies(),balconies);
+		assertEquals(house1.getRoomsNo(),roomsNo);
+		assertEquals(house1.getConstructionYear(),constructionYear);
+		assertTrue(house1.getNearPublicTransport().equals(nearPublicTransport));
 		
 	}
 	
@@ -119,16 +120,16 @@ public class HouseTest {
 		assertTrue(house.getCountry().equals(country));
 		assertTrue(house.getCity().equals(city));
 		assertTrue(house.getRegion().equals(region));
-		assertTrue(house.getZipCode()==zipCode);
+		assertEquals(house.getZipCode(),zipCode);
 		assertTrue(house.getTypeOfHouse().equals(typeOfHouse));
-		assertTrue(house.getFloorNo()==floorNo);
-		assertTrue(house.isGarden()==garden);
-		assertTrue(house.getSquareMeters()==squareMeters);
-		assertTrue(house.isElevator()==elevator);
-		assertTrue(house.isParking()==parking);
-		assertTrue(house.getBalconies()==balconies);
-		assertTrue(house.getRoomsNo()==roomsNo);
-		assertTrue(house.getConstructionYear()==constructionYear);
+		assertEquals(house.getFloorNo(),floorNo);
+		assertEquals(house.isGarden(),garden);
+		assertEquals((Object) house.getSquareMeters(), (Object) squareMeters);
+		assertEquals(house.isElevator(),elevator);
+		assertEquals(house.isParking(),parking);
+		assertEquals(house.getBalconies(),balconies);
+		assertEquals(house.getRoomsNo(),roomsNo);
+		assertEquals(house.getConstructionYear(),constructionYear);
 		assertTrue(house.getNearPublicTransport().equals(nearPublicTransport));
 		
 	}
@@ -176,7 +177,7 @@ public class HouseTest {
 	public void TestgetId() {
 		
 		house1.setId(1L);
-		assertTrue(house1.getId()==1L);
+		assertEquals(house1.getId(),1L);
 	}
 	
 	

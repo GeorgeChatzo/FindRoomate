@@ -213,10 +213,7 @@ public class Flatmate extends Roommate {
 		if (getClass() != obj.getClass())
 			return false;
 		Flatmate other = (Flatmate) obj;
-		if (cohabitRequests == null) {
-			if (other.cohabitRequests != null)
-				return false;
-		} else if (!cohabitRequests.equals(other.cohabitRequests))
+		if (!cohabitRequests.equals(other.cohabitRequests))
 			return false;
 		if (description == null) {
 			if (other.description != null)

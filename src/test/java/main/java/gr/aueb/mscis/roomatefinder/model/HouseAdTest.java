@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roomatefinder.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -47,13 +48,12 @@ public class HouseAdTest {
 		String photos = "GeorgeChatzo/photo.jpg";
 		String comments = "euaero";
 		int numberOfRoomates = 2;
-		
+		assertEquals((Object)ad1.getRentPrice(),(Object)340.0);
 		assertTrue(ad1.getName().equals(name));
 		assertTrue(ad1.getDescription().equals(description));
-		assertTrue(ad1.getRentPrice()==rentPrice);
 		assertTrue(ad1.getPhotos().equals(photos));
 		assertTrue(ad1.getComments().equals(comments));
-		assertTrue(ad1.getNumberOfRoommates()==numberOfRoomates);
+		assertEquals(ad1.getNumberOfRoommates(),numberOfRoomates);
 		
 	}
 	
@@ -71,10 +71,9 @@ public class HouseAdTest {
 		
 		assertTrue(ad.getName().equals("agg"));
 		assertTrue(ad.getDescription().equals("empty"));
-		assertTrue(ad.getRentPrice()==0.0);
 		assertTrue(ad.getPhotos().equals("C:/Images"));
 		assertTrue(ad.getComments().equals("empty"));
-		assertTrue(ad.getNumberOfRoommates()==0);
+		assertEquals(ad.getNumberOfRoommates(),0);
 		
 	}
 	
@@ -162,7 +161,7 @@ public class HouseAdTest {
 	public void TestgetId() {
 		
 		ad1.setId(1L);
-		assertTrue(ad1.getId()==1L);
+		assertEquals(ad1.getId(),1L);
 	}
 	
 	@Test
@@ -360,7 +359,7 @@ public class HouseAdTest {
 	public void testValidate1() {
 		
 		ad1.setDescription(null);
-		assertTrue(ad1.validate()==false);
+		assertFalse(ad1.validate());
 		
 	}
 	
@@ -368,7 +367,7 @@ public class HouseAdTest {
 	public void testValidate2() {
 		
 		ad1.setRentPrice(-1.0);
-		assertTrue(ad1.validate()==false);
+		assertFalse(ad1.validate());
 		
 	}
 	
@@ -376,7 +375,7 @@ public class HouseAdTest {
 	public void testValidate3() {
 		
 		ad1.setRentPrice(1.0);
-		assertTrue(ad1.validate()==true);
+		assertTrue(ad1.validate());
 		
 	}
 	
@@ -384,7 +383,7 @@ public class HouseAdTest {
 	public void testValidate4() {
 		
 		ad1.setName(null);
-		assertTrue(ad1.validate()==false);
+		assertFalse(ad1.validate());
 		
 	}
 	
@@ -392,7 +391,7 @@ public class HouseAdTest {
 	public void testValidate5() {
 		
 		ad1.setName("hey");
-		assertTrue(ad1.validate()==true);
+		assertTrue(ad1.validate());
 		
 	}
 

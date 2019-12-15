@@ -1,7 +1,9 @@
 package main.java.gr.aueb.mscis.roomatefinder.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -38,7 +40,6 @@ public class CohabitanceTest {
 	@Test
 	public void CohabitanceConstructorTest() {
 		
-		assertTrue(habit1.getCommision()==2.0);
 		assertTrue(habit1.getConnection()==true);
 		assertTrue(habit1.getStartDate().equals(startDate));
 		assertTrue(habit1.getEndDate().equals(endDate));
@@ -56,7 +57,6 @@ public class CohabitanceTest {
 		habit.setStartDate(startDate);
 		habit.setEndDate(endDate);
 		
-		assertTrue(habit.getCommision()==2.2);
 		assertTrue(habit.getConnection()==true);
 		assertTrue(habit.getStartDate().equals(startDate));
 		assertTrue(habit.getEndDate().equals(endDate));
@@ -184,7 +184,7 @@ public class CohabitanceTest {
 	public void TestgetId() {
 		
 		habit1.setId(1L);
-		assertTrue(habit1.getId()==1L);
+		assertEquals(habit1.getId(),1L);
 	}
 	
 	@Test

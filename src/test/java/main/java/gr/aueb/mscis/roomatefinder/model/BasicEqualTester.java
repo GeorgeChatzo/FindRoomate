@@ -20,7 +20,7 @@ public class BasicEqualTester<T> {
     
     public void otherObjectsHasNoState(Object other) {
         Assert.assertFalse(objectUnderTest.equals(other) );
-        Assert.assertFalse(objectUnderTest.hashCode() == other.hashCode());
+        Assert.assertNotEquals(objectUnderTest.hashCode(),other.hashCode());
     }
     
     
@@ -41,7 +41,7 @@ public class BasicEqualTester<T> {
     
     public void objectsHaveDifferentState(Object other) {
         Assert.assertFalse(objectUnderTest.equals(other));
-        Assert.assertFalse(objectUnderTest.hashCode() == other.hashCode());
+        Assert.assertNotEquals(objectUnderTest.hashCode(),other.hashCode());
     }
 
     

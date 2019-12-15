@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roomatefinder.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +34,7 @@ public class RoommateTest {
 		assertTrue(rommateNew.getPassword().equals("qwerty123"));
 		assertTrue(rommateNew.getName().equals("George"));
 		assertTrue(rommateNew.getSurname().equals("Chatzopoulos"));
-		assertTrue(rommateNew.getAge()==22);
+		assertEquals(rommateNew.getAge(),22);
 
 
 	}
@@ -52,7 +53,7 @@ public class RoommateTest {
 		assertTrue(rommate.getName().equals("er"));
 		assertTrue(rommate.getSurname().equals("po"));
 
-		assertTrue(rommate.getAge()==21);
+		assertEquals(rommate.getAge(),21);
 
 		
 
@@ -67,7 +68,7 @@ public class RoommateTest {
 		rommate.setPassword("123");
 		rommate.setAge(21);
 
-		assertTrue(rommate.validateFields()==true);
+		assertTrue(rommate.validateFields());
 		
 	}
 	
@@ -79,7 +80,7 @@ public class RoommateTest {
 		rommate.setUsername("valkerian");
 		rommate.setPassword("123");
 		rommate.setAge(21);
-		assertTrue(rommate.validateFields()==false);
+		assertFalse(rommate.validateFields());
 		
 	}
 	
@@ -91,7 +92,7 @@ public class RoommateTest {
 		rommate.setUsername("valkerian");
 		rommate.setPassword("123");
 		rommate.setAge(21);
-		assertTrue(rommate.validateFields()==false);
+		assertFalse(rommate.validateFields());
 		
 	}
 	
@@ -103,7 +104,7 @@ public class RoommateTest {
 		rommate.setUsername(null);
 		rommate.setPassword("123");
 		rommate.setAge(21);
-		assertTrue(rommate.validateFields()==false);
+		assertFalse(rommate.validateFields());
 		
 	}
 	
@@ -115,7 +116,7 @@ public class RoommateTest {
 		rommate.setUsername("jddd");
 		rommate.setPassword(null);
 		rommate.setAge(21);
-		assertTrue(rommate.validateFields()==false);
+		assertFalse(rommate.validateFields());
 		
 	}
 	
@@ -127,7 +128,7 @@ public class RoommateTest {
 		rommate.setUsername("jddd");
 		rommate.setPassword("123");
 		rommate.setAge(0);
-		assertTrue(rommate.validateFields()==false);
+		assertFalse(rommate.validateFields());
 		
 	}
 	

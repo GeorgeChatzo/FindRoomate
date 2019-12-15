@@ -308,7 +308,7 @@ public class CohabitRequestTest {
 	public void TestgetId() {
 		
 		req1.setId(1L);
-		assertTrue(req1.getId()==1L);
+		assertEquals(req1.getId(),1L);
 	}
 	
 	

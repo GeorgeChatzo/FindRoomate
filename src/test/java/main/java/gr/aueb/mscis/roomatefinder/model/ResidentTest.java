@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roomatefinder.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -57,16 +58,16 @@ public class ResidentTest {
 		assertTrue(res.getPhoneNumber().equals(number));
 		assertTrue(res.getName().equals("George"));
 		assertTrue(res.getSurname().equals("Chatzopoulos"));
-		assertTrue(res.getAge()==22);
-		assertTrue(res.getNumOfFlatmates()==2);
-		assertTrue(res.getAgeRange()==34);
+		assertEquals(res.getAge(),22);
+		assertEquals(res.getNumOfFlatmates(),2);
+		assertEquals(res.getAgeRange(),34);
 		assertTrue(res.getPreferedHabits().equals(prefHabits));
-		assertTrue(res.isPetRule()==true);
+		assertTrue(res.isPetRule());
 		assertTrue(res.getPreferedWorkSchedule().equals("Everyday"));
 		assertTrue(res.getPreferedProfession().equals(status.STUDENT));
-		assertTrue(res.getGenderChoice()=="Female");
+		assertEquals(res.getGenderChoice(),"Female");
 		assertTrue(res.getRating().equals(rating));
-		assertTrue(res.isGuests()==false);
+		assertFalse(res.isGuests());
 	}
 	
 	@Test
@@ -103,16 +104,16 @@ public class ResidentTest {
 		assertTrue(res.getPhoneNumber().equals(number));
 		assertTrue(res.getName().equals("er"));
 		assertTrue(res.getSurname().equals("po"));
-		assertTrue(res.getAge()==21);
-		assertTrue(res.getNumOfFlatmates()==3);
-		assertTrue(res.getAgeRange()==40);
+		assertEquals(res.getAge(),21);
+		assertEquals(res.getNumOfFlatmates(),3);
+		assertEquals(res.getAgeRange(),40);
 		assertTrue(res.getPreferedHabits().equals(prefHabits));
-		assertTrue(res.isPetRule()==false);
+		assertFalse(res.isPetRule());
 		assertTrue(res.getPreferedWorkSchedule().equals("Monday-Saturday"));
 		assertTrue(res.getPreferedProfession().equals(status.EMPLOYEE));
-		assertTrue(res.getGenderChoice()=="Female");
+		assertEquals(res.getGenderChoice(),"Female");
 		assertTrue(res.getRating().equals(rating));
-		assertTrue(res.isGuests()==false);
+		assertFalse(res.isGuests());
 
 	}
 	
@@ -134,7 +135,7 @@ public class ResidentTest {
 		assertTrue(res.getPassword().equals("qwerty123"));
 		assertTrue(res.getEmail().equals(email));
 		assertTrue(res.getPhoneNumber().equals(number));
-		assertTrue(res.getAge()==22);
+		assertEquals(res.getAge(),22);
 		assertTrue(res.getRating().equals(rating));
 		
 	}
@@ -147,7 +148,7 @@ public class ResidentTest {
 		assertNull(res.getPassword());
 		assertNull(res.getName());
 		assertNull(res.getSurname());
-		assertTrue(res.getAge()==0);
+		assertEquals(res.getAge(),0);
 		
 	}
 	
@@ -156,7 +157,7 @@ public class ResidentTest {
 		
 		HouseAd ad = new HouseAd();
 		res.addHouseAd(ad);
-		assertTrue(res.getHouseAds().size()==1);
+		assertEquals(res.getHouseAds().size(),1);
 		
 	}
 	
@@ -165,7 +166,7 @@ public class ResidentTest {
 		
 		HouseAd ad = null;
 		res.addHouseAd(ad);
-		assertTrue(res.getHouseAds().size()==0);
+		assertEquals(res.getHouseAds().size(),0);
 		
 	}
 	
@@ -179,7 +180,7 @@ public class ResidentTest {
 		res.addHouseAd(ad2);
 		res.addHouseAd(ad3);
 		res.removeHouseAd(ad1);
-		assertTrue(res.getHouseAds().size()==2);
+		assertEquals(res.getHouseAds().size(),2);
 		
 	}
 	
@@ -189,7 +190,7 @@ public class ResidentTest {
 		HouseAd ad1 = null;
 		res.addHouseAd(ad1);
 		res.removeHouseAd(ad1);
-		assertTrue(res.getHouseAds().size()==0);
+		assertEquals(res.getHouseAds().size(),0);
 		
 	}
 	
@@ -201,7 +202,7 @@ public class ResidentTest {
 		Date endDate = new Date();
 		res.acceptRequest(coh, req, endDate);
 		assertTrue(req.getState().equals(RequestState.ACCEPTED));
-		assertTrue(coh.getConnection()==true);
+		assertTrue(coh.getConnection());
 		assertTrue(coh.getEndDate().equals(endDate));
 
 	}
@@ -223,7 +224,7 @@ public class ResidentTest {
 		res.setNumOfFlatmates(2);
 		res.setPhoneNumber(number);
 		res.setEmail(email);
-		assertTrue(res.validateFields()==true);
+		assertTrue(res.validateFields());
 		
 	}
 	
@@ -672,7 +673,7 @@ public class ResidentTest {
 		
 		Resident res1 = new Resident();
 		res1.setId(1L);
-		assertTrue(res1.getId()==1L);
+		assertEquals(res1.getId(),1L);
 	}
 	
 	
@@ -748,7 +749,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setAgeRange(23);
 		res2.setAgeRange(23);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -760,7 +761,7 @@ public class ResidentTest {
 		EmailAddress email1 = new EmailAddress("gio1@aueb.gr");
 		res1.setEmail(email1);
 		res2.setEmail(email1);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -771,7 +772,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setGenderChoice("Male");
 		res2.setGenderChoice("Male");
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -782,7 +783,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setGuests(true);
 		res2.setGuests(true);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -794,7 +795,7 @@ public class ResidentTest {
 		House h = new House();
 		res1.setHouse(h);
 		res2.setHouse(h);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -806,7 +807,7 @@ public class ResidentTest {
 		HouseAd ad = new HouseAd();
 		res1.addHouseAd(ad);
 		res2.addHouseAd(ad);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -817,7 +818,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setId(1L);
 		res2.setId(1L);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -828,7 +829,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setPetRule(true);
 		res2.setPetRule(true);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -840,7 +841,7 @@ public class ResidentTest {
 		CellNumber number = new CellNumber("2");
 		res1.setPhoneNumber(number);
 		res2.setPhoneNumber(number);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -852,7 +853,7 @@ public class ResidentTest {
 		Set<String> prefHabits = new HashSet<String>();
 		res1.setPreferedHabits(prefHabits);
 		res2.setPreferedHabits(prefHabits);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -863,7 +864,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setPreferedProfession(status.EMPLOYEE);
 		res2.setPreferedProfession(status.EMPLOYEE);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	
@@ -875,7 +876,7 @@ public class ResidentTest {
 		
 		res1.setPreferedWorkSchedule("sc");
 		res2.setPreferedWorkSchedule("sc");
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 
@@ -887,7 +888,7 @@ public class ResidentTest {
 		Resident res2 = new Resident();
 		res1.setRating(rating);
 		res2.setRating(rating);
-		assertTrue(res1.hashCode() == res2.hashCode());
+		assertEquals(res1.hashCode(),res2.hashCode());
 		
 	}
 	

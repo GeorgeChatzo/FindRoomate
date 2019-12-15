@@ -300,10 +300,7 @@ public class Resident extends Roommate{
 				return false;
 		} else if (!house.equals(other.house))
 			return false;
-		if (houseAds == null) {
-			if (other.houseAds != null)
-				return false;
-		} else if (!houseAds.equals(other.houseAds))
+		if (!houseAds.equals(other.houseAds))
 			return false;
 		if (id != other.id)
 			return false;
