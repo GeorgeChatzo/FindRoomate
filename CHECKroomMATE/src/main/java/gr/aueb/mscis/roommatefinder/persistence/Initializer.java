@@ -16,6 +16,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
+import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
@@ -87,12 +88,19 @@ public class Initializer  {
         CohabitRequest cohabitRequest = flatmate.request(advertisment);
         cohabitance.setRequest(cohabitRequest);
         
+        //accepted
+        Cohabitance cohabitanceAccepted= new Cohabitance(50.0,false,date, dateEnd);
+        CohabitRequest cohabitRequestAccepted = flatmate.request(advertisment);
+        cohabitRequestAccepted.setState(RequestState.ACCEPTED);
+        cohabitanceAccepted.setRequest(cohabitRequestAccepted);
+        
         EntityManager em = JPAUtil.getCurrentEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.persist(resident);
         em.persist(flatmate);
 		em.persist(cohabitance);
+		em.persist(cohabitanceAccepted);
         
         tx.commit();
         em.close();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
+import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -68,6 +69,56 @@ public class RequestService {
 				.getResultList();
 
 		return results;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public Cohabitance selectRequest(long cohabId,long flatmateId) {
+		List<Cohabitance> result = null;
+
+		result =  em
+				.createQuery(
+						"select c from Cohabitance c where c.request.flatmate.id = :flatmateId and c.request.id = :cohabId ")
+				.setParameter("flatmateId", flatmateId)
+				.setParameter("cohabId", cohabId)
+				.getResultList();
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		else {
+			return null;
+		}
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public List<CohabitRequest> viewPendingRequests(long flatmateId ){
+		List<CohabitRequest> results = null;
+		RequestState state = RequestState.PENDING;
+		results = em
+				.createQuery(
+						"select c from CohabitRequest c where c.flatmate.id = :flatmateId and c.state = :state ")
+				.setParameter("flatmateId", flatmateId)
+				.setParameter("state", state)
+				.getResultList();
+
+		return results;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<CohabitRequest> viewAcceptedRequests(long flatmateId ){
+		List<CohabitRequest> results = null;
+		RequestState state = RequestState.ACCEPTED;
+		results = em
+				.createQuery(
+						"select c from CohabitRequest c where c.flatmate.id = :flatmateId and c.state = :state ")
+				.setParameter("flatmateId", flatmateId)
+				.setParameter("state", state)
+				.getResultList();
+
+		return results;
+		
 	}
 	
 

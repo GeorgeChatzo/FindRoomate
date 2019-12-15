@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
+import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -98,6 +99,46 @@ public class RequestServiceTest extends RoommateServiceTest {
 		
 	}
 	
+	@Test
+	public void testViewPendingRequets() {
+		RequestService service = new RequestService(em);
+		
+		List<CohabitRequest> cohabitRequests = service.viewPendingRequests(Initializer.flatmate_id);
+		
+		assertNotNull(cohabitRequests);
+		assertEquals(1, cohabitRequests.size());
+		
+	}
+	
+	@Test
+	public void testViewAcceptedRequets() {
+		RequestService service = new RequestService(em);
+		
+		List<CohabitRequest> cohabitRequests = service.viewAcceptedRequests(Initializer.flatmate_id);
+		
+		
+		assertNotNull(cohabitRequests);
+		assertEquals(1, cohabitRequests.size());
+		
+	}
+	
+	@Test
+	public void testSelectRequest() {
+		RequestService service = new RequestService(em);
+		
+		Cohabitance cohabitance = service.selectRequest(Initializer.cohabitrequest_id, Initializer.flatmate_id);
+		assertNotNull(cohabitance);
+		
+	}
+	
+	@Test
+	public void testSelectNullRequest() {
+		RequestService service = new RequestService(em);
+		
+		Cohabitance cohabitance = service.selectRequest(8L, Initializer.flatmate_id);
+		assertNull(cohabitance);
+		
+	}
 
 
 }
