@@ -352,7 +352,7 @@ public class HouseAdTest {
 		String comments = "euaero";
 		int numberOfRoomates = 2;
 		HouseAd ad = new HouseAd(name,description,rentPrice,photos,comments,numberOfRoomates);
-		String expected = "HouseAd [id=null, resident=null, description=Enoikiazetai spiti, rentPrice=340.0, photos=GeorgeChatzo/photo.jpg, comments=euaero, numberOfRoommates=2]";
+		String expected = "HouseAd [id=0, resident=null, description=Enoikiazetai spiti, rentPrice=340.0, photos=GeorgeChatzo/photo.jpg, comments=euaero, numberOfRoommates=2]";
 		Assert.assertEquals(ad.toString(),expected);
 	}
 	

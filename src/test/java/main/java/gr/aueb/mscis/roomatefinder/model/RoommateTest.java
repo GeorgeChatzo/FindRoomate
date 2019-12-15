@@ -204,7 +204,7 @@ public class RoommateTest {
 		Roommate r11 = new Roommate();
 		Roommate rl2 = new Roommate();
 		r11.setUsername("empty1");
-		r11.setUsername("empty1");
+		rl2.setUsername("empty1");
 		assertTrue(r11.equals(rl2));
 		
 	}
@@ -238,7 +238,7 @@ public class RoommateTest {
 		Roommate r11 = new Roommate();
 		Roommate rl2 = new Roommate();
 		r11.setName("empty1");
-		r11.setName("empty1");
+		rl2.setName("empty1");
 		assertTrue(r11.equals(rl2));
 		
 	}
@@ -272,7 +272,7 @@ public class RoommateTest {
 		Roommate r11 = new Roommate();
 		Roommate rl2 = new Roommate();
 		r11.setSurname("empty1");
-		r11.setSurname("empty1");
+		rl2.setSurname("empty1");
 		assertTrue(r11.equals(rl2));
 		
 	}
@@ -307,7 +307,7 @@ public class RoommateTest {
 		Roommate r11 = new Roommate();
 		Roommate rl2 = new Roommate();
 		r11.setPassword("empty1");
-		r11.setPassword("empty1");
+		rl2.setPassword("empty1");
 		assertTrue(r11.equals(rl2));
 		
 	}

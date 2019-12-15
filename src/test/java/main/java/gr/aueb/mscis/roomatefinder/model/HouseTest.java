@@ -182,7 +182,7 @@ public class HouseTest {
 	
 	@Test
 	public void HouseToString() {
-		String expected = "House [id=null, country=gr, city=ath, region=attica, zipCode=11146, typeOfHouse=flat, floorNo=2, garden=true, squareMeters=87.6, elevator=true, parking=true, balconies=2, roomsNo=3, constructionYear=1997, nearPublicTransport=metro]";
+		String expected = "House [id=0, country=gr, city=ath, region=attica, zipCode=11146, typeOfHouse=flat, floorNo=2, garden=true, squareMeters=87.6, elevator=true, parking=true, balconies=2, roomsNo=3, constructionYear=1997, nearPublicTransport=metro]";
 		assertTrue(house1.toString().equals(expected));
 		
 	}

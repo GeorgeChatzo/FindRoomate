@@ -200,7 +200,7 @@ public class CohabitanceTest {
 	@Test
 	public void TestToString() {
 		
-		String expected ="Cohabitance [id=null, commision=2.0, connection=true, request=null]";
+		String expected ="Cohabitance [id=0, commision=2.0, connection=true, request=null]";
 		assertTrue(habit1.toString().equals(expected));
 	
 	}
