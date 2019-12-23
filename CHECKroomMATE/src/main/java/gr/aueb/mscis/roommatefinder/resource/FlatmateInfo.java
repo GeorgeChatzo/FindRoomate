@@ -16,7 +16,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 
 
 @XmlRootElement
-public class FlatmateInfo {
+public class FlatmateInfo extends Roommate{
 	
 	private String description;
 	private String gender;
@@ -167,16 +167,22 @@ public class FlatmateInfo {
 		
 		return flatmateInfoList;
 	}
+	
+	public static FlatmateInfo wrap(Flatmate flatmate) {
+		return new FlatmateInfo(flatmate);
+	} 
 
 	public Flatmate getFlatmate(EntityManager em) {
 		Flatmate flatmate = null;
 		
-		if(id <= -1)
+		if(id <= -1) {
 			flatmate = em.find(Flatmate.class, id);
-		else
+		}else {
 			flatmate = new Flatmate();
-		
+		}
+			
 		flatmate.setId(id);
 		
+		return flatmate;
 	}
 }

@@ -79,7 +79,8 @@ public class FlatmateResource extends AbstractResource {
 		EmailAddress email = flatmate.getEmail();
 		CellNumber phoneNumber = flatmate.getPhoneNumber();
 		
-		service.updatePersonalDetails(description, gender, profession, pets, workSchedule, incomingGuests, rating, habits, email, phoneNumber);
+		service.updatePersonalDetails(description, gender, profession, pets, 
+				workSchedule, incomingGuests, rating, habits, email, phoneNumber);
 		
 		em.close();
 		
