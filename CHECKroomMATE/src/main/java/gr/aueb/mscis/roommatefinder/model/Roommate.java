@@ -1,13 +1,15 @@
 package main.java.gr.aueb.mscis.roommatefinder.model;
 
 
+import java.util.List;
+
 //Superclass Roommate 
 
 import javax.persistence.*;
 
 
-@MappedSuperclass
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Roommate {
 	
 @Id
@@ -21,7 +23,6 @@ public class Roommate {
 	private String surname;
 	private int age;
 	
-
 	public Roommate(String username, String password, String name,
 			String surname, int age) {
 		this.username = username;
@@ -35,6 +36,14 @@ public class Roommate {
 		
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -75,6 +84,20 @@ public class Roommate {
 		this.age = age;
 	}
 	
+	public boolean login(List<Roommate> roommateList,String usernameInput,String passwordInput) {
+		for(Roommate roommate: roommateList) {
+			String username = roommate.getUsername();
+			String password = roommate.getPassword();
+			if(username.equals(usernameInput) && password.equals(passwordInput))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean signUp(Roommate roommate) {
+		return roommate.validateFields();
+	}
+	
 	public boolean  validateFields() {
 	      if (this.username == null) {
 	            return false;
@@ -111,7 +134,6 @@ public class Roommate {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
-
 
 
 	@Override

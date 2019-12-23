@@ -7,12 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="residents")
+@PrimaryKeyJoinColumn(name = "residentid")
 public class Resident extends Roommate{
-
-	@Id
-	@Column(name="residentid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
 	
 	@OneToOne(
             fetch = FetchType.LAZY,
@@ -77,13 +73,6 @@ public class Resident extends Roommate{
 		super();	
 	}
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public Set<HouseAd> getHouseAds(){
 		return new HashSet<HouseAd>(houseAds);
@@ -217,7 +206,7 @@ public class Resident extends Roommate{
 	public String toString() {
 		
 		final StringBuilder builder = new StringBuilder();
-		builder.append("Resident [id=" + id + ", house=" + house + ", cohabitRequests=" + 
+		builder.append("Resident [id=" + super.getId() + ", house=" + house + ", cohabitRequests=" + 
 				 ", numOfFlatmates=" + numOfFlatmates + ", ageRange=" + ageRange + ", preferedHabits="
 					+ preferedHabits + ", petRule=" + petRule + ", preferedWorkSchedule=" + preferedWorkSchedule
 					+ ", preferedProfession=" + preferedProfession + ", guests=" + guests + ", genderChoice=" + genderChoice
@@ -230,7 +219,12 @@ public class Resident extends Roommate{
 		return  builder.toString();
 	}
 	
+	@Override
+	public boolean signUp(Roommate roommate) {
+		return ((Resident)roommate).validateFields();
+	}
 	
+	@Override
 	public boolean  validateFields() {
 		if(!super.validateFields()) {
 			return false;
@@ -261,7 +255,6 @@ public class Resident extends Roommate{
 		result = prime * result + (guests ? 1231 : 1237);
 		result = prime * result + ((house == null) ? 0 : house.hashCode());
 		result = prime * result + ((houseAds == null) ? 0 : houseAds.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + numOfFlatmates;
 		result = prime * result + (petRule ? 1231 : 1237);
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
@@ -302,8 +295,6 @@ public class Resident extends Roommate{
 			return false;
 		if (!houseAds.equals(other.houseAds))
 			return false;
-		if (id != other.id)
-			return false;
 		if (numOfFlatmates != other.numOfFlatmates)
 			return false;
 		if (petRule != other.petRule)
@@ -333,16 +324,5 @@ public class Resident extends Roommate{
 		return true;
 	}
 	
-
-	
-
-
-
-
-
-
-
-
-
 
 }

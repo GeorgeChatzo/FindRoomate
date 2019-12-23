@@ -87,6 +87,19 @@ public class ManageRequestService {
 		return results;
 		
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<CohabitRequest> viewAllRequests( ){
+		List<CohabitRequest> results = null;
+		results = em
+				.createQuery(
+						"select c from CohabitRequest c")
+				.getResultList();
+
+		return results;
+		
+	}
 
 	
 }

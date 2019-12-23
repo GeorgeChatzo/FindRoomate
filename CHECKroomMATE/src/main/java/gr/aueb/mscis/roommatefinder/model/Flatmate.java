@@ -5,12 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="flatmates")
+@PrimaryKeyJoinColumn(name = "flatmateid")
 public class Flatmate extends Roommate {
-	
-	@Id
-	@Column(name="flatmateid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
 	
     @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "flatmate" ,orphanRemoval=true)
     private Set<CohabitRequest> cohabitRequests = new HashSet<CohabitRequest>();
@@ -60,14 +56,6 @@ public class Flatmate extends Roommate {
 	}
 	
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long i) {
-		this.id = i;
-	}
-
 	public Set<CohabitRequest> getCohabitRequest(){
 		return new HashSet<CohabitRequest>(cohabitRequests);
 	}
@@ -187,11 +175,16 @@ public class Flatmate extends Roommate {
 		this.rating = rating;
 	}
 	
+	@Override
+	public boolean signUp(Roommate roommate) {
+		return ((Flatmate)roommate).validateFields();
+	}
+	
+	@Override
 	public boolean  validateFields() {
 		if(!super.validateFields()) {
 			return false;
 		}
-		
 		
         if (this.email == null) {
             return false;
@@ -202,6 +195,15 @@ public class Flatmate extends Roommate {
         }
         return true;
 		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Flatmate [cohabitRequests=" + cohabitRequests + ", description=" + description + ", gender=" + gender
+				+ ", profession=" + profession + ", pets=" + pets + ", habits=" + habits + ", workSchedule="
+				+ workSchedule + ", incomingGuests=" + incomingGuests + ", rating=" + rating + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", Id=" + getId() + "]";
 	}
 
 	@Override
