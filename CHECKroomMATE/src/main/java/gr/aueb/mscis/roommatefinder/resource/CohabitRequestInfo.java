@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 
+@XmlRootElement
 public class CohabitRequestInfo {
 	
 	
@@ -19,6 +21,10 @@ public class CohabitRequestInfo {
 	 private RequestState state = RequestState.NEW;
 	 private boolean connection;
 	 private Date dateOfRequest;
+	 
+	 public CohabitRequestInfo() {
+		 
+	 }
 	 
 	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest,long id) {
 		this(flatmateId,connection,dateOfRequest);
@@ -83,13 +89,13 @@ public class CohabitRequestInfo {
 	
 	public static List<CohabitRequestInfo> wrap(List<CohabitRequest> requests){
 		
-		List<CohabitRequestInfo> CohabitRequestInfoList = new ArrayList<>();
+		List<CohabitRequestInfo> cohabitRequestInfoList = new ArrayList<>();
 		
 		for(CohabitRequest request : requests) {
-			CohabitRequestInfoList.add(new CohabitRequestInfo(request));
+			cohabitRequestInfoList.add(new CohabitRequestInfo(request));
 		}
 		
-		return CohabitRequestInfoList;
+		return cohabitRequestInfoList;
 		
 	}
 	

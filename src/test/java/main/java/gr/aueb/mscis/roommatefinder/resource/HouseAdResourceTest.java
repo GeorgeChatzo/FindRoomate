@@ -26,8 +26,8 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 	@Test
 	public void testListAllHouseAds() {
 
-		List<HouseAdInfo> houseAds = target(HOUSEADS).request().get(new GenericType<List<HouseAdInfo>>() {
-		});
+		List<HouseAdInfo> houseAds = target(HOUSEADS).request()
+				.get(new GenericType<List<HouseAdInfo>>() {});
 		assertEquals(1, houseAds.size());
 	}
 

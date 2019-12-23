@@ -36,6 +36,37 @@ public class CohabitRequestResource extends AbstractResource {
 	@Context 
 	UriInfo uriInfo;
 	
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CohabitRequestInfo> listAllCohabitRequests(){
+		
+		EntityManager em = getEntityManager();
+		ManageRequestService service = new ManageRequestService(em);
+		List<CohabitRequest> cohabitRequests = service.viewAllRequests();
+		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(cohabitRequests);
+		em.close();
+		
+		return requests;
+	}	
+	
+	@GET
+	@Path("{flatmateId:[0-9]*}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CohabitRequestInfo> listAllPendingCohabitRequests(@PathParam("flatmateId") long flatmateId){
+		EntityManager em = getEntityManager();
+		
+		RequestService rs = new RequestService(em);
+		List<CohabitRequest> CohabitRequests = rs.viewPendingRequests(flatmateId);
+		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(CohabitRequests);
+		
+		em.close();
+		
+		return requests;
+		
+	} 
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createCohabitRequest(CohabitRequestInfo cohabitRequestInfo) {
@@ -67,39 +98,9 @@ public class CohabitRequestResource extends AbstractResource {
 		
 	}
 	
-	@GET
-	@Path("{flatmateId:[0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<CohabitRequestInfo> listAllPendingCohabitRequests(@PathParam("flatmateId") long flatmateId){
-		EntityManager em = getEntityManager();
-		
-		RequestService rs = new RequestService(em);
-		List<CohabitRequest> CohabitRequests = rs.viewPendingRequests(flatmateId);
-		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(CohabitRequests);
-		
-		em.close();
-		
-		return requests;
-		
-	} 
+
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<CohabitRequestInfo> listAllPCohabitRequests(){
-		
-		EntityManager em = getEntityManager();
-		ManageRequestService service = new ManageRequestService(em);
-		List<CohabitRequest> CohabitRequests = service.viewAllRequests();
-		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(CohabitRequests);
-		em.close();
-		
-		return requests;
-	}	
-	
-	
-	
-	
-	
+
 	
 	
 }

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
-import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.*;
+import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.COREQUESTS;
 
 public class CohabitRequestResourceTest extends RoommateResourceTest {
 	
@@ -23,12 +23,12 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 	}
 
 	@Test
-	public void testListAllPendingRequests() {
+	public void testListAllRequests() {
 		
-		List<CohabitRequestInfo> allCohabitRequest = target(COREQUESTS).request().
-				get(new GenericType<List<CohabitRequestInfo>>() {});
+		List<CohabitRequestInfo> allCohabitRequest = target(COREQUESTS).request()
+				.get(new GenericType<List<CohabitRequestInfo>>() {});
 		
-		assertEquals(1, allCohabitRequest.size());
+		assertEquals(2, allCohabitRequest.size());
 		
 		
 	}

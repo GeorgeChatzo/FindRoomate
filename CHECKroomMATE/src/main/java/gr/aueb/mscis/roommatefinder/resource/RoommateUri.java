@@ -4,7 +4,7 @@ public class RoommateUri {
 	
 	public static final String HOUSEADS = "houseAds";
 	
-	public static final String COREQUESTS = "CohabitRequests";
+	public static final String COREQUESTS = "cohabitrequests";
 	
 	public static String houseAdIdUri(String id) {
         return HOUSEADS + "/" + id;

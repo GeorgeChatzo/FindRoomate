@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 
+@XmlRootElement
 public class HouseAdInfo {
 	
 	private long id;
