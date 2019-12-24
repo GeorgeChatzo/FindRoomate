@@ -24,10 +24,8 @@ import javax.ws.rs.core.UriInfo;
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
-import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 import main.java.gr.aueb.mscis.roommatefinder.service.ProfileFlatmateService;
-import main.java.gr.aueb.mscis.roommatefinder.service.PublishAdService;
 
 import javax.ws.rs.core.Response.Status;
 
@@ -40,7 +38,7 @@ public class FlatmateResource extends AbstractResource {
 	@GET
 	@Path("{flatmateId:[0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public FlatmateInfo getHouseAdDetails(@PathParam("flatmates") long flatmateId) {
+	public FlatmateInfo getFlatmateDetails(@PathParam("flatmates") long flatmateId) {
 		EntityManager em = getEntityManager();
 		
 		ProfileFlatmateService service = new ProfileFlatmateService(em);
@@ -68,6 +66,12 @@ public class FlatmateResource extends AbstractResource {
 		}
 		
 		ProfileFlatmateService service = new ProfileFlatmateService(em);
+		String username = flatmate.getUsername();
+		String password = flatmate.getPassword();
+		String name = flatmate.getName();
+		String surname = flatmate.getSurname();
+		int age = flatmate.getAge();
+		long id = flatmate.getId();
 		String description = flatmate.getDescription();
 		String gender = flatmate.getGender();
 		status profession = flatmate.getProfession();
@@ -79,8 +83,8 @@ public class FlatmateResource extends AbstractResource {
 		EmailAddress email = flatmate.getEmail();
 		CellNumber phoneNumber = flatmate.getPhoneNumber();
 		
-		service.updatePersonalDetails(description, gender, profession, pets, 
-				workSchedule, incomingGuests, rating, habits, email, phoneNumber);
+		service.updatePersonalDetails(username, password, email, phoneNumber, name, surname, age, description, gender, profession,
+				pets, habits, workSchedule, incomingGuests, rating, id) ;
 		
 		em.close();
 		

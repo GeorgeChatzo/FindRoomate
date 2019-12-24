@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
-import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
@@ -18,6 +17,12 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 @XmlRootElement
 public class FlatmateInfo extends Roommate{
 	
+	private String username;
+	private String password;
+	private String name;
+	private String surname;
+	private int age;
+	private long id;
 	private String description;
 	private String gender;
 	private status profession;
@@ -33,16 +38,17 @@ public class FlatmateInfo extends Roommate{
 		
 	}
 
-	public FlatmateInfo(long id, String description, String gender, status profession, boolean pets, String workSchedule,
-			 boolean incomingGuests, Set<Double> rating, Set<String> habits, EmailAddress email, CellNumber phoneNumber) {
-		this(description,gender,profession,pets,workSchedule,incomingGuests,rating,habits,email,phoneNumber);
+	public FlatmateInfo(long id, String username, String password, String name, String surname, int age, String description, String gender,
+			 status profession, boolean pets, String workSchedule, boolean incomingGuests, Set<Double> rating, Set<String> habits, EmailAddress email,
+			 CellNumber phoneNumber) {
+		this(username,password,name,surname,age,description,gender,profession,pets,workSchedule,incomingGuests,rating,habits,email,phoneNumber);
 		this.id = id;
 	
 	}
 	
-	public FlatmateInfo(String description,String gender, status profession,boolean pets, String workSchedule, boolean incomingGuests, Set<Double> rating,
+	public FlatmateInfo(String username, String password, String name, String surname, int age,String description,String gender, status profession,boolean pets, String workSchedule, boolean incomingGuests, Set<Double> rating,
 			Set<String> habits, EmailAddress email, CellNumber phoneNumber) {
-		super();
+		super(username,password,name,surname,age);
 		this.description = description;
 		this.gender = gender;
 		this.profession = profession;
@@ -56,6 +62,11 @@ public class FlatmateInfo extends Roommate{
 	}
 	
 	public FlatmateInfo (Flatmate flatmate) {
+		username = flatmate.getUsername();
+		password = flatmate.getPassword();
+		name = flatmate.getName();
+		surname = flatmate.getSurname();
+		age = flatmate.getAge();
 		id = flatmate.getId();
 		description = flatmate.getDescription();
 		gender = flatmate.getGender();
@@ -69,7 +80,47 @@ public class FlatmateInfo extends Roommate{
 
 	}
 	
-	private long id;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -181,7 +232,21 @@ public class FlatmateInfo extends Roommate{
 			flatmate = new Flatmate();
 		}
 			
+		flatmate.setUsername(username);
+		flatmate.setName(name);
+		flatmate.setSurname(surname);
+		flatmate.setPassword(password);
+		flatmate.setAge(age);
 		flatmate.setId(id);
+		flatmate.setDescription(description);
+		flatmate.setProfession(profession);
+		flatmate.setGender(gender);
+		flatmate.setHabits(habits);
+		flatmate.setIncomingGuests(incomingGuests);
+		flatmate.setWorkSchedule(workSchedule);
+		flatmate.setEmail(email);
+		flatmate.setPets(pets);
+		flatmate.setPhoneNumber(phoneNumber);
 		
 		return flatmate;
 	}
