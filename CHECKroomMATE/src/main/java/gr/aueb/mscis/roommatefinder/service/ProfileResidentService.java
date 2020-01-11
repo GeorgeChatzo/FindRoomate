@@ -62,7 +62,6 @@ public class ProfileResidentService  {
 			return false;
 		}
 		
-
 	
 	}
 	

@@ -18,11 +18,13 @@ import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
+import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 
 public class Initializer  {
 	 public static  long resident1_id =1;
+	 public static  long rommate_id =1;
 	 public static  long flatmate_id=2;
 	 public static  long house_id=3;
 	 public static  long house_Adid=4;
@@ -68,6 +70,8 @@ public class Initializer  {
         Set<Double> rating = null;
         Set<String> preferedHabits = null;
         
+        Roommate roommate = new Roommate("james","12345","james","bond",35);
+        
         Resident resident = new Resident("santa","25",email,cell,"Santa","Claus",1000,4,34,preferedHabits,true,"No job",status.UNEMPLOYED,
         		false,"female",rating);
         
@@ -94,9 +98,12 @@ public class Initializer  {
         cohabitRequestAccepted.setState(RequestState.ACCEPTED);
         cohabitanceAccepted.setRequest(cohabitRequestAccepted);
         
+        
+        
         EntityManager em = JPAUtil.getCurrentEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
+        em.persist(roommate);
         em.persist(resident);
         em.persist(flatmate);
 		em.persist(cohabitance);
