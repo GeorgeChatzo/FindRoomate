@@ -52,7 +52,7 @@ public class FlatmateResource extends AbstractResource {
 	
 	@PUT
 	@Path("{flatmateId:[0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateFlatmate(FlatmateInfo flatmateInfo) {
 		EntityManager em = getEntityManager();
 		

@@ -19,5 +19,9 @@ public class RoommateUri {
 	public static String flatmateIdUri(String id) {
         return FLATMATES + "/" + id;
     }
+	
+	public static String houseAdSearchUri(String name) {
+		return HOUSEADS + "?name=" + name;
+	}
 
 }

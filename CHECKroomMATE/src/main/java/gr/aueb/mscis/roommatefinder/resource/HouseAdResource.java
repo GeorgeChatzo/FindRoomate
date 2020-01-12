@@ -13,6 +13,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -61,6 +62,14 @@ public class HouseAdResource extends AbstractResource {
 		
 	}
 	
+//	@GET
+//	@Path("search")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<HouseAdInfo> searchHouseAdbyName(@QueryParam("name") String name){
+//		EntityManager em = getEntityManager();
+//		
+//	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createHouseAd(HouseAdInfo houseAdInfo) {
@@ -92,7 +101,7 @@ public class HouseAdResource extends AbstractResource {
 	
 	@PUT
 	@Path("{houseAdId:[0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateHouseAd(HouseAdInfo houseAdInfo) {
 		EntityManager em = getEntityManager();
 		

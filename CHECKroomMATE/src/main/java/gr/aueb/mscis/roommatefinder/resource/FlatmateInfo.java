@@ -15,7 +15,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 
 
 @XmlRootElement
-public class FlatmateInfo extends Roommate{
+public class FlatmateInfo{
 	
 	private String username;
 	private String password;
@@ -37,18 +37,25 @@ public class FlatmateInfo extends Roommate{
 	public FlatmateInfo() {
 		
 	}
-
+ 
 	public FlatmateInfo(long id, String username, String password, String name, String surname, int age, String description, String gender,
 			 status profession, boolean pets, String workSchedule, boolean incomingGuests, Set<Double> rating, Set<String> habits, EmailAddress email,
 			 CellNumber phoneNumber) {
-		this(username,password,name,surname,age,description,gender,profession,pets,workSchedule,incomingGuests,rating,habits,email,phoneNumber);
+		this( username,  password,  email, phoneNumber,  name,
+				 surname, age, description, gender, profession,  pets,
+				 habits, workSchedule,  incomingGuests, rating);
 		this.id = id;
 	
 	}
 	
-	public FlatmateInfo(String username, String password, String name, String surname, int age,String description,String gender, status profession,boolean pets, String workSchedule, boolean incomingGuests, Set<Double> rating,
-			Set<String> habits, EmailAddress email, CellNumber phoneNumber) {
-		super(username,password,name,surname,age);
+	public FlatmateInfo(String username, String password, EmailAddress email,CellNumber phoneNumber, String name,
+			String surname, int age, String description, String gender, status profession, boolean pets,
+			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.age = age;
 		this.description = description;
 		this.gender = gender;
 		this.profession = profession;

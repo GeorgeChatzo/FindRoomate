@@ -52,14 +52,14 @@ public class CohabitRequestResource extends AbstractResource {
 	}	
 	
 	@GET
-	@Path("{flatmateId:[0-9]*}")
+	@Path("{cohId:[0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<CohabitRequestInfo> listAllPendingCohabitRequests(@PathParam("flatmateId") long flatmateId){
+	public List<CohabitRequestInfo> listAllPendingCohabitRequests(@PathParam("cohId") long flatmateId){
 		EntityManager em = getEntityManager();
 		
 		RequestService rs = new RequestService(em);
-		List<CohabitRequest> CohabitRequests = rs.viewPendingRequests(flatmateId);
-		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(CohabitRequests);
+		List<CohabitRequest> cohabitRequests = rs.viewPendingRequests(flatmateId);
+		List<CohabitRequestInfo> requests = CohabitRequestInfo.wrap(cohabitRequests);
 		
 		em.close();
 		

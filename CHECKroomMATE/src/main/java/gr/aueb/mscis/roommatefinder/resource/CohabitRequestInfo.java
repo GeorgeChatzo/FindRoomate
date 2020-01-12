@@ -21,22 +21,24 @@ public class CohabitRequestInfo {
 	 private RequestState state = RequestState.NEW;
 	 private boolean connection;
 	 private Date dateOfRequest;
+	 private long houseAdId;
 	 
 	 public CohabitRequestInfo() {
 		 
 	 }
 	 
-	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest,long id) {
-		this(flatmateId,connection,dateOfRequest);
+	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest,long id,long houseAdId) {
+		this(flatmateId,connection,dateOfRequest,houseAdId);
 		this.id = id;
-	}
+	} 
 	 
-	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest) {
+	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest, long houseAdId) {
 		 
 		super();
 		this.flatmateId = flatmateId;
 		this.connection = connection;
 		this.dateOfRequest = dateOfRequest;
+		this.houseAdId = houseAdId;
 		
 	 }
 	 
@@ -47,6 +49,7 @@ public class CohabitRequestInfo {
 		 state = request.getState();
 		 dateOfRequest = request.getDateOfRequest();
 		 flatmateId = request.getFlatmate().getId();
+		 houseAdId = request.getHouseAd().getId();
 		 
 	 }
 	 
@@ -83,6 +86,14 @@ public class CohabitRequestInfo {
 		this.flatmateId = flatmateId;
 	}
 	 
+	public long getHouseAdId() {
+		return houseAdId;
+	}
+
+	public void setHouseAdId(long houseAdId) {
+		this.houseAdId = houseAdId;
+	}
+
 	public static CohabitRequestInfo wrap(CohabitRequest request) {
 		return new CohabitRequestInfo(request);
 	}
