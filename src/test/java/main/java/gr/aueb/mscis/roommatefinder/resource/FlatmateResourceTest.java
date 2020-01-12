@@ -25,7 +25,7 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 	protected Application configure() {
 
 		return new ResourceConfig(FlatmateResource.class, DebugExceptionMapper.class);
-	}
+	} 
 	
 	@Test
 	public void testUpdateFlatmate() {

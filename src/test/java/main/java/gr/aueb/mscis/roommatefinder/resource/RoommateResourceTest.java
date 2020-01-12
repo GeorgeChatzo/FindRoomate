@@ -24,7 +24,7 @@ public abstract class RoommateResourceTest extends JerseyTest {
 	public RoommateResourceTest() {
 		super();
 	}
-	
+	 
 	public RoommateResourceTest(TestContainerFactory testContainerFactory) {
 		super(testContainerFactory);
 	}

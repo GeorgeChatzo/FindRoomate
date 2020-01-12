@@ -11,7 +11,6 @@ import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
-import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 
 
 @XmlRootElement

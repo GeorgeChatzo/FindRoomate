@@ -47,7 +47,7 @@ public class Flatmate extends Roommate {
 	}
 	
 	public Flatmate() {
-		
+		 
 	}
 
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,

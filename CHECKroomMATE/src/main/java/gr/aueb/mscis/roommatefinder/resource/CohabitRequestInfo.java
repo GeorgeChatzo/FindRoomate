@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
-import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 
 @XmlRootElement

@@ -61,14 +61,7 @@ public class HouseAdResource extends AbstractResource {
 		return houseAdInfo;
 		
 	}
-	
-//	@GET
-//	@Path("search")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<HouseAdInfo> searchHouseAdbyName(@QueryParam("name") String name){
-//		EntityManager em = getEntityManager();
-//		
-//	}
+	 
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)

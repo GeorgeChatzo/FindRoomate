@@ -74,7 +74,7 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 		HouseAdInfo houseAd = HouseAdInfo.wrap(houseAds.get(0));
 		houseAd.setName("Dolores");
 		//houseAd.setId(9);
-		
+		 
 		String houseAdId = Long.toString(houseAd.getId());
 		
 		Response response = target(houseAdIdUri(houseAdId)).request().put(Entity.entity(houseAd, 

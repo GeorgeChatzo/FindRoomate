@@ -29,5 +29,5 @@ public class RoommateUri {
 	public static String residentIdUri(String id) {
         return RESIDENTS + "/" + id;
     }
-	
+	 
 }

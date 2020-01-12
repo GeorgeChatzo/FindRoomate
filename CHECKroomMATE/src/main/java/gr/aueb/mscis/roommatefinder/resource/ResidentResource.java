@@ -5,6 +5,7 @@ import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.RESIDE
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -45,7 +46,7 @@ public class ResidentResource extends AbstractResource {
 	
 	@PUT
 	@Path("{residentId:[0-9]*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateResident(ResidentInfo residentInfo) {
 		EntityManager em = getEntityManager();
 		

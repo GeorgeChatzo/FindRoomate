@@ -70,7 +70,6 @@ public class Resident extends Roommate{
 	}
 
 	public Resident() {
-		
 	}
 	
 
