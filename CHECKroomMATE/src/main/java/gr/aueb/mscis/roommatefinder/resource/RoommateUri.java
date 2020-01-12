@@ -8,6 +8,8 @@ public class RoommateUri {
 	
 	public static final String FLATMATES = "flatmates";
 	
+	public static final String RESIDENTS = "residents";
+	
 	public static String houseAdIdUri(String id) {
         return HOUSEADS + "/" + id;
     }
@@ -24,4 +26,8 @@ public class RoommateUri {
 		return HOUSEADS + "?name=" + name;
 	}
 
+	public static String residentIdUri(String id) {
+        return RESIDENTS + "/" + id;
+    }
+	
 }

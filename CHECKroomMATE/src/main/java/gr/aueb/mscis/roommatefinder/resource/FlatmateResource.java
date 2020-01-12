@@ -1,24 +1,17 @@
 package main.java.gr.aueb.mscis.roommatefinder.resource;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.FLATMATES;
 
-import java.net.URI;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
