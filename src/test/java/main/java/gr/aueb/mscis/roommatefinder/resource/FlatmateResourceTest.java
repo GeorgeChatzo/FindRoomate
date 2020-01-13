@@ -1,6 +1,7 @@
 package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -16,7 +17,6 @@ import org.junit.Test;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.FLATMATES;
-import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.HOUSEADS;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.flatmateIdUri;
 
 
@@ -35,12 +35,26 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 
 		List<FlatmateInfo> flatmates = target(FLATMATES).request()
 				.get(new GenericType<List<FlatmateInfo>>() {});
-		//System.out.println(flatmates);
 		assertEquals(1, flatmates.size());
 	}
 	
 	@Test
-	public void testUpdateFlatmate() {
+	public void testFlatmatebyID() {
+
+		List<FlatmateInfo> flatmates = target(FLATMATES).request()
+				.get(new GenericType<List<FlatmateInfo>>() {});
+		
+		String flatmateId = Long.toString(flatmates.get(0).getId());
+		
+		FlatmateInfo flatmate = target(flatmateIdUri(flatmateId)).request().get(FlatmateInfo.class);
+		
+		assertNotNull(flatmate);
+		//assertEquals("me",flatmate.getName());
+		
+	}
+	
+	@Test
+	public void testUpdateValidFlatmate() {
 		List<Flatmate> flatmates = listFlatmates();
 		assertEquals(1, flatmates.size());
 		FlatmateInfo flatmate = FlatmateInfo.wrap(flatmates.get(0));
@@ -51,10 +65,26 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 		
 		Response response = target(flatmateIdUri(flatmateId)).request().put(Entity.entity(flatmate, 
 				MediaType.APPLICATION_JSON));
-		
-		System.out.println(response);
-		
+				
 		assertEquals(200, response.getStatus());
+
+
+	}
+	
+	@Test
+	public void testUpdatenotValidFlatmate() {
+		List<Flatmate> flatmates = listFlatmates();
+		assertEquals(1, flatmates.size());
+		FlatmateInfo flatmate = FlatmateInfo.wrap(flatmates.get(0));
+		flatmate.setName(null);
+		
+		String flatmateId = Long.toString(flatmate.getId());
+		
+		
+		Response response = target(flatmateIdUri(flatmateId)).request().put(Entity.entity(flatmate, 
+				MediaType.APPLICATION_JSON));
+				
+		assertEquals(406, response.getStatus());
 
 
 	}

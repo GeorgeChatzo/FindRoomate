@@ -74,22 +74,38 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 		assertEquals(1, houseAds.size());
 		HouseAdInfo houseAd = HouseAdInfo.wrap(houseAds.get(0));
 		houseAd.setName("Dolores");
-		houseAd.setResidentId(Initializer.resident1_id);
-		houseAd.setId(Initializer.house_Adid);
 		 
 		String houseAdId = Long.toString(houseAd.getId());
 		
 		Response response = target(houseAdIdUri(houseAdId)).request().put(Entity.entity(houseAd, 
 				MediaType.APPLICATION_JSON));
 		
-		System.out.println(response);
-
 		
 		assertEquals(200, response.getStatus());
 		
+				
+		List<HouseAd> allHouseAds = listAllHouseAds();
+		assertEquals(1, allHouseAds.size());
 		
-		//assertNotNull(response);
 		
+	}
+	
+	@Test
+	public void testUpdatenotValidHouseAd() {
+		List<HouseAd> houseAds = listAllHouseAds();
+		assertEquals(1, houseAds.size());
+		HouseAdInfo houseAd = HouseAdInfo.wrap(houseAds.get(0));
+		houseAd.setName(null);
+		 
+		String houseAdId = Long.toString(houseAd.getId());
+		
+		Response response = target(houseAdIdUri(houseAdId)).request().put(Entity.entity(houseAd, 
+				MediaType.APPLICATION_JSON));
+		
+		
+		assertEquals(406, response.getStatus());
+		
+				
 		List<HouseAd> allHouseAds = listAllHouseAds();
 		assertEquals(1, allHouseAds.size());
 		

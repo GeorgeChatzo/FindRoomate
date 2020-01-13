@@ -49,7 +49,7 @@ public class FlatmateResource extends AbstractResource {
 	@GET
 	@Path("{flatmateId:[0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public FlatmateInfo getFlatmateDetails(@PathParam("flatmates") long flatmateId) {
+	public FlatmateInfo getFlatmateDetails(@PathParam("flatmateId") long flatmateId) {
 		EntityManager em = getEntityManager();
 		
 		ProfileFlatmateService service = new ProfileFlatmateService(em);

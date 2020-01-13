@@ -35,8 +35,25 @@ public class ResidentResourceTest extends RoommateResourceTest  {
 		
 		Response response = target(residentIdUri(residentId)).request().put(Entity.entity(resident, 
 				MediaType.APPLICATION_JSON));
-		System.out.println(response);
+		
 		assertEquals(200, response.getStatus());
+
+
+	}
+	
+	@Test
+	public void testUpdatenotValidResident() {
+		List<Resident> residents = listResidents();
+		assertEquals(1, residents.size());
+		ResidentInfo resident = ResidentInfo.wrap(residents.get(0));
+		resident.setName(null);
+				
+		String residentId = Long.toString(resident.getId());
+		
+		Response response = target(residentIdUri(residentId)).request().put(Entity.entity(resident, 
+				MediaType.APPLICATION_JSON));
+		
+		assertEquals(406, response.getStatus());
 
 
 	}
