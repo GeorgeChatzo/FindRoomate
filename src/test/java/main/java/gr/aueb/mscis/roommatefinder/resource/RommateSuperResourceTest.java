@@ -34,39 +34,6 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		List<RoommateInfo> roommates = target(ROOMMATES).request().get(new GenericType<List<RoommateInfo>>() {});
 		assertEquals(3,roommates.size());
 	}
-	
-	@Test
-	public void testListAllFlatmates() {
 
-		List<RoommateInfo> flatmates = target(FLATMATES_ALL).request()
-				.get(new GenericType<List<RoommateInfo>>() {});
-		assertEquals(1, flatmates.size());
-	}
-	
-	@Test
-	public void testListAllResidents() {
-
-		List<RoommateInfo> residents = target(RESIDENTS_ALL).request()
-				.get(new GenericType<List<RoommateInfo>>() {});
-		assertEquals(1, residents.size());
-	}
-	
-	
-	@Test
-	public void testUpdateResident() {
-		List<Resident> residents = listResidents();
-		assertEquals(1, residents.size());
-		RoommateInfo resident = RoommateInfo.wrap(residents.get(0));
-		resident.setName("Dolores");
-		
-		String residentId = Long.toString(resident.getId());
-		System.out.println(resident.getGenderChoice());
-
-		Response response = target(roommateIdUri(residentId)).request().put(Entity.entity(resident, 
-				MediaType.APPLICATION_JSON));
-		assertEquals(200, response.getStatus());
-
-
-	}
 }
 	
