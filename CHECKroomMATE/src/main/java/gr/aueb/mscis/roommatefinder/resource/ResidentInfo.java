@@ -40,25 +40,29 @@ public class ResidentInfo {
 	private CellNumber phoneNumber;
 	private EmailAddress email;
 	
-	private long houseId;
-	//private long houseAdId;
+
 	
 	public ResidentInfo() {
 		
+	}
+	
+	public ResidentInfo(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
+			String surname, int age, Set<Double> rating) {
+		super();
 	}
 
 	public ResidentInfo(long id, String username, String password, String name, String surname, int age, int numOfFlatmates,
 			int ageRange, Set<String> preferedHabits, boolean petRule, String preferedWorkSchedule, status preferedProfession,
 			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber, long houseAdId) {
 		this(username, password, name, surname, age, numOfFlatmates, ageRange, preferedHabits, petRule,preferedWorkSchedule,
-				preferedProfession, guests, genderChoice, rating, email, phoneNumber,houseAdId);
+				preferedProfession, guests, genderChoice, rating, email, phoneNumber);
 		this.id = id;
 	}
 
 	
 	public ResidentInfo(String username, String password, String name, String surname, int age, int numOfFlatmates,
 			int ageRange, Set<String> preferedHabits, boolean petRule, String preferedWorkSchedule, status preferedProfession,
-			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber,long houseAdId) {
+			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -76,7 +80,7 @@ public class ResidentInfo {
 		this.rating = rating;
 		this.email = email;
 		this.phoneNumber = phoneNumber;		
-		this.houseId = houseAdId;
+
 	}
 	
 	public ResidentInfo(Resident resident) {
@@ -95,52 +99,9 @@ public class ResidentInfo {
 		genderChoice = resident.getGenderChoice();
 		email = resident.getEmail();
 		phoneNumber = resident.getPhoneNumber();
-		houseId = resident.getHouse().getId();
 	}
 	
-	public static List<ResidentInfo> wrap(List<Resident> residents) {
-		List<ResidentInfo> residentInfoList = new ArrayList<>();
-		
-		for (Resident person : residents) {
-			residentInfoList.add(new ResidentInfo(person));
-		}
-		
-		return residentInfoList;
-	}
-	
-	public static ResidentInfo wrap(Resident resident) {
-		return new ResidentInfo(resident);
-	}
-	
-	public Resident getResident(EntityManager em) {
-		Resident resident = null;
-		
-		if(id <= -1) {
-			resident = em.find(Resident.class, id);
-		}else {
-			resident = new Resident();
-		}
-		
-		resident.setId(id);
-		resident.setUsername(username);
-		resident.setPassword(password);
-		resident.setName(name);
-		resident.setSurname(surname);
-		resident.setAge(age);
-		resident.setNumOfFlatmates(numOfFlatmates);
-		resident.setAgeRange(ageRange);
-		resident.setPetRule(petRule);
-		resident.setPreferedWorkSchedule(preferedWorkSchedule);
-		resident.setPreferedProfession(preferedProfession);
-		resident.setGuests(guests);
-		resident.setGenderChoice(genderChoice);
-		resident.setEmail(email);
-		resident.setPhoneNumber(phoneNumber);
-	
-		
-		return resident;
-	}
-	
+
 	
 	public String getUsername() {
 		return username;
@@ -210,14 +171,6 @@ public class ResidentInfo {
 		return petRule;
 	}
 
-	public long getHouseId() {
-		return houseId;
-	}
-
-	public void setHouseId(long houseId) {
-		this.houseId = houseId;
-	}
-
 	public void setPetRule(boolean petRule) {
 		this.petRule = petRule;
 	}
@@ -250,7 +203,88 @@ public class ResidentInfo {
 		this.genderChoice = genderChoice;
 	}
 
+	public Set<String> getPreferedHabits() {
+		return preferedHabits;
+	}
 
+	public void setPreferedHabits(Set<String> preferedHabits) {
+		this.preferedHabits = preferedHabits;
+	}
+	@XmlTransient
+	public Set<Double> getRating() {
+		return rating;
+	}
+	@XmlTransient
+	public void setRating(Set<Double> rating) {
+		this.rating = rating;
+	}
+	@XmlTransient
+	public CellNumber getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	@XmlTransient
+	public void setPhoneNumber(CellNumber phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	@XmlTransient
+	public EmailAddress getEmail() {
+		return email;
+	}
+	
+	@XmlTransient
+	public void setEmail(EmailAddress email) {
+		this.email = email;
+	}
+
+	public status getPreferedProfession() {
+		return preferedProfession;
+	}
+
+	public static List<ResidentInfo> wrap(List<Resident> residents) {
+		List<ResidentInfo> residentInfoList = new ArrayList<>();
+		
+		for (Resident person : residents) {
+			residentInfoList.add(new ResidentInfo(person));
+		}
+		
+		return residentInfoList;
+	}
+	
+	public static ResidentInfo wrap(Resident resident) {
+		return new ResidentInfo(resident);
+	}
+	
+	public Resident getResident(EntityManager em) {
+		Resident resident = null;
+		
+		if(id <= -1) {
+			resident = em.find(Resident.class, id);
+		}else {
+			resident = new Resident();
+		}
+		
+		resident.setId(id);
+		resident.setUsername(username);
+		resident.setPassword(password);
+		resident.setName(name);
+		resident.setSurname(surname);
+		resident.setAge(age);
+		resident.setNumOfFlatmates(numOfFlatmates);
+		resident.setAgeRange(ageRange);
+		resident.setPetRule(petRule);
+		resident.setPreferedWorkSchedule(preferedWorkSchedule);
+		resident.setPreferedProfession(preferedProfession);
+		resident.setGuests(guests);
+		resident.setGenderChoice(genderChoice);
+		resident.setEmail(email);
+		resident.setPhoneNumber(phoneNumber);
+	
+		
+		return resident;
+	}
+	
 
 
 

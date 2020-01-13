@@ -202,7 +202,84 @@ public class FlatmateInfo {
 		return email;
 	}
     
-    @XmlTransient
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlatmateInfo other = (FlatmateInfo) obj;
+		if (age != other.age)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (habits == null) {
+			if (other.habits != null)
+				return false;
+		} else if (!habits.equals(other.habits))
+			return false;
+		if (id != other.id)
+			return false;
+		if (incomingGuests != other.incomingGuests)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (pets != other.pets)
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		if (profession != other.profession)
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		if (workSchedule == null) {
+			if (other.workSchedule != null)
+				return false;
+		} else if (!workSchedule.equals(other.workSchedule))
+			return false;
+		return true;
+	}
+
+	@XmlTransient
 	public void setEmail(EmailAddress email) {
 		this.email = email;
 	}
@@ -278,4 +355,7 @@ public class FlatmateInfo {
 		
 		return flatmate;
 	}
+	
+	
+	
 }

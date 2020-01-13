@@ -67,12 +67,12 @@ public class FlatmateResource extends AbstractResource {
 	public Response updateFlatmate(FlatmateInfo flatmateInfo) {
 		EntityManager em = getEntityManager();
 		
-		boolean check = flatmateInfo.getFlatmate(em).validateFields();
+		 
 		Flatmate flatmate = null;
-		if(check) {
-			flatmate = flatmateInfo.getFlatmate(em);
-		}
-		else {
+		flatmate = flatmateInfo.getFlatmate(em);
+		boolean check  = flatmateInfo.getFlatmate(em).validateFieldsResource();
+		if(!check) {
+	
 			return Response.status (Status.NOT_ACCEPTABLE).build();
 		}
 		

@@ -246,6 +246,19 @@ public class Resident extends Roommate{
         return true;
 		
 	}
+	
+	public boolean  validateFieldsResource() {
+		if(!super.validateFields()) {
+			return false;
+		}
+		
+	      
+        if (this.numOfFlatmates <= 0) {
+            return false;
+        }
+		return true;
+		
+	}
 
 	@Override
 	public int hashCode() {

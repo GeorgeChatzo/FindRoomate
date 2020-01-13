@@ -35,7 +35,7 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 
 		List<FlatmateInfo> flatmates = target(FLATMATES).request()
 				.get(new GenericType<List<FlatmateInfo>>() {});
-		System.out.println(flatmates);
+		//System.out.println(flatmates);
 		assertEquals(1, flatmates.size());
 	}
 	
@@ -48,7 +48,6 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 		
 		String flatmateId = Long.toString(flatmate.getId());
 		
-		System.out.println(flatmate.getEmail());
 		
 		Response response = target(flatmateIdUri(flatmateId)).request().put(Entity.entity(flatmate, 
 				MediaType.APPLICATION_JSON));

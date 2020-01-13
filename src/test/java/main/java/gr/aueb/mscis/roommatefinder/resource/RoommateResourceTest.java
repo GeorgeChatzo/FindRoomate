@@ -59,12 +59,12 @@ public abstract class RoommateResourceTest extends JerseyTest {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		List<Flatmate> residents = em.createQuery("select r from Flatmate r").getResultList();
+		List<Flatmate> flatmates = em.createQuery("select r from Flatmate r").getResultList();
 		
 		tx.commit();
 		em.close();
 		
-		return residents;
+		return flatmates;
 	}
 	
 	public List<HouseAd> listAllHouseAds() {

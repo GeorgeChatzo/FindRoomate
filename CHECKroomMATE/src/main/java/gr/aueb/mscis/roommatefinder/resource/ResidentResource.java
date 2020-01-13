@@ -50,7 +50,7 @@ public class ResidentResource extends AbstractResource {
 	public Response updateResident(ResidentInfo residentInfo) {
 		EntityManager em = getEntityManager();
 		
-		boolean check = residentInfo.getResident(em).validateFields();
+		boolean check = residentInfo.getResident(em).validateFieldsResource();;
 		Resident resident = null;
 		if(check) {
 			resident = residentInfo.getResident(em);
