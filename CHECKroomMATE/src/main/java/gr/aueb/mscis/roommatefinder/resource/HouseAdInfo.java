@@ -111,7 +111,7 @@ public class HouseAdInfo {
 	public void setNumberOfRoommates(int numberOfRoommates) {
 		this.numberOfRoommates = numberOfRoommates;
 	}
-
+	
 	public long getResidentId() {
 		return residentId;
 	}
@@ -143,7 +143,7 @@ public class HouseAdInfo {
 			houseAd = em.find(HouseAd.class, id);
 		else
 			houseAd = new HouseAd();
-		
+		houseAd.setId(id);
 		houseAd.setName(name);
 		houseAd.setDescription(description);
 		houseAd.setComments(comments);
