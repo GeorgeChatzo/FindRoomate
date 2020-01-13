@@ -41,7 +41,7 @@ public class ResidentInfo {
 	private EmailAddress email;
 	
 	private long houseId;
-	private long houseAdId;
+	//private long houseAdId;
 	
 	public ResidentInfo() {
 		
@@ -112,7 +112,6 @@ public class ResidentInfo {
 		return new ResidentInfo(resident);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public Resident getResident(EntityManager em) {
 		Resident resident = null;
 		
@@ -137,19 +136,7 @@ public class ResidentInfo {
 		resident.setGenderChoice(genderChoice);
 		resident.setEmail(email);
 		resident.setPhoneNumber(phoneNumber);
-		
-//		House house = em.getReference(House.class, houseId);
-//
-//		resident.setHouse(house);
-//		
-//		List<HouseAd> results = null;
-//		
-//		results = em
-//				.createQuery(
-//						"select resident.houseAds from Resident resident where resident.id = :residentId ")
-//				.setParameter("residentId", id)
-//				.getResultList();
-//		resident.addHouseAd(results.get(0));
+	
 		
 		return resident;
 	}
@@ -235,25 +222,12 @@ public class ResidentInfo {
 		this.petRule = petRule;
 	}
 	
-	
-	public Set<String> getPreferedHabits() {
-		return preferedHabits;
-	}
-
-	public void setPreferedHabits(Set<String> preferedHabits) {
-		this.preferedHabits = preferedHabits;
-	}
-
 	public String getPreferedWorkSchedule() {
 		return preferedWorkSchedule;
 	}
 
 	public void setPreferedWorkSchedule(String preferedWorkSchedule) {
 		this.preferedWorkSchedule = preferedWorkSchedule;
-	}
-	
-	public status getPreferedProfession() {
-		return preferedProfession;
 	}
 
 	public void setPreferedProfession(status preferedProfession) {
@@ -275,29 +249,10 @@ public class ResidentInfo {
 	public void setGenderChoice(String genderChoice) {
 		this.genderChoice = genderChoice;
 	}
-	
-	
-	public Set<Double> getRating() {
-		return rating;
-	}
 
-	public void setRating(Set<Double> rating) {
-		this.rating = rating;
-	}
 
-	public CellNumber getPhoneNumber() {
-		return phoneNumber;
-	}
 
-	public void setPhoneNumber(CellNumber phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
-	public EmailAddress getEmail() {
-		return email;
-	}
 
-	public void setEmail(EmailAddress email) {
-		this.email = email;
-	}
+
 }	

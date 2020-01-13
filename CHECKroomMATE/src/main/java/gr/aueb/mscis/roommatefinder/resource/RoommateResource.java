@@ -89,10 +89,10 @@ public class RoommateResource extends AbstractResource {
 	public Response updateResident(RoommateInfo residentInfo) {
 		EntityManager em = getEntityManager();
 		
-		boolean check = residentInfo.getRoommate(em).validateFields();
-		Roommate resident = null;
+		boolean check = residentInfo.getResident(em).validateFields();
+		Resident resident = null;
 		if(check) {
-			resident = residentInfo.getRoommate(em);
+			resident = residentInfo.getResident(em);
 		}else {
 			return Response.status (Status.NOT_ACCEPTABLE).build();
 		}
@@ -103,17 +103,17 @@ public class RoommateResource extends AbstractResource {
 		String name = resident.getName();
 		String surname = resident.getSurname();
 		int age = resident.getAge();
-		int numOfFlatmates = 0;
-		int ageRange = 0;
-		boolean petRule = true;
-		Set<String> preferedHabits = null;
-		String preferedWorkSchedule = "";
-		status preferedProfession = null;
-		boolean guests = true;
-		String genderChoice = "";
-		Set<Double> rating = null;
-		CellNumber phoneNumber = null;
-		EmailAddress email = null;
+		int numOfFlatmates = resident.getNumOfFlatmates();
+		int ageRange = resident.getAgeRange();
+		boolean petRule = resident.isPetRule();
+		Set<String> preferedHabits = resident.getPreferedHabits();
+		String preferedWorkSchedule = resident.getPreferedWorkSchedule();
+		status preferedProfession = resident.getPreferedProfession();
+		boolean guests = resident.isGuests();
+		String genderChoice = resident.getGenderChoice();
+		Set<Double> rating = resident.getRating();
+		CellNumber phoneNumber = resident.getPhoneNumber();
+		EmailAddress email = resident.getEmail();
 		
 		service.updatePersonalDetails(username, password, email, phoneNumber, name, surname, age, numOfFlatmates,
 				 ageRange, preferedHabits, petRule, preferedWorkSchedule, rating, genderChoice, guests, preferedProfession, 

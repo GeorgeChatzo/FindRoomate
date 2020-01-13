@@ -60,10 +60,10 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		resident.setName("Dolores");
 		
 		String residentId = Long.toString(resident.getId());
-		
+		System.out.println(resident.getGenderChoice());
+
 		Response response = target(roommateIdUri(residentId)).request().put(Entity.entity(resident, 
 				MediaType.APPLICATION_JSON));
-		
 		assertEquals(200, response.getStatus());
 
 

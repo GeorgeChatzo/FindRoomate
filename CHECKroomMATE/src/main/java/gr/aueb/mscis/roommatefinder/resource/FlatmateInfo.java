@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
@@ -32,11 +33,7 @@ public class FlatmateInfo {
 	private boolean pets;
 	private String workSchedule;
 	private boolean incomingGuests;
-	@XmlElementWrapper(name = "ratingList") 
-	@XmlElement(name = "rating")
 	private Set<Double> rating;
-	@XmlElementWrapper(name = "habitList") 
-	@XmlElement(name = "habit")
 	private Set<String> habits;
 	private EmailAddress email;
 	private CellNumber phoneNumber;
@@ -199,37 +196,46 @@ public class FlatmateInfo {
 		this.incomingGuests = incomingGuests;
 	}
 
-	public Set<Double> getRating() {
-		return rating;
-	}
-
-	public void setRating(Set<Double> rating) {
-		this.rating = rating;
-	}
-
-	public Set<String> getHabits() {
-		return habits;
-	}
-
-	public void setHabits(Set<String> habits) {
-		this.habits = habits;
-	}
-
+	
+    @XmlTransient
 	public EmailAddress getEmail() {
 		return email;
 	}
-
+    
+    @XmlTransient
 	public void setEmail(EmailAddress email) {
 		this.email = email;
 	}
-
+    
+    @XmlTransient
 	public CellNumber getPhoneNumber() {
 		return phoneNumber;
 	}
-
+    
+    @XmlTransient
 	public void setPhoneNumber(CellNumber phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+    @XmlTransient
+	public Set<Double> getRating() {
+		return rating;
+	}
+    @XmlTransient
+	public void setRating(Set<Double> rating) {
+		this.rating = rating;
+	}
+    
+    @XmlTransient
+	public Set<String> getHabits() {
+		return habits;
+	}
+    
+    @XmlTransient
+	public void setHabits(Set<String> habits) {
+		this.habits = habits;
+	}
+	
+
 
 	public static List<FlatmateInfo> wrap(List<Flatmate> flatmates) {
 		List<FlatmateInfo> flatmateInfoList = new ArrayList<>();

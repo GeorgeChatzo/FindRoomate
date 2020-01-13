@@ -48,6 +48,8 @@ public class FlatmateResourceTest extends RoommateResourceTest {
 		
 		String flatmateId = Long.toString(flatmate.getId());
 		
+		System.out.println(flatmate.getEmail());
+		
 		Response response = target(flatmateIdUri(flatmateId)).request().put(Entity.entity(flatmate, 
 				MediaType.APPLICATION_JSON));
 		
