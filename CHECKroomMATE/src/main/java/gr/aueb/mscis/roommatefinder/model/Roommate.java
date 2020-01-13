@@ -6,7 +6,7 @@ import java.util.List;
 //Superclass Roommate 
 
 import javax.persistence.*;
-
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

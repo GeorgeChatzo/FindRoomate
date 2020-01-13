@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
+import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.HOUSEADS;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.houseAdIdUri;
@@ -73,14 +74,21 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 		assertEquals(1, houseAds.size());
 		HouseAdInfo houseAd = HouseAdInfo.wrap(houseAds.get(0));
 		houseAd.setName("Dolores");
-		//houseAd.setId(9);
+		houseAd.setResidentId(Initializer.resident1_id);
+		houseAd.setId(Initializer.house_Adid);
 		 
 		String houseAdId = Long.toString(houseAd.getId());
 		
 		Response response = target(houseAdIdUri(houseAdId)).request().put(Entity.entity(houseAd, 
 				MediaType.APPLICATION_JSON));
 		
+		System.out.println(response);
+
+		
 		assertEquals(200, response.getStatus());
+		
+		
+		//assertNotNull(response);
 		
 		List<HouseAd> allHouseAds = listAllHouseAds();
 		assertEquals(1, allHouseAds.size());

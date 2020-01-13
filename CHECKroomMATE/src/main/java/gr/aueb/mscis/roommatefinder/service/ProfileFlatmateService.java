@@ -1,5 +1,6 @@
 package main.java.gr.aueb.mscis.roommatefinder.service;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 
@@ -192,6 +194,15 @@ public class ProfileFlatmateService {
 		
 		return true;
 		
+	}
+	
+	public List<Flatmate> findAllFlatmates() {
+		List<Flatmate> results = null;
+
+		results = em.createQuery("select flatmate from Flatmate flatmate", Flatmate.class)
+				.getResultList();
+
+		return results;
 	}
 
 	

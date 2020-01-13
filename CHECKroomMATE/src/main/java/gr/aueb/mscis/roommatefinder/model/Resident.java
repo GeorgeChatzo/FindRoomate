@@ -54,6 +54,8 @@ public class Resident extends Roommate{
 			String surname, int age, int numOfFlatmates, int ageRange, Set<String> preferedHabits, boolean petRule,
 			String preferedWorkSchedule, status preferedProfession, boolean guests, String genderChoice, Set<Double> rating) {
 		super(username, password, name, surname, age);
+		this.email = email;
+		this.phoneNumber = phoneNumber;
 		this.numOfFlatmates = numOfFlatmates;
 		this.ageRange = ageRange;
 		this.preferedHabits = preferedHabits;
@@ -70,6 +72,7 @@ public class Resident extends Roommate{
 	}
 
 	public Resident() {
+		super();
 	}
 	
 

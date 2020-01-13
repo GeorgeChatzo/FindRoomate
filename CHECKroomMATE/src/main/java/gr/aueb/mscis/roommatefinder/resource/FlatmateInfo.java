@@ -5,16 +5,20 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 
 @XmlRootElement
-public class FlatmateInfo{
+public class FlatmateInfo {
 	
 	private String username;
 	private String password;
@@ -28,13 +32,24 @@ public class FlatmateInfo{
 	private boolean pets;
 	private String workSchedule;
 	private boolean incomingGuests;
+	@XmlElementWrapper(name = "ratingList") 
+	@XmlElement(name = "rating")
 	private Set<Double> rating;
+	@XmlElementWrapper(name = "habitList") 
+	@XmlElement(name = "habit")
 	private Set<String> habits;
 	private EmailAddress email;
 	private CellNumber phoneNumber;
 	
+    
 	public FlatmateInfo() {
+
 		
+	}
+	
+	public FlatmateInfo(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
+			String surname, int age, Set<Double> rating) {
+		super();
 	}
  
 	public FlatmateInfo(long id, String username, String password, String name, String surname, int age, String description, String gender,
@@ -50,6 +65,7 @@ public class FlatmateInfo{
 	public FlatmateInfo(String username, String password, EmailAddress email,CellNumber phoneNumber, String name,
 			String surname, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.name = name;
@@ -68,12 +84,12 @@ public class FlatmateInfo{
 	}
 	
 	public FlatmateInfo (Flatmate flatmate) {
+		id = flatmate.getId();
 		username = flatmate.getUsername();
 		password = flatmate.getPassword();
 		name = flatmate.getName();
 		surname = flatmate.getSurname();
 		age = flatmate.getAge();
-		id = flatmate.getId();
 		description = flatmate.getDescription();
 		gender = flatmate.getGender();
 		profession  = flatmate.getProfession();

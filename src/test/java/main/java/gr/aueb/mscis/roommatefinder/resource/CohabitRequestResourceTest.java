@@ -31,7 +31,7 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 
 		return new ResourceConfig(CohabitRequestResource.class, DebugExceptionMapper.class);
 	}
-
+ 
 	@Test
 	public void testListAllRequests() {
 		

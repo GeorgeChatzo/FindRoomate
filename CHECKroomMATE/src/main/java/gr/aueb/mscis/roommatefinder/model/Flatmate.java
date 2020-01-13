@@ -2,6 +2,7 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 
 import java.util.*;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="flatmates")
@@ -37,6 +38,8 @@ public class Flatmate extends Roommate {
 			String surname, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
 		super(username, password, name, surname, age);
+		this.email = email;
+		this.phoneNumber = phoneNumber;
 		this.description = description;
 		this.gender = gender;
 		this.profession = profession;
@@ -44,12 +47,14 @@ public class Flatmate extends Roommate {
 		this.habits = habits;
 		this.workSchedule = workSchedule;
 		this.incomingGuests = incomingGuests;
+		this.rating = rating;
+	}
+		
+	public Flatmate() {
+
 	}
 	
-	public Flatmate() {
-		 
-	}
-
+	
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);

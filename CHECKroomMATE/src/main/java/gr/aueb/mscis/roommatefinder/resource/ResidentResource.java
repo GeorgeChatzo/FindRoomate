@@ -24,7 +24,7 @@ import main.java.gr.aueb.mscis.roommatefinder.model.status;
 import main.java.gr.aueb.mscis.roommatefinder.service.ProfileResidentService;
 
 
-@Path (RESIDENTS)
+@Path(RESIDENTS)
 public class ResidentResource extends AbstractResource {
 	
 	@Context

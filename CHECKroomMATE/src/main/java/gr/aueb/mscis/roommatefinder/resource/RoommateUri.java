@@ -10,6 +10,8 @@ public class RoommateUri {
 	
 	public static final String RESIDENTS = "residents";
 	
+	public static final String ROOMMATES = "roommates";
+	
 	public static String houseAdIdUri(String id) {
         return HOUSEADS + "/" + id;
     }
@@ -17,6 +19,16 @@ public class RoommateUri {
 	public static String cohabitRequestIdUri(String id) {
         return COREQUESTS + "/" + id;
     }
+	
+	public static String roommateIdUri(String id) {
+        return ROOMMATES + "/" + id;
+    }
+	
+	public static final String FLATMATES_ALL = "roommates/flatmates";
+	
+	public static final String RESIDENTS_ALL = "roommates/residents";
+
+	
 	
 	public static String flatmateIdUri(String id) {
         return FLATMATES + "/" + id;

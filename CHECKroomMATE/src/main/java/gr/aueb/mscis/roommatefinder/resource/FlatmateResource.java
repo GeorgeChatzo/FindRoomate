@@ -1,6 +1,7 @@
 package main.java.gr.aueb.mscis.roommatefinder.resource;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.FLATMATES;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -18,16 +19,32 @@ import javax.ws.rs.core.UriInfo;
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 import main.java.gr.aueb.mscis.roommatefinder.service.ProfileFlatmateService;
+import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 
 import javax.ws.rs.core.Response.Status;
 
-@Path (FLATMATES)
+@Path(FLATMATES)
 public class FlatmateResource extends AbstractResource {
 
 	@Context
 	UriInfo uriInfo;
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<FlatmateInfo> listAllFlatmates(){
+		EntityManager em = getEntityManager();
+		
+		ProfileFlatmateService service = new ProfileFlatmateService(em);
+		List<Flatmate> flatmates = service.findAllFlatmates();
+		List<FlatmateInfo> flatmateInfo = FlatmateInfo.wrap(flatmates);
+		
+		em.close();
+		
+		return flatmateInfo;
+	}
 	
 	@GET
 	@Path("{flatmateId:[0-9]*}")

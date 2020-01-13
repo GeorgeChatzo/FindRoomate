@@ -87,7 +87,12 @@ public class UpdateHouseAdService {
 				.setParameter("houseAdid", houseAdid)
 				.getResultList();
 
-		return results.get(0);
+		if(!results.isEmpty()) {
+			return results.get(0);
+		}
+		else {
+			return null;
+		}
 		
 	}
 	

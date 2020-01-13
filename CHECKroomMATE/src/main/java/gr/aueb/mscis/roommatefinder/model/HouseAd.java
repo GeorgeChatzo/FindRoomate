@@ -35,6 +35,7 @@ public class HouseAd {
 	
 	public HouseAd() {
 		
+		
 	}
 	
 	public String getDescription() {

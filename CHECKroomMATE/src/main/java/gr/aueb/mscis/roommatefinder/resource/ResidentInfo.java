@@ -5,17 +5,22 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
+import main.java.gr.aueb.mscis.roommatefinder.model.House;
+import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 /**import main.java.gr.aueb.mscis.roommatefinder.model.House;*/
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
 @XmlRootElement
-public class ResidentInfo extends Roommate {
+public class ResidentInfo {
 	
 	private long id;
 	private String username;
@@ -34,7 +39,9 @@ public class ResidentInfo extends Roommate {
 	private Set<Double> rating;
 	private CellNumber phoneNumber;
 	private EmailAddress email;
-	/**private House house;*/
+	
+	private long houseId;
+	private long houseAdId;
 	
 	public ResidentInfo() {
 		
@@ -42,16 +49,22 @@ public class ResidentInfo extends Roommate {
 
 	public ResidentInfo(long id, String username, String password, String name, String surname, int age, int numOfFlatmates,
 			int ageRange, Set<String> preferedHabits, boolean petRule, String preferedWorkSchedule, status preferedProfession,
-			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber) {
+			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber, long houseAdId) {
 		this(username, password, name, surname, age, numOfFlatmates, ageRange, preferedHabits, petRule,preferedWorkSchedule,
-				preferedProfession, guests, genderChoice, rating, email, phoneNumber);
+				preferedProfession, guests, genderChoice, rating, email, phoneNumber,houseAdId);
 		this.id = id;
 	}
+
 	
 	public ResidentInfo(String username, String password, String name, String surname, int age, int numOfFlatmates,
 			int ageRange, Set<String> preferedHabits, boolean petRule, String preferedWorkSchedule, status preferedProfession,
-			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber) {
-		super(username,password,name,surname,age);
+			boolean guests, String genderChoice, Set<Double> rating, EmailAddress email, CellNumber phoneNumber,long houseAdId) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.surname = surname;
+		this.age = age;
 		this.numOfFlatmates = numOfFlatmates;
 		this.ageRange = ageRange;
 		this.preferedHabits = preferedHabits;
@@ -63,6 +76,7 @@ public class ResidentInfo extends Roommate {
 		this.rating = rating;
 		this.email = email;
 		this.phoneNumber = phoneNumber;		
+		this.houseId = houseAdId;
 	}
 	
 	public ResidentInfo(Resident resident) {
@@ -74,15 +88,14 @@ public class ResidentInfo extends Roommate {
 		id = resident.getId();
 		numOfFlatmates = resident.getNumOfFlatmates();
 		ageRange = resident.getAgeRange();
-		preferedHabits = resident.getPreferedHabits();
 		petRule = resident.isPetRule();
 		preferedWorkSchedule = resident.getPreferedWorkSchedule();
 		preferedProfession = resident.getPreferedProfession();
 		guests = resident.isGuests();
 		genderChoice = resident.getGenderChoice();
-		rating = resident.getRating();
 		email = resident.getEmail();
 		phoneNumber = resident.getPhoneNumber();
+		houseId = resident.getHouse().getId();
 	}
 	
 	public static List<ResidentInfo> wrap(List<Resident> residents) {
@@ -99,6 +112,7 @@ public class ResidentInfo extends Roommate {
 		return new ResidentInfo(resident);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Resident getResident(EntityManager em) {
 		Resident resident = null;
 		
@@ -116,15 +130,26 @@ public class ResidentInfo extends Roommate {
 		resident.setAge(age);
 		resident.setNumOfFlatmates(numOfFlatmates);
 		resident.setAgeRange(ageRange);
-		resident.setPreferedHabits(preferedHabits);
 		resident.setPetRule(petRule);
 		resident.setPreferedWorkSchedule(preferedWorkSchedule);
 		resident.setPreferedProfession(preferedProfession);
 		resident.setGuests(guests);
 		resident.setGenderChoice(genderChoice);
-		resident.setRating(rating);
 		resident.setEmail(email);
 		resident.setPhoneNumber(phoneNumber);
+		
+//		House house = em.getReference(House.class, houseId);
+//
+//		resident.setHouse(house);
+//		
+//		List<HouseAd> results = null;
+//		
+//		results = em
+//				.createQuery(
+//						"select resident.houseAds from Resident resident where resident.id = :residentId ")
+//				.setParameter("residentId", id)
+//				.getResultList();
+//		resident.addHouseAd(results.get(0));
 		
 		return resident;
 	}
@@ -198,10 +223,19 @@ public class ResidentInfo extends Roommate {
 		return petRule;
 	}
 
+	public long getHouseId() {
+		return houseId;
+	}
+
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
+	}
+
 	public void setPetRule(boolean petRule) {
 		this.petRule = petRule;
 	}
-
+	
+	
 	public Set<String> getPreferedHabits() {
 		return preferedHabits;
 	}
@@ -217,7 +251,7 @@ public class ResidentInfo extends Roommate {
 	public void setPreferedWorkSchedule(String preferedWorkSchedule) {
 		this.preferedWorkSchedule = preferedWorkSchedule;
 	}
-
+	
 	public status getPreferedProfession() {
 		return preferedProfession;
 	}
@@ -241,7 +275,8 @@ public class ResidentInfo extends Roommate {
 	public void setGenderChoice(String genderChoice) {
 		this.genderChoice = genderChoice;
 	}
-
+	
+	
 	public Set<Double> getRating() {
 		return rating;
 	}
