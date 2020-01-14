@@ -76,39 +76,16 @@ public class RoommateResource extends AbstractResource {
 	
 	service.signUp(username, password, name, surname, age);
 	
+	UriBuilder ub = uriInfo.getAbsolutePathBuilder();
+	URI newRoommateUri = ub.path(Long.toString(roommate.getId())).build();
+
+	
+	
 	em.close();
 	
 	return Response.ok().build();
 	}	
 	
-
-	@POST
-	@Path("{roommateId:[0-9]*}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateRoommate(RoommateInfo roommateInfo) {
-		EntityManager em = getEntityManager();
-		
-		boolean check = roommateInfo.getRoommate(em).validateFields();
-		Roommate roommate = null;
-		if(check) {
-			roommate = roommateInfo.getRoommate(em);
-		}else {
-			return Response.status (Status.NOT_ACCEPTABLE).build();
-		}
-		AuthenticationService service = new AuthenticationService(em);
-		
-		String username = roommate.getUsername();
-		String password = roommate.getPassword();
-		String name = roommate.getName();
-		String surname = roommate.getSurname();
-		int age = roommate.getAge();
-		
-		service.signUp(username, password, name, surname, age);
-		
-		em.close();
-		
-		return Response.ok().build();
-	}
 	
 	@DELETE
 	@Path("{rommateId:[0-9]*}")

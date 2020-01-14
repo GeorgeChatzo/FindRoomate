@@ -1,12 +1,14 @@
 package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.residentIdUri;
+import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.RESIDENTS;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -22,6 +24,15 @@ public class ResidentResourceTest extends RoommateResourceTest  {
 
 		return new ResourceConfig(ResidentResource.class, DebugExceptionMapper.class);
 	} 
+	
+	@Test
+	public void testListAllResidents() {
+		List<ResidentInfo> residents = target(RESIDENTS)
+				.request().get(new GenericType<List<ResidentInfo>>() {});
+		assertEquals(1,residents.size());
+	}
+	
+	
 	
 	
 	@Test
