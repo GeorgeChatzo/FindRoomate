@@ -80,6 +80,7 @@ public class RoommateResource extends AbstractResource {
 	URI newRoommateUri = ub.path(Long.toString(roommate.getId())).build();
 
 	
+	
 	em.close();
 	
 	return Response.ok().build();

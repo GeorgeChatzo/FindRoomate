@@ -14,6 +14,7 @@ import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
+import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
 
@@ -40,6 +41,20 @@ public abstract class RoommateResourceTest extends JerseyTest {
 		dataHelper.prepareData();
 	}
 	
+	public List<Roommate> listRoommates() {
+	EntityManager em = JPAUtil.getCurrentEntityManager();
+	EntityTransaction tx = em.getTransaction();
+	tx.begin();
+	
+	List<Roommate> roommates = em.createQuery("select r from Roommate r").getResultList();
+	
+	tx.commit();
+	em.close();
+	
+	return roommates;
+}
+	
+		
 	public List<Resident> listResidents() {
 		EntityManager em = JPAUtil.getCurrentEntityManager();
 		EntityTransaction tx = em.getTransaction();
