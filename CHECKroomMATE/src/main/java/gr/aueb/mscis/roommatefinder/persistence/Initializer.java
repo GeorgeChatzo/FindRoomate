@@ -52,6 +52,8 @@ public class Initializer  {
         query.executeUpdate();
         query = em.createNativeQuery("delete from residents");
         query.executeUpdate();
+        query = em.createNativeQuery("delete from roommate");
+        query.executeUpdate();
         query = em.createNativeQuery("delete from house");
         query.executeUpdate();
         

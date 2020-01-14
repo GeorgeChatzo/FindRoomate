@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@Table(name = "roommate")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Roommate {
 	
