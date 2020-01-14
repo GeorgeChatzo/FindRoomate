@@ -112,10 +112,11 @@ public class RoommateResource extends AbstractResource {
 	
 	@DELETE
 	@Path("{rommateId:[0-9]*}")
-	public Response deleteRoommate(@PathParam("roommate") Roommate roommate) {
+	public Response deleteRoommate(@PathParam("rommateId") long roommateId) {
 		EntityManager em = getEntityManager();
-		
+		Roommate roommate =  null;
 		AuthenticationService service = new AuthenticationService(em);
+		roommate = em.find(Resident.class, roommateId);
 		boolean result = service.deleteRoommate(roommate);
 		
 		if (!result) {
