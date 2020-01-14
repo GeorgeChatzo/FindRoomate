@@ -2,6 +2,7 @@ package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.RESIDENTS;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -41,6 +42,21 @@ public class ResidentResource extends AbstractResource {
 		ResidentInfo residentInfo = ResidentInfo.wrap(resident);
 		
 		em.close();
+		return residentInfo;
+	}
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ResidentInfo> listAllResidents(){
+		EntityManager em = getEntityManager();
+		
+		ProfileResidentService service = new ProfileResidentService(em);
+		List<Resident> residents = service.findAllResidents();
+		List<ResidentInfo> residentInfo = ResidentInfo.wrap(residents);
+		
+		em.close();
+		
 		return residentInfo;
 	}
 	
