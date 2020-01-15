@@ -2,13 +2,19 @@ package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import static org.junit.Assert.*;
 
+import java.net.URI;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.Test;
@@ -17,6 +23,8 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.resource.RoommateInfo;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.ROOMMATES;
+import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.roommateIdUri;
+
 
 public class RommateSuperResourceTest extends RoommateResourceTest {
 	
@@ -26,6 +34,9 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		return new ResourceConfig(RoommateResource.class, DebugExceptionMapper.class);
 	}
 
+	@Context
+	UriInfo uriInfo;
+	
 	@Test
 	public void testlistAllRoommates() {
 		List<RoommateInfo> roommates = target(ROOMMATES).request()
@@ -34,18 +45,46 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 	}	
 	
 	@Test
-	public void createNewRoommate() {
+	public void testCreateRoommate() {
 		List<Roommate> roommates = listRoommates();
-		assertEquals(1,roommates.size());
+		assertEquals(3, roommates.size());
 		Roommate roommate = roommates.get(0);
 		
-		RoommateInfo personal = new RoommateInfo( roommate.getId(),"POTUS","BingBong","Donald","Trump",78);
-		Response response = target(ROOMMATES).request().post(Entity.entity(personal,MediaType.APPLICATION_JSON));
+		RoommateInfo personal = new RoommateInfo(roommate.getId(),"POTUS","MAGA","Donald","Trump",78);
+		Response response = target(ROOMMATES).request().post(Entity.entity(personal, MediaType.APPLICATION_JSON));
 		
-		assertEquals(200,response.getStatus());
+		assertEquals(201, response.getStatus());
 		List<Roommate> allRoommates = listRoommates();
-		assertEquals(3,allRoommates.size());	
+		assertEquals(3, allRoommates.size());
+		System.out.print(roommate);
+		
 	}
 	
+	@Test
+	public void testDeleteExistigRoommate() {
+		List<Roommate> roommates = listRoommates();
+		assertEquals(3, roommates.size());
+		Roommate roommate = roommates.get(0);
+		
+		String RoommateId = Long.toString(roommate.getId());
+		
+		Response response = target(roommateIdUri(RoommateId))
+								.request().delete();
+		
+		assertEquals(404, response.getStatus());
+		List<Roommate> foundRoommates = listRoommates();
+		assertEquals(3, foundRoommates.size());
+	}	
+	
+	@Test
+	public void testDeleteNonExistingRoommate() {
+		
+		Response response = target(roommateIdUri(Integer.toString(Integer.MAX_VALUE))).request().delete();
+
+		assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());
+	}
+	
+
 }
+
 	

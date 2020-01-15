@@ -79,17 +79,15 @@ public class RoommateResource extends AbstractResource {
 	UriBuilder ub = uriInfo.getAbsolutePathBuilder();
 	URI newRoommateUri = ub.path(Long.toString(roommate.getId())).build();
 
-	
-	
 	em.close();
 	
-	return Response.ok().build();
+	return Response.created(newRoommateUri).build();
 	}	
 	
 	
 	@DELETE
-	@Path("{rommateId:[0-9]*}")
-	public Response deleteRoommate(@PathParam("rommateId") long roommateId) {
+	@Path("{roommateId:[0-9]*}")
+	public Response deleteRoommate(@PathParam("roommateId") long roommateId) {
 		EntityManager em = getEntityManager();
 		Roommate roommate =  null;
 		AuthenticationService service = new AuthenticationService(em);
