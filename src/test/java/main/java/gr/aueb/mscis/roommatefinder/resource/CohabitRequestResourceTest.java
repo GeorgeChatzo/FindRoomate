@@ -17,6 +17,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.Assert;
 import org.junit.Test;
 
+import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
@@ -65,6 +66,9 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 		assertEquals(1, houseAds.size());
 		HouseAd houseAd = houseAds.get(0);
 		
+		List<CohabitRequest> requests = listAllRequests();
+		assertEquals(2,requests.size());
+		
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         Date date = format.parse ( "2019-12-31" );
@@ -74,7 +78,9 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 		Response response = target(COREQUESTS).request().post(Entity.entity(request, MediaType.APPLICATION_JSON));
 
 		// Check status and database state
-		Assert.assertEquals(201, response.getStatus());
+		assertEquals(201, response.getStatus());
+		List<CohabitRequest> requestsfound = listAllRequests();
+		assertEquals(2,requestsfound.size());
 
 		
 	}

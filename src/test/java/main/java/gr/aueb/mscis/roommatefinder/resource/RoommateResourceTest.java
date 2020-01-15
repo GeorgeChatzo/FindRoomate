@@ -11,7 +11,9 @@ import org.glassfish.jersey.test.spi.TestContainerFactory;
 
 import main.java.gr.aueb.mscis.roommatefinder.persistence.JPAUtil;
 import main.java.gr.aueb.mscis.roommatefinder.service.AuthenticationService;
+import main.java.gr.aueb.mscis.roommatefinder.service.ManageRequestService;
 import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
+import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
@@ -88,6 +90,15 @@ public abstract class RoommateResourceTest extends JerseyTest {
 		
 		
 		return houseAds;
+	}
+	
+	public List<CohabitRequest> listAllRequests() {
+		EntityManager em = JPAUtil.getCurrentEntityManager();
+		ManageRequestService service = new ManageRequestService(em);
+		List<CohabitRequest> requests = service.viewAllRequests();
+		
+		
+		return requests;
 	}
 
 }
