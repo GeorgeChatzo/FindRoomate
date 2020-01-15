@@ -97,7 +97,7 @@ public class HouseAdResource extends AbstractResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateHouseAd(HouseAdInfo houseAdInfo) {
 		EntityManager em = getEntityManager();
-		
+		System.out.println(houseAdInfo.getId());
 		boolean check = houseAdInfo.getHouseAd(em).validate();
 		HouseAd houseAd = null;
 		if(check) {
@@ -116,7 +116,7 @@ public class HouseAdResource extends AbstractResource {
 		Integer numberOfRoommates = houseAd.getNumberOfRoommates();
 		long houseAdid = houseAd.getId();
 		long residentId = houseAd.getResident().getId();
-		
+		System.out.println(houseAdid);
 		service.updateHouseAd(name, description, rentPrice, photos, comments, 
 				numberOfRoommates, houseAdid, residentId);
 		

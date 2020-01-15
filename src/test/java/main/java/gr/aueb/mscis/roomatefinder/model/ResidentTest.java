@@ -287,7 +287,8 @@ public class ResidentTest {
 	
 	@Test
 	public void TestToString() {
-		String expected = "Resident [id=0, house=null, cohabitRequests=, numOfFlatmates=2, ageRange=34, preferedHabits=[], petRule=true, preferedWorkSchedule=Everyday, preferedProfession=STUDENT, guests=false, genderChoice=Female, rating=null, email=null, phoneNumber=null]";
+		
+		String expected = "Resident [id=0, house=null, cohabitRequests=, numOfFlatmates=2, ageRange=34, preferedHabits=[], petRule=true, preferedWorkSchedule=Everyday, preferedProfession=STUDENT, guests=false, genderChoice=Female, rating=null, email=g, phoneNumber=2]";		
 		assertTrue(res.toString().equals(expected));
 
 	}

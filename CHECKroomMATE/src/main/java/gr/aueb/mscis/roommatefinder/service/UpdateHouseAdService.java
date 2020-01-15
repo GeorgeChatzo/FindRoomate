@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.xml.bind.annotation.XmlTransient;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -23,7 +24,6 @@ public class UpdateHouseAdService {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		HouseAd houseAd = selectHouseAd(houseAdid,residentId);
-
 		updateName(name,houseAd);
 		updateDescription(description,houseAd);
 		updateRentPrice(rentPrice,houseAd);
@@ -78,7 +78,7 @@ public class UpdateHouseAdService {
 	@SuppressWarnings("unchecked")
 	public HouseAd selectHouseAd(long houseAdid,long residentId){
 		List<HouseAd> results = null;
-		
+
 		results = em
 				.createQuery(
 						"select houseAd from HouseAd houseAd where houseAd.resident.id = :residentId "
@@ -86,7 +86,8 @@ public class UpdateHouseAdService {
 				.setParameter("residentId", residentId)
 				.setParameter("houseAdid", houseAdid)
 				.getResultList();
-
+		
+		
 		if(!results.isEmpty()) {
 			return results.get(0);
 		}
@@ -113,7 +114,8 @@ public class UpdateHouseAdService {
 		
 	}
 	
-	public boolean updateName(String name,HouseAd houseAd ) {
+	
+	public boolean updateName(String name,HouseAd houseAd) {
 		houseAd.setName(name);
 		em.merge(houseAd);
 		

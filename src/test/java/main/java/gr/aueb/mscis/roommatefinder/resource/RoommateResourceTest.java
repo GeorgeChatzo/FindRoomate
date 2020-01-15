@@ -10,6 +10,7 @@ import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
 
 import main.java.gr.aueb.mscis.roommatefinder.persistence.JPAUtil;
+import main.java.gr.aueb.mscis.roommatefinder.service.AuthenticationService;
 import main.java.gr.aueb.mscis.roommatefinder.service.RequestService;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -43,13 +44,11 @@ public abstract class RoommateResourceTest extends JerseyTest {
 	
 	public List<Roommate> listRoommates() {
 	EntityManager em = JPAUtil.getCurrentEntityManager();
-	EntityTransaction tx = em.getTransaction();
-	tx.begin();
 	
-	List<Roommate> roommates = em.createQuery("select r from Roommate r").getResultList();
-	
-	tx.commit();
+	AuthenticationService service = new AuthenticationService(em);
+	List<Roommate> roommates = service.findAllRoommates();
 	em.close();
+	
 	
 	return roommates;
 }
@@ -86,6 +85,7 @@ public abstract class RoommateResourceTest extends JerseyTest {
 		EntityManager em = JPAUtil.getCurrentEntityManager();
 		RequestService service = new RequestService(em);
 		List<HouseAd> houseAds = service.findAllHouseAds();
+		
 		
 		return houseAds;
 	}

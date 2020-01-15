@@ -27,14 +27,12 @@ public class AuthenticationService {
 	}
 	
 	public boolean deleteRoommate(Roommate r) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
 
 		if (r != null) {
 			em.remove(r);
 			return true;
 		}
-		tx.commit();
+
 		return false;
 	}
 	
