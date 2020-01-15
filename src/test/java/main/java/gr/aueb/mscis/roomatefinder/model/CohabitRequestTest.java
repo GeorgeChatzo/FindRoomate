@@ -94,8 +94,8 @@ public class CohabitRequestTest {
 	
 	@Test
 	public void testToString() {
-		
-		String expected = "CohabitRequest [id=0, houseAd=HouseAd [id=0, resident=null, description=null, rentPrice=0.0, photos=null, comments=null, numberOfRoommates=0], flatmate=Roommate [id=0, username=null, password=null, name=null, surname=null, age=0], connection=true]";
+
+		String expected = "CohabitRequest [id=0, houseAd=HouseAd [id=0, resident=null, description=null, rentPrice=0.0, photos=null, comments=null, numberOfRoommates=0], flatmate=Flatmate [cohabitRequests=[], description=null, gender=null, profession=null, pets=false, habits=null, workSchedule=null, incomingGuests=false, rating=null, email=null, phoneNumber=null, Id=0], connection=true]";
 		Assert.assertEquals(req1.toString(),expected);
 	}
 	

@@ -29,7 +29,7 @@ public class CohabitRequestInfo {
 	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest,long id,long houseAdId) {
 		this(flatmateId,connection,dateOfRequest,houseAdId);
 		this.id = id;
-	} 
+	 } 
 	 
 	 public CohabitRequestInfo(long flatmateId,boolean connection, Date dateOfRequest, long houseAdId) {
 		 
