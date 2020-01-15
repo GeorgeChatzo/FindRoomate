@@ -2,7 +2,9 @@ package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.residentIdUri;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.RESIDENTS;
+import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.flatmateIdUri;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -69,5 +71,17 @@ public class ResidentResourceTest extends RoommateResourceTest  {
 
 	}
 	
-
+	@Test
+	public void testResidentDetails() {
+		
+		List<Resident> residents = listResidents();
+		ResidentInfo resident = ResidentInfo.wrap(residents.get(0));
+		
+		String residentId = Long.toString(resident.getId());
+		
+		ResidentInfo residents1 = target(residentIdUri(residentId)).request().get(ResidentInfo.class);
+		
+		assertNotNull(residents1);
+	}
+	
 }

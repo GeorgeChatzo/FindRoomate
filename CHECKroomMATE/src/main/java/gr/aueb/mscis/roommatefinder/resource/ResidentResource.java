@@ -34,11 +34,12 @@ public class ResidentResource extends AbstractResource {
 	@GET
 	@Path("{residentId:[0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResidentInfo getResidentDetails(@PathParam("residents") long residentId) {
+	public ResidentInfo getResidentDetails(@PathParam("residentId") long residentId) {
 		EntityManager em = getEntityManager();
 		
 		ProfileResidentService service = new ProfileResidentService(em);
 		Resident resident = service.findResidentById(residentId);
+		
 		ResidentInfo residentInfo = ResidentInfo.wrap(resident);
 		
 		em.close();
