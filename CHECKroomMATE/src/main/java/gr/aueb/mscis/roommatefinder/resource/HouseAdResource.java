@@ -77,6 +77,7 @@ public class HouseAdResource extends AbstractResource {
 			return Response.status(Status.NOT_ACCEPTABLE).build();
 		}
 		PublishAdService service = new PublishAdService(em);
+		
 		boolean result = service.createHouseAd(houseAd);
 		if (!result) {
 			em.close();
@@ -132,7 +133,7 @@ public class HouseAdResource extends AbstractResource {
 		EntityManager em = getEntityManager();
 		
 		PublishAdService service = new PublishAdService(em);
-		boolean result = service.deleteHouse(houseAdId);
+		boolean result = service.deleteHouseAd(houseAdId);
 		
 		if (!result) {
 			em.close();

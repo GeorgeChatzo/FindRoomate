@@ -19,6 +19,7 @@ import main.java.gr.aueb.mscis.roommatefinder.persistence.Initializer;
 
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.HOUSEADS;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.houseAdIdUri;
+import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.roommateIdUri;
 
 public class HouseAdResourceTest extends RoommateResourceTest {
 	
@@ -89,6 +90,23 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 		
 		
 	}
+	
+//	@Test
+//	public void deleteHouseAd() {
+//		
+//		List<HouseAd> houseAds = listAllHouseAds();
+//		assertEquals(1,houseAds.size());
+//		
+//		String houseAdId = Long.toString(houseAds.get(0).getId());
+//		
+//		Response response = target(houseAdIdUri(houseAdId))
+//				.request().delete();
+//		
+//		assertEquals(404, response.getStatus());
+//		List<HouseAd> houseAdsFound = listAllHouseAds();
+//		assertEquals(0,houseAdsFound.size());
+//		
+//	}
 	
 	@Test
 	public void testUpdatenotValidHouseAd() {

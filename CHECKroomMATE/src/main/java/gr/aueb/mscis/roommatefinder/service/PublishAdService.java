@@ -20,9 +20,11 @@ public class PublishAdService {
 	
 	public boolean createHouseAd(HouseAd houseAd) {
 		EntityTransaction et = em.getTransaction();
+
 		if (houseAd != null && houseAd.validate()) {
-			et.begin();			
+			et.begin();
 			em.persist(houseAd);
+			em.flush();
 			et.commit();
 			return true;
 		}
@@ -32,6 +34,7 @@ public class PublishAdService {
 	
 	public boolean deleteHouseAd(long houseAdId) {
 		HouseAd houseAd = findHouseAdById(houseAdId);
+		
 		if (houseAd != null) {
 			em.remove(houseAd);
 			return true;
@@ -53,7 +56,6 @@ public class PublishAdService {
 	
 	public boolean deleteHouse(long houseId) {
 		House house = findHouseById(houseId);
-		
 		if (house != null) {
 			em.remove(house);
 			return true;
