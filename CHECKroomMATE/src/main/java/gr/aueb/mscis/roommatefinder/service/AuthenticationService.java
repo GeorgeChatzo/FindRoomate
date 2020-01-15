@@ -3,6 +3,7 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 
@@ -26,12 +27,14 @@ public class AuthenticationService {
 	}
 	
 	public boolean deleteRoommate(Roommate r) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
 
 		if (r != null) {
 			em.remove(r);
 			return true;
 		}
-
+		tx.commit();
 		return false;
 	}
 	

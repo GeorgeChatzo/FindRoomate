@@ -91,7 +91,7 @@ public class RoommateResource extends AbstractResource {
 		EntityManager em = getEntityManager();
 		Roommate roommate =  null;
 		AuthenticationService service = new AuthenticationService(em);
-		roommate = em.find(Resident.class, roommateId);
+		roommate = em.find(Roommate.class, roommateId);
 		boolean result = service.deleteRoommate(roommate);
 		
 		if (!result) {

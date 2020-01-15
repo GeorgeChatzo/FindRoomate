@@ -56,7 +56,6 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		assertEquals(201, response.getStatus());
 		List<Roommate> allRoommates = listRoommates();
 		assertEquals(3, allRoommates.size());
-		System.out.print(roommate);
 		
 	}
 	
@@ -65,15 +64,16 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		List<Roommate> roommates = listRoommates();
 		assertEquals(3, roommates.size());
 		Roommate roommate = roommates.get(0);
+	
+		String roommateId = Long.toString(roommate.getId());
 		
-		String RoommateId = Long.toString(roommate.getId());
-		
-		Response response = target(roommateIdUri(RoommateId))
+		Response response = target(roommateIdUri(roommateId))
 								.request().delete();
 		
-		assertEquals(404, response.getStatus());
+		assertEquals(200, response.getStatus());
 		List<Roommate> foundRoommates = listRoommates();
-		assertEquals(3, foundRoommates.size());
+
+		assertEquals(2, foundRoommates.size());
 	}	
 	
 	@Test
