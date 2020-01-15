@@ -4,7 +4,11 @@ import java.util.*;
 
 import javax.persistence.*;
 
-
+/**
+ * The resident (The person who lives in the house and looks for flatmate)
+ * @author Kevin McCallister
+ *
+ */
 @Entity
 @Table(name="residents")
 @PrimaryKeyJoinColumn(name = "residentid")
@@ -66,11 +70,25 @@ public class Resident extends Roommate{
 		this.genderChoice = genderChoice;
 	}
 	
+	/**
+	 * Custom constructor. Initializes basic resident fields.
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param phoneNumber
+	 * @param name
+	 * @param surname
+	 * @param age
+	 * @param rating
+	 */
 	public Resident(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public Resident() {
 		super();
 	}
@@ -79,7 +97,10 @@ public class Resident extends Roommate{
 	public Set<HouseAd> getHouseAds(){
 		return new HashSet<HouseAd>(houseAds);
 	}
-	
+	/**
+	 * Adds a houseAd with this resident
+	 * @param houseAd
+	 */
 	public void addHouseAd(HouseAd houseAd) {
 		if(houseAd != null) {
 			houseAds.add(houseAd);
@@ -87,108 +108,212 @@ public class Resident extends Roommate{
 		}
 	}
 
+	/**
+	 * Removes the houde ad inside the resident
+	 * @param houseAd
+	 */
 	public void removeHouseAd(HouseAd houseAd) {
 		if(houseAd != null) {
 			houseAds.remove(houseAd);
 		}
 	}
 	
+	/**
+	 * Returns number of flatmates of resident
+	 * @return numOfFlatmates
+	 */
 	public int getNumOfFlatmates() {
 		return numOfFlatmates;
 	}
 	
+	/**
+	 * Sets number of flatmates of resident
+	 * @param numOfFlatmates
+	 */
 	public void setNumOfFlatmates(int numOfFlatmates) {
 		this.numOfFlatmates = numOfFlatmates;
 	}
 	
+	/**
+	 * Returns age range that the resident wants
+	 * @return ageRange
+	 */
 	public int getAgeRange() {
 		return ageRange;
 	}
 	
+	/**
+	 * Sets the age range that the resident wants
+	 * @param ageRange
+	 */
 	public void setAgeRange(int ageRange) {
 		this.ageRange = ageRange;
 	}
 	
+	/**
+	 * Returns resident's prefered habits
+	 * @return preferedHabits
+	 */
 	public Set<String> getPreferedHabits() {
 		return preferedHabits;
 	}
 	
+	/**
+	 * Sets the prefered habits 
+	 * @param preferedHabits
+	 */
 	public void setPreferedHabits(Set<String> preferedHabits) {
 		this.preferedHabits = preferedHabits;
 	}
 	
+	/**
+	 * Returns {@code true} if resident accepts pets
+	 */
 	public boolean isPetRule() {
 		return petRule;
 	}
 	
+	/**
+	 * Sets if the resident allows pets in the house
+	 * @param petRule
+	 */
 	public void setPetRule(boolean petRule) {
 		this.petRule = petRule;
 	}
 	
+	/**
+	 * Returns workc Schedule that the resident prefers.
+	 * @return preferedWorkSchedule
+	 */
 	public String getPreferedWorkSchedule() {
 		return preferedWorkSchedule;
 	}
 	
+	/**
+	 * Sets resident's preference for work schedule.
+	 * @param preferedWorkSchedule
+	 */
 	public void setPreferedWorkSchedule(String preferedWorkSchedule) {
 		this.preferedWorkSchedule = preferedWorkSchedule;
 	}
 	
+	/**
+	 * Returns resident's prefered work status.
+	 * @return preferedProfession
+	 */
 	public status getPreferedProfession() {
 		return preferedProfession;
 	}
 	
+	/**
+	 * Sets resident's prefered work status.
+	 * @param preferedProfession
+	 */
 	public void setPreferedProfession(status preferedProfession) {
 		this.preferedProfession = preferedProfession;
 	}
 	
+	/**
+	 * Returns {@code true} if resident accepts guests in the house.
+	 */
 	public boolean isGuests() {
 		return guests;
 	}
 	
+	/**
+	 * Sets resident's guest preference.
+	 * @param guests
+	 */
 	public void setGuests(boolean guests) {
 		this.guests = guests;
 	}
 	
+	/**
+	 * Returns the resident's gender choice for a flatmate.
+	 * @return genderChoice
+	 */
 	public String getGenderChoice() {
 		return genderChoice;
 	}
 	
+	/**
+	 * Sets the resident's gender choice for a flatmate.
+	 * @param genderChoice
+	 */
 	public void setGenderChoice(String genderChoice) {
 		this.genderChoice = genderChoice;
 	}
 
+	/**
+	 * Returns resident's email.
+	 * @return email address of resident
+	 */
 	public EmailAddress getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets email address for resident
+	 * @param email
+	 */
 	public void setEmail(EmailAddress email) {
 		this.email = email;
 	}
 
+	/**
+	 * Returns resident's phone number.
+	 * @return phone number of resident
+	 */
 	public CellNumber getPhoneNumber() {
 		return phoneNumber;
 	}
 
+	/**
+	 * Sets residnet's phone number.
+	 * @param phoneNumber
+	 */
 	public void setPhoneNumber(CellNumber phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
+	/**
+	 * Returns resident's rating.
+	 * @return rating
+	 */
 	public Set<Double> getRating() {
 		return rating;
 	}
 
+	/**
+	 * Sets resident rating
+	 * @param rating
+	 */
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
 	
+	/**
+	 * Return the resident's house.
+	 * @return resident house
+	 */
 	public House getHouse() {
 		return house;
 	}
 
+	/*
+	 * Sets the house of resident.
+	 */
 	public void setHouse(House house) {
 		this.house = house;
 	}
 
+	/**
+	 * Sets state of cohabit request to Accepted inside resident.
+	 * Initializes cohabitance parameters
+	 * @param cohabitance
+	 * @param request
+	 * @param endDate
+	 */
 	public void acceptRequest(Cohabitance cohabitance,CohabitRequest request,Date endDate) {
 		Date startDate = new Date();
 		request.setState(RequestState.ACCEPTED);
@@ -197,7 +322,10 @@ public class Resident extends Roommate{
 		cohabitance.setEndDate(endDate);
 		
 	}
-	
+	/**
+	 * Sets state of cohabit request to Rejected inside resident.
+	 * @param request
+	 */
 	public void rejectRequest(CohabitRequest request) {
 		request.setState(RequestState.REJECTED);
 		

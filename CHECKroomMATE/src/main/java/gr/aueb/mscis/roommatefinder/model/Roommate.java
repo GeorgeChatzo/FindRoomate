@@ -24,6 +24,14 @@ public class Roommate {
 	private String surname;
 	private int age;
 	
+	/**
+	 * Custom constructor. Initializes roommate fields.
+	 * @param username
+	 * @param password
+	 * @param name
+	 * @param surname
+	 * @param age
+	 */
 	public Roommate(String username, String password, String name,
 			String surname, int age) {
 		this.username = username;
@@ -33,58 +41,115 @@ public class Roommate {
 		this.age = age;
 	}
 	
+	/**
+	 * Default constructor
+	 */
 	public Roommate() {
 		
 	}
 	
+	/**
+	 * Returns id of roommate
+	 * @return roommate id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * Sets an id for the roommate
+	 * @param id
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Returns username of roommate
+	 * @return username
+	 */ 
 	public String getUsername() {
 		return username;
 	}
 	
+	/**
+	 * Sets a username for roommate
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	
+	/**
+	 * Returns roommate's password
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}
 	
+	/**
+	 * Sets password for roommate
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/**
+	 * Returns name of roommate
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Sets name of roommate
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Returns roommate's surname 
+	 * @return surname 
+	 */
 	public String getSurname() {
 		return surname;
 	}
 	
+	/**
+	 * Sets surname for roommate
+	 * @param surname
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 	
+	/**
+	 * Returns roommate's age
+	 * @return age
+	 */
 	public int getAge() {
 		return age;
 	}
 	
+	/**
+	 * Sets roommate's age
+	 * @param age
+	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+	/**
+	 * Return {@code true} if log in was valid 
+	 * @param roommateList
+	 * @param usernameInput
+	 * @param passwordInput
+	 * @return
+	 */
 	public boolean login(List<Roommate> roommateList,String usernameInput,String passwordInput) {
 		for(Roommate roommate: roommateList) {
 			String username = roommate.getUsername();
@@ -94,7 +159,10 @@ public class Roommate {
 		}
 		return false;
 	}
-	
+	/**
+	 * Return {@code true} if sign up has completed 
+	 * @param roommate
+	 */
 	public boolean signUp(Roommate roommate) {
 		return roommate.validateFields();
 	}

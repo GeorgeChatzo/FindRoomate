@@ -4,17 +4,25 @@ public class CellNumber {
 	
 	private String phonenumber;
 
-    
+    /*
+     * Custom Constructor. Initializes cell number element
+     * @param phonenumber
+     */
     public CellNumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-   
+    /**
+     * Returns the phone number
+     * @return
+     */
     public String getCellNumber() {
         return phonenumber;
     }
 
-   
+   /**
+    * Return {@code true} if phone number is valid
+    */
     public boolean isValid() {
         return true;
     }

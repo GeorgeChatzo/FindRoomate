@@ -4,6 +4,11 @@ import java.util.*;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * The flatmate (The person looking for a flat)
+ * @author Kevin McCalister
+ *
+ */
 @Entity
 @Table(name="flatmates")
 @PrimaryKeyJoinColumn(name = "flatmateid")
@@ -34,6 +39,24 @@ public class Flatmate extends Roommate {
 	    @Column(name="cellNumber", length = 20, nullable=true)
 	private CellNumber phoneNumber;
 	
+	 /**
+	  * Custom constructor that initializes flatmate's basic fields
+	  * @param username
+	  * @param password
+	  * @param email
+	  * @param phoneNumber
+	  * @param name
+	  * @param surname
+	  * @param age
+	  * @param description
+	  * @param gender
+	  * @param profession
+	  * @param pets
+	  * @param habits
+	  * @param workSchedule
+	  * @param incomingGuests
+	  * @param rating
+	  */
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating) {
@@ -49,12 +72,25 @@ public class Flatmate extends Roommate {
 		this.incomingGuests = incomingGuests;
 		this.rating = rating;
 	}
-		
+	
+	/**
+	 * Default Constructor
+	 */
 	public Flatmate() {
 
 	}
 	
-	
+	/**
+	 * Custom constructor that initializes these basic fields
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param phoneNumber
+	 * @param name
+	 * @param surname
+	 * @param age
+	 * @param rating
+	 */
 	public Flatmate(String username, String password, EmailAddress email, CellNumber phoneNumber, String name,
 			String surname, int age, Set<Double> rating) {
 		super(username, password, name, surname, age);
@@ -78,7 +114,10 @@ public class Flatmate extends Roommate {
 		}
 	}
 	
-	//Creation of request inside flatmate!
+	/**
+	 * Creation of request inside flatmate!
+	 * @param houseAd
+	 */
 	public CohabitRequest request(HouseAd houseAd) {
         if (houseAd == null) {
             return null;
@@ -91,7 +130,9 @@ public class Flatmate extends Roommate {
         cohabitRequest.setState(RequestState.PENDING);
         return cohabitRequest;
     }
-	
+	/*
+	 * Deletes a request that was made
+	 */
 	public void cancelRequest(CohabitRequest cohabitRequest) {
 		
 		if(cohabitRequests.contains(cohabitRequest)) {
@@ -100,91 +141,172 @@ public class Flatmate extends Roommate {
 		
 	}
 	
+	/**
+	 * Returns the flatmate's description
+	 * @return description
+	 */
 	public String getDescription() {
 		return description;
 	}
 	
+	/**
+	 *Sets a descritpion for a flatmate 
+	 * @param description
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
+	/**
+	 * Returns the flatmate's gender
+	 * @return
+	 */
 	public String getGender() {
 		return gender;
 	}
 	
+	/**
+	 * Sets the flatmate's gender
+	 * @param gender
+	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	
+	/**
+	 * Returns flatmate's current job status
+	 * @return
+	 */
 	public status getProfession() {
 		return profession;
 	}
 	
+	/**
+	 * Sets flatmate's current job status 
+	 * @param profession
+	 */
 	public void setProfession(status profession) {
 		this.profession = profession;
 	}
 	
+	/**
+	 * Returns {@code true} if flatmate has a pet
+	 */
 	public boolean isPets() {
 		return pets;
 	}
 	
+	/**
+	 * Sets flatmate's pet status?
+	 * @param pets
+	 */
 	public void setPets(boolean pets) {
 		this.pets = pets;
 	}
 	
+	/**
+	 * Returns a collection of the flatmate's habits
+	 * @return habits
+	 */
 	public Set<String> getHabits() {
 		return habits;
 	}
 	
+	/**
+	 * Sets a habit for the flatmate
+	 * @param habits
+	 */
 	public void setHabits(Set<String> habits) {
 		this.habits = habits;
 	}
 	
+	/**
+	 * Returns flatmate's work schedule
+	 * @return workSchedule
+	 */
 	public String getWorkSchedule() {
 		return workSchedule;
 	}
-	
+	/**
+	 * Sets the work schedule for the flatmate
+	 * @param workSchedule
+	 */
 	public void setWorkSchedule(String workSchedule) {
 		this.workSchedule = workSchedule;
 	}
-	
+	/**
+	 * Return {@code true} if flatmate will have guests
+	 */
 	public boolean isIncomingGuests() {
 		return incomingGuests;
 	}
 	
+	/**
+	 * Sets if the flatmate wants to have guests 
+	 * @param incomingGuests
+	 */
 	public void setIncomingGuests(boolean incomingGuests) {
 		this.incomingGuests = incomingGuests;
 	}
 
+	/**
+	 * Returns flatmate's mail address
+	 * @return email address
+	 */
 	public EmailAddress getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets an email address for the flatmate
+	 * @param email
+	 */
 	public void setEmail(EmailAddress email) {
 		this.email = email;
 	}
 
+	/**
+	 * Returns flatamate's phone number
+	 * @return phoneNumber
+	 */ 
 	public CellNumber getPhoneNumber() {
 		return phoneNumber;
 	}
 
+	/**
+	 * Sets the phone number for the flatmate
+	 * @param phoneNumber
+	 */
 	public void setPhoneNumber(CellNumber phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+	/**
+	 * Returns the flatmate rating
+	 * @return rating 
+	 */
 	public Set<Double> getRating() {
 		return rating;
 	}
 
+	/**
+	 * Sets a rating for the flatmate
+	 * @param rating
+	 */
 	public void setRating(Set<Double> rating) {
 		this.rating = rating;
 	}
 	
+	/**
+	 * Return {@code true} if a person signs up as a flatmate
+	 */
 	@Override
 	public boolean signUp(Roommate roommate) {
 		return ((Flatmate)roommate).validateFields();
 	}
 	
+	/**
+	 * Returns {@code true} if all fields are valid 
+	 */
 	@Override
 	public boolean  validateFields() {
 		if(!super.validateFields()) {

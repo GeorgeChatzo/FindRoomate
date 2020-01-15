@@ -3,16 +3,24 @@ package main.java.gr.aueb.mscis.roommatefinder.model;
 public class EmailAddress {
 	
 	 private String value;
-	   
+	   /**
+	    * Custom constructor for email
+	    * @param email
+	    */
 	    public EmailAddress(String email) {
 	        this.value = email;
 	    }
-	   
+	   /**
+	    * Returns mail address
+	    * @return
+	    */
 	    public String getAddress() {
 	        return value;
 	    }
 
-	  
+	    /**
+	     * Returns {@code true} if mail address is valid
+	     */
 	    public boolean isValid() {
 	        return true;
 	    }

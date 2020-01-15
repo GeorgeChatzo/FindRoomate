@@ -4,7 +4,12 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-
+/**
+ * The request for cohabitance.
+ * Records the state of the request
+ * @author Giorgos
+ *
+ */
 @Entity
 @Table(name="cohabitrequests")
 
@@ -31,7 +36,13 @@ public class CohabitRequest {
 	private boolean connection;
 	private Date dateOfRequest;
 	
-	
+	/**
+	 * Custom constructor that initializes basic fields
+	 * @param flatmate
+	 * @param connection
+	 * @param formatter
+	 * @param houseAd
+	 */
 	public CohabitRequest(Flatmate flatmate,boolean connection, Date formatter,HouseAd houseAd) {
 		this.connection = connection;
 		this.dateOfRequest = formatter;
@@ -39,54 +50,102 @@ public class CohabitRequest {
 		this.houseAd = houseAd;
 	}
 
+	/**
+	 * Default constructor
+	 */
 	public CohabitRequest() {
 		
 	}
 
+	/**
+	 * Returns the request id
+	 * @return id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * Sets the request id
+	 * @param id
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Returns {@code true} if the resident accepts the request
+	 */
 	public boolean isConnection() {
 		return connection;
 	}
 
+	/**
+	 * Sets the connection state
+	 * @param connection
+	 */
 	public void setConnection(boolean connection) {
 		this.connection = connection;
 	}
 
+	/**
+	 * Returns the date the request is made
+	 * @return date
+	 */
 	public Date getDateOfRequest() {
 		return dateOfRequest;
 	}
 
+	/*
+	 * Sets the request date
+	 */
 	public void setDateOfRequest(Date dateOfRequest) {
 		this.dateOfRequest = dateOfRequest;
 	}
 
+	/**
+	 * Returns the flatmate that made the request
+	 * @return
+	 */
 	public Flatmate getFlatmate() {
 		return flatmate;
 	}
 
+	/**
+	 * Sets the flatmate that made the request
+	 * @param flatmate
+	 */
 	public void setFlatmate(Flatmate flatmate) {
 		this.flatmate = flatmate;
 	}
 	
+	/**
+	 * Returns the houseAd for which the request is made
+	 * @return the houseAAd
+	 */
 	public HouseAd getHouseAd() {
 		return houseAd;
 	}
 	
+	/**
+	 * Sets the houseAd
+	 * @param houseAd
+	 */
 	public void setHouseAd(HouseAd houseAd) {
 		this.houseAd = houseAd;
 	}
-	
+	/**
+	 * Returns the state of the request at any time
+	 * @return state
+	 */
 	public RequestState getState() {
 		return state;
 	}
 
+	/**
+	 * Sets a state for the request
+	 * @param state
+	 */
 	public void setState(RequestState state) {
 		this.state = state;
 	}
