@@ -27,9 +27,15 @@ public class AuthenticationService {
 	}
 	
 	public boolean deleteRoommate(Roommate r) {
+		  EntityTransaction et = em.getTransaction();
 
 		if (r != null) {
+			System.out.println("mphke");
+			et.begin();
 			em.remove(r);
+		    em.flush();
+			et.commit();
+
 			return true;
 		}
 
