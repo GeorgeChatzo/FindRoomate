@@ -120,6 +120,10 @@ public class Initializer  {
         house_Adid= advertisment.getId();
         cohabitance_id= cohabitance.getId();
         cohabitrequest_id= cohabitRequest.getId();
+        
+        
+
+
     
     }
 }

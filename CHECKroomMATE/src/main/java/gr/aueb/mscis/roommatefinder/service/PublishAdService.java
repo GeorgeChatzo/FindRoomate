@@ -3,6 +3,8 @@ package main.java.gr.aueb.mscis.roommatefinder.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -17,9 +19,11 @@ public class PublishAdService {
 	}
 	
 	public boolean createHouseAd(HouseAd houseAd) {
-		
+		EntityTransaction et = em.getTransaction();
 		if (houseAd != null && houseAd.validate()) {
+			et.begin();			
 			em.persist(houseAd);
+			et.commit();
 			return true;
 		}
 
