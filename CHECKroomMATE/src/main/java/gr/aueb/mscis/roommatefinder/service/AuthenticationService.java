@@ -33,7 +33,6 @@ public class AuthenticationService {
 		  EntityTransaction et = em.getTransaction();
 
 		if (r != null) {
-			System.out.println("mphke");
 			et.begin();
 			em.remove(r);
 		    em.flush();

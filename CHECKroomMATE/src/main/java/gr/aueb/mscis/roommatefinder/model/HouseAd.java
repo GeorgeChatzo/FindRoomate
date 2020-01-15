@@ -12,7 +12,7 @@ public class HouseAd {
 	private long id;
 	
     @ManyToOne(fetch=FetchType.LAZY, 
-            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+            cascade = { CascadeType.ALL, CascadeType.MERGE })
     @JoinColumn(name="residentid")
     private Resident resident;
 

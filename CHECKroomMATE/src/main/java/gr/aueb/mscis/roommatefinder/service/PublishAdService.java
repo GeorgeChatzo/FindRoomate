@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
+import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
@@ -33,12 +35,43 @@ public class PublishAdService {
 	}
 	
 	public boolean deleteHouseAd(long houseAdId) {
+
 		HouseAd houseAd = findHouseAdById(houseAdId);
+		List<CohabitRequest> request = findReqByHouseAd(houseAdId);
+		
+		EntityTransaction et = em.getTransaction();
 		
 		if (houseAd != null) {
+			et.begin();
+
 			em.remove(houseAd);
+			em.flush();
+
+			for (int i=0; i<request.size(); i++) {
+				CohabitRequest req = request.get(i);
+				long id = req.getId();
+				Cohabitance coh = findCohByRequest(id);
+				
+				
+				if(coh != null) {
+					em.remove(coh);
+					em.flush();
+
+					em.remove(req);
+					
+					em.flush();
+
+				}
+
+			}
+			
+			
+			
+			et.commit();
 			return true;
 		}
+		
+		
 
 		return false;
 	}
@@ -96,7 +129,42 @@ public class PublishAdService {
 		return results;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<CohabitRequest> findReqByHouseAd(long id) {
+		
+		List<CohabitRequest> requests = null;
+		
+		requests = em
+				.createQuery(
+						"select r from CohabitRequest r where r.houseAd.id = :id ")
+				.setParameter("id", id)
+				.getResultList();
+		
+		return requests;
+		
+	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public Cohabitance findCohByRequest(long id) {
+		
+		List<Cohabitance> coh = null;
+		
+		coh = em
+				.createQuery(
+						"select r from Cohabitance r where r.request.id = :id ")
+				.setParameter("id", id)
+				.getResultList();
+		
+		if(!coh.isEmpty()) {
+			return coh.get(0);
+		}
+		else {
+			return null;
+		}
+		
+	}
+		
 	
 
 }

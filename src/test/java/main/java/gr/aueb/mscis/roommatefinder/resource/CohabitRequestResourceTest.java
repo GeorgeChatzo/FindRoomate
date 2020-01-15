@@ -80,7 +80,7 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 		// Check status and database state
 		assertEquals(201, response.getStatus());
 		List<CohabitRequest> requestsfound = listAllRequests();
-		assertEquals(2,requestsfound.size());
+		assertEquals(3,requestsfound.size());
 
 		
 	}

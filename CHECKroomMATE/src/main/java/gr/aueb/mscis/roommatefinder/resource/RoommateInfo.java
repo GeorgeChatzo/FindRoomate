@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CellNumber;
 import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
+import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
@@ -112,6 +113,10 @@ public class RoommateInfo {
 	}
 	
 	public static RoommateInfo wrap(Resident roommate) {
+		return new RoommateInfo(roommate);
+	}
+	
+	public static RoommateInfo wrap(Flatmate roommate) {
 		return new RoommateInfo(roommate);
 	}
 	

@@ -2,6 +2,7 @@ package main.java.gr.aueb.mscis.roommatefinder.resource;
 import static main.java.gr.aueb.mscis.roommatefinder.resource.RoommateUri.COREQUESTS;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -71,12 +72,15 @@ public class CohabitRequestResource extends AbstractResource {
 	public Response createCohabitRequest(CohabitRequestInfo cohabitRequestInfo) {
 		EntityManager em = getEntityManager();
 		
+		CohabitRequest coh = cohabitRequestInfo.getCohabitRequest(em);
+		
 		RequestService rs = new RequestService(em);
 		Response response = null;
+				
 		
 		try {
 			
-			rs.createRequest(cohabitRequestInfo.getId(), cohabitRequestInfo.getFlatmateId());
+			rs.createVanillaRequest(coh);
 			UriBuilder ub = uriInfo.getAbsolutePathBuilder();
 			URI newRequestUri = ub.path(Long.toString(cohabitRequestInfo.getId())).build();
 			response = Response.created(newRequestUri).build();

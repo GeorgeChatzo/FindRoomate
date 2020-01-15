@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.CohabitRequest;
 import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
+import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 
 @XmlRootElement
@@ -125,6 +126,9 @@ public class CohabitRequestInfo {
 		
 		Flatmate flatmate = em.getReference(Flatmate.class, flatmateId);
 		request.setFlatmate(flatmate);
+		
+		HouseAd houseAd = em.getReference(HouseAd.class, houseAdId);
+		request.setHouseAd(houseAd);
 		
 		return request;
 		

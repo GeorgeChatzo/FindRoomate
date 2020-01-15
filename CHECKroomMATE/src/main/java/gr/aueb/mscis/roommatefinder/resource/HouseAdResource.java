@@ -127,22 +127,6 @@ public class HouseAdResource extends AbstractResource {
 		
 	}
 	
-	@DELETE
-	@Path("{houseAdId:[0-9]*}")
-	public Response deleteHouseAd(@PathParam("houseAdId") long houseAdId) {
-		EntityManager em = getEntityManager();
-		
-		PublishAdService service = new PublishAdService(em);
-		boolean result = service.deleteHouseAd(houseAdId);
-		
-		if (!result) {
-			em.close();
-			return Response.status(Status.NOT_FOUND).build();
-		}
-
-		em.close();
-		return Response.ok().build();
-		
-	}
+	
 
 }

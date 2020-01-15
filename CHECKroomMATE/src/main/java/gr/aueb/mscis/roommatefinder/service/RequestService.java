@@ -26,12 +26,15 @@ public class RequestService {
 	public boolean createRequest(long houseAd_id,long flatmateId) {
 
 		Flatmate flatmate = findFlatmateById(flatmateId);
+		EntityTransaction et = em.getTransaction();
 
 		HouseAd houseAd = em.find(HouseAd.class, houseAd_id);
 		if(houseAd != null) {
 			CohabitRequest cohabitRequest = flatmate.request(houseAd);
+			et.begin();
 			em.persist(cohabitRequest);	
-			
+			em.flush();
+			et.commit();
 			
 			return true;
 		}else 
@@ -49,6 +52,22 @@ public class RequestService {
 
 		return false;
 	}
+	
+	public boolean createVanillaRequest(CohabitRequest request) {
+		
+		EntityTransaction et = em.getTransaction();
+		if (request != null) {
+			et.begin();
+			em.persist(request);
+			em.flush();
+			et.commit();
+			return true;
+		}
+
+		return false;
+		
+	}
+	
 	
 	public Flatmate findFlatmateById(long id) {
 
