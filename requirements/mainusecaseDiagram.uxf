@@ -93,23 +93,12 @@
     <id>Relation</id>
     <coordinates>
       <x>340</x>
-      <y>420</y>
+      <y>380</y>
       <w>110</w>
-      <h>60</h>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;90.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>340</x>
-      <y>370</y>
-      <w>110</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>10.0;30.0;90.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;90.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -173,24 +162,12 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>430</x>
-      <y>370</y>
+      <y>380</y>
       <w>120</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>Ταυτοποίηση 
 Χρήστη</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>430</x>
-      <y>440</y>
-      <w>120</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Αξιολόγηση 
-Συγκατοίκου</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
