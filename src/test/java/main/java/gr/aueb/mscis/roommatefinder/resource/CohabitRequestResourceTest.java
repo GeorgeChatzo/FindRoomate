@@ -69,7 +69,7 @@ public class CohabitRequestResourceTest extends RoommateResourceTest {
 
         Date date = format.parse ( "2019-12-31" );
         
-        CohabitRequestInfo request = new CohabitRequestInfo(flatmate.getId(),true,date,houseAd.getId());
+        CohabitRequestInfo request = new CohabitRequestInfo(flatmate.getId(),true,date,555,houseAd.getId());
         
 		Response response = target(COREQUESTS).request().post(Entity.entity(request, MediaType.APPLICATION_JSON));
 

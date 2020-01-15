@@ -45,12 +45,8 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 	}	
 	
 	@Test
-	public void testCreateRoommate() {
-		List<Roommate> roommates = listRoommates();
-		assertEquals(3, roommates.size());
-		Roommate roommate = roommates.get(0);
-		
-		RoommateInfo personal = new RoommateInfo(roommate.getId(),"POTUS","MAGA","Donald","Trump",78);
+	public void testCreateRoommate() {		
+		RoommateInfo personal = new RoommateInfo(333,"POTUS","MAGA","Donald","Trump",78);
 		Response response = target(ROOMMATES).request().post(Entity.entity(personal, MediaType.APPLICATION_JSON));
 		
 		assertEquals(201, response.getStatus());

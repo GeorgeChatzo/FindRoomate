@@ -58,13 +58,13 @@ public class HouseAdResourceTest extends RoommateResourceTest {
 		assertEquals(1, residents.size());
 		Resident resident = residents.get(0);
 		
-		HouseAdInfo advertisment = new HouseAdInfo("superNew","New house at Galatsi",500.0,
+		HouseAdInfo advertisment = new HouseAdInfo(888,"superNew","New house at Galatsi",500.0,
 				"GeorgeChatzo/photos/eikona1.jpg","Neodmito spiti diamperes",2,resident.getId());
 		Response response = target(HOUSEADS).request().post(Entity.entity(advertisment, MediaType.APPLICATION_JSON));
-		
+		System.out.println(response);
 		assertEquals(201, response.getStatus());
 		List<HouseAd> allHouseAds = listAllHouseAds();
-		assertEquals(1, allHouseAds.size());
+		assertEquals(2, allHouseAds.size());
 		
 	}
 	
