@@ -7,6 +7,12 @@ import javax.persistence.EntityTransaction;
 
 import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 
+/**
+ * The authentication service.
+ * In charge of creating,updating and deleting Roommates.
+ * Also in charge of logging in. 
+ * @author Kevin McCallister
+ */
 public class AuthenticationService {
 	
 	private EntityManager em;

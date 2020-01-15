@@ -10,6 +10,11 @@ import main.java.gr.aueb.mscis.roommatefinder.model.EmailAddress;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
+/**
+ * Service in charge of managing the resident's profile.
+ * @author Kevin McCallister
+ *
+ */
 public class ProfileResidentService  {
 	
 	
@@ -64,7 +69,10 @@ public class ProfileResidentService  {
 		
 	
 	}
-	
+	/**
+	 * Cancels a previews change to the resident entity.
+	 * @return
+	 */
 	public boolean cancelUpdate() {
 		EntityTransaction tx = em.getTransaction();
 		tx.rollback();

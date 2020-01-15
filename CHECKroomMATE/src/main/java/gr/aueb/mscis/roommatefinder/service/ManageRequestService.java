@@ -10,7 +10,11 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Cohabitance;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 
-
+/**
+ * The service manages cohabitance requests.
+ * @author Kevin McCallister
+ *
+ */
 public class ManageRequestService {
 	
 	private EntityManager em;
@@ -49,7 +53,11 @@ public class ManageRequestService {
 		return false;
 	}
 	
-	
+	/**
+	 * Finds residents based on their id
+	 * @param id
+	 * @return
+	 */
 	public Resident findResidentById(long id) {
 		return em.find(Resident.class, id);
 	}
@@ -73,6 +81,11 @@ public class ManageRequestService {
 		}
 	}
 
+	/**
+	 * Returns pending request of a given resident id.
+	 * @param residentId
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<CohabitRequest> viewPendingRequests(long residentId ){
 		List<CohabitRequest> results = null;

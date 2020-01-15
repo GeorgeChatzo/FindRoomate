@@ -9,6 +9,11 @@ import javax.xml.bind.annotation.XmlTransient;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 
+/**
+ * This service is used to manage the elements of a house and its ad
+ * @author Kevin McCallister
+ *
+ */
 public class UpdateHouseAdService {
 	
 	private EntityManager em;
@@ -163,7 +168,9 @@ public class UpdateHouseAdService {
 		
 	}
 	
-	//House
+	/*
+	 * For house elements
+	 */
 	
 	public boolean updateCountry(String country,House house ) {
 		house.setCountry(country);;

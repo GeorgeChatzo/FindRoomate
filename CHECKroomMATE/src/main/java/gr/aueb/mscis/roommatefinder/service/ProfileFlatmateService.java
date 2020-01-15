@@ -12,7 +12,11 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.Resident;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
-
+/**
+ * The service that manages the profile elements of a flatmate.
+ * @author Kevin McCallister
+ *
+ */
 public class ProfileFlatmateService {
 
 	private EntityManager em;
@@ -21,7 +25,26 @@ public class ProfileFlatmateService {
 		this.em = em;
 	}	
 	
-	
+	/**
+	 * Updates all the profile parameters at once.
+	 * @param username
+	 * @param password
+	 * @param emailAddress
+	 * @param phoneNumber
+	 * @param name
+	 * @param surName
+	 * @param age
+	 * @param description
+	 * @param gender
+	 * @param profession
+	 * @param pets
+	 * @param habits
+	 * @param workSchedule
+	 * @param incomingGuests
+	 * @param rating
+	 * @param flatmateId
+	 * @return
+	 */
 	public boolean updatePersonalDetails(String username, String password, EmailAddress emailAddress, CellNumber phoneNumber, String name,
 			String surName, int age, String description, String gender, status profession, boolean pets,
 			Set<String> habits, String workSchedule, boolean incomingGuests, Set<Double> rating,long flatmateId) {

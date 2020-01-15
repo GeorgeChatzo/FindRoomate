@@ -37,7 +37,9 @@ public class CohabitRequestResource extends AbstractResource {
 	UriInfo uriInfo;
 	
 	
-	
+	/**
+	 * Lists all the cohabit requests
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CohabitRequestInfo> listAllCohabitRequests(){

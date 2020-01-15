@@ -11,6 +11,11 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.House;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 
+/**
+ * Service used for creating or deleting a House Advert
+ * @author Kevin McCallister
+ *
+ */
 public class PublishAdService {
 	
 	private EntityManager em;

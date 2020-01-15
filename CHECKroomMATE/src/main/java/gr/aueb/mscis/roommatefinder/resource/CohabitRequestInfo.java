@@ -1,6 +1,7 @@
 package main.java.gr.aueb.mscis.roommatefinder.resource;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,12 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.HouseAd;
 import main.java.gr.aueb.mscis.roommatefinder.model.RequestState;
 
+
+/**
+ * Value object for transferring book data over the wire 
+ * @author Kevin McCallister
+ *
+ */
 @XmlRootElement
 public class CohabitRequestInfo {
 	

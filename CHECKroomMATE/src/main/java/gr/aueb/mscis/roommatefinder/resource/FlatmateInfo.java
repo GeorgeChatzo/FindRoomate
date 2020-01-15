@@ -17,7 +17,10 @@ import main.java.gr.aueb.mscis.roommatefinder.model.Flatmate;
 import main.java.gr.aueb.mscis.roommatefinder.model.Roommate;
 import main.java.gr.aueb.mscis.roommatefinder.model.status;
 
-
+/**
+ * Value object for transferring book data over the wire
+ * @author Kevin McCallister
+ */
 @XmlRootElement
 public class FlatmateInfo {
 	
