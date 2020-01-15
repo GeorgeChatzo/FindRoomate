@@ -51,7 +51,7 @@ public class RommateSuperResourceTest extends RoommateResourceTest {
 		
 		assertEquals(201, response.getStatus());
 		List<Roommate> allRoommates = listRoommates();
-		assertEquals(3, allRoommates.size());
+		assertEquals(4, allRoommates.size());
 
 	}
 	@Test

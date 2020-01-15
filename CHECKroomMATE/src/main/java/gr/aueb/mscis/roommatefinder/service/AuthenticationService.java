@@ -17,9 +17,12 @@ public class AuthenticationService {
 	
 	
 	public boolean createRoommate(Roommate r) {
-
+		EntityTransaction et = em.getTransaction();
 		if (r != null) {
+			et.begin();
 			em.persist(r);
+			em.flush();
+			et.commit();
 			return true;
 		}
 
